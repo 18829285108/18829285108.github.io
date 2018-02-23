@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kingvirre">
 <meta property="og:description" content="加密可逆加密：密钥对，一个加密，一个解密 对称加密，加密和解密的密钥相同，速度快，通信双方知道密钥。常见的有DES，3DES，AES对称加密。 非对称加密，加密和解密密钥不同，分为公钥和私钥，任何人都可以知道公钥，私钥自己持有进行解密。常见的有RSA。不可逆加密 不需要使用密钥，输入明文后由系统直接经过加密算法处理成密文，这种加密后的数据是无法被解密的，只有重新输入明文，并再次经过同样不可逆的加密">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-08T03:52:29.328Z">
+<meta property="og:updated_time" content="2018-02-23T03:39:52.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密">
 <meta name="twitter:description" content="加密可逆加密：密钥对，一个加密，一个解密 对称加密，加密和解密的密钥相同，速度快，通信双方知道密钥。常见的有DES，3DES，AES对称加密。 非对称加密，加密和解密密钥不同，分为公钥和私钥，任何人都可以知道公钥，私钥自己持有进行解密。常见的有RSA。不可逆加密 不需要使用密钥，输入明文后由系统直接经过加密算法处理成密文，这种加密后的数据是无法被解密的，只有重新输入明文，并再次经过同样不可逆的加密">
@@ -336,7 +336,8 @@
 <li>B用相同的hash算法对收到的明文再进行一次hash 运算，得到一个新的信息摘要。</li>
 <li>B将收到的信息摘要和新产生的信息摘要进行比较，如果一致，说明收到的信息没有被修改过。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```证书中心用自己的私钥，对每一个用户的公钥和一些相关信息一起加密，生成&quot;数字证书&quot;。发送者在发送信息之前如果想核对接受者的公钥，只需用CA的公钥对B的签名证书进行解密确认即可。</span><br></pre></td></tr></table></figure>
+<p><code>但是上述过程存在问题，例如有用户C窃取A的电脑信息，把B的公钥修改成了自己的公钥，A用此公钥加密信息发给B，C在中间截获这个数据就可以获取这些私密信息。怎么应对这种情况呢？签名证书就派上用场了。</code></p>
+<p>证书中心用自己的私钥，对每一个用户的公钥和一些相关信息一起加密，生成”数字证书”。发送者在发送信息之前如果想核对接受者的公钥，只需用CA的公钥对B的签名证书进行解密确认即可。</p>
 <h2 id="SSH工作原理"><a href="#SSH工作原理" class="headerlink" title="SSH工作原理"></a>SSH工作原理</h2><ul>
 <li>SSH就是一种网络协议，主要用于计算机之间的加密登录与数据传输</li>
 <li>ssh user@host，省略前面的user，表示以当前本地登录的用户名登录host这台网络机器。</li>
@@ -382,9 +383,11 @@
 <li>我们需要手动把机器A公钥的内容复制到要登录机器B的相应用户（如root）家目录下的指定文件中：/home/root/.ssh/autorized_keys；</li>
 <li>在机器A上就可以通过ssh私钥使用root用户登录机器B了。<blockquote>
 <p>git项目，如果我们使用http/https协议的话，就需要提供用户名和密码进行验证；如果我们使用ssh协议的话，就可以把我们公钥保存到项目仓库机器的指定位置，来通过非对称加密的方式进行身份验证。</p>
-<h2 id="https工作原理"><a href="#https工作原理" class="headerlink" title="https工作原理"></a>https工作原理</h2><p>HTTPS实际上就是HTTP协议和SSL/TSL协议的组合。使用HTTPS需要在服务器端配置密钥对；使用HTTPS需要花钱找专业的权威机构进行CA证书的签发。</p>
 </blockquote>
 </li>
+</ul>
+<h2 id="https工作原理"><a href="#https工作原理" class="headerlink" title="https工作原理"></a>https工作原理</h2><p>HTTPS实际上就是HTTP协议和SSL/TSL协议的组合。使用HTTPS需要在服务器端配置密钥对；使用HTTPS需要花钱找专业的权威机构进行CA证书的签发。</p>
+<ul>
 <li>浏览器A与网站服务器B通过三次握手后建立网络连接。</li>
 <li>浏览器A告诉服务器B：我想跟你通过HTTPS协议进行秘密交流。</li>
 <li>网站服务器B把包含自己公钥信息的CA证书下发给浏览器A，并告诉浏览器A这个CA证书里有我的公钥信息，你决定一个对称加密使用的秘钥串，然后通过这个公钥加密后发送给我。</li>
