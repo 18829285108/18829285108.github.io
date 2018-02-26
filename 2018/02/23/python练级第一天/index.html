@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kingvirre">
 <meta property="og:description" content="python练级打卡第一天语言类型 C语言编译型语言，python解释型语言（先编译后解释），java先编译后解释语言，c#是二次编译的纯编译语言。 解释型语言就是边解释边执行，而编译型语言是先编译后执行，两者的操作过程不同。 注意：解释型语言从上往下执行，执行到函数时不会执行函数里面的语句，等到调用时再执行。而编译型语言会先找到main函数开始执行。 python 大小写敏感，缩进块 4个空格">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-26T04:02:27.453Z">
+<meta property="og:updated_time" content="2018-02-26T04:33:55.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python练级第一天">
 <meta name="twitter:description" content="python练级打卡第一天语言类型 C语言编译型语言，python解释型语言（先编译后解释），java先编译后解释语言，c#是二次编译的纯编译语言。 解释型语言就是边解释边执行，而编译型语言是先编译后执行，两者的操作过程不同。 注意：解释型语言从上往下执行，执行到函数时不会执行函数里面的语句，等到调用时再执行。而编译型语言会先找到main函数开始执行。 python 大小写敏感，缩进块 4个空格">
@@ -328,7 +328,20 @@
 </ul>
 <h4 id="python环境管理"><a href="#python环境管理" class="headerlink" title="python环境管理"></a>python环境管理</h4><ul>
 <li>安装pyenv （python environment）, pyenv local 可以查看当前版本</li>
-<li><figure class="highlight plain"><figcaption><span>"$(pyenv init -)" && pyenv local 3.6.2 ```, 版本间切换，mac需要加上```eval "$(pyenv init -)"```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- 使用pyenv安装不同的python版本, ```pyenv install --list``` 查看可以安装的列表。```pyenv install 2.7.6``` 安装指定版本。</span><br><span class="line"></span><br><span class="line">#### 基础1</span><br><span class="line">- ```print(&quot;hello&quot;)``` 和```print(&apos;hello&apos;)```， 双引号和单引号的区别？？</span><br><span class="line">- python代码运行助手：在线输入Python代码，然后通过本机运行的一个Python脚本来执行代码</span><br><span class="line">- print()函数也可以接受多个字符串，用逗号“,”隔开，就可以连成一串输出.```print(&quot;I&quot;,&quot;love&quot;,&quot;you&quot;)```。 print()会依次打印每个字符串，遇到逗号“,”会输出一个空格，最后输出```I love you</span><br></pre></td></tr></table></figure>
+<li><p>版本间切换，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(pyenv init -)&quot; &amp;&amp; pyenv local 3.6.2</span><br><span class="line">mac需要加上 eval &quot;$(pyenv init -)&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用pyenv安装不同的python版本, <strong>pyenv install –list</strong> 查看可以安装的列表。<strong>pyenv install 2.7.6</strong> 安装指定版本。</p>
+</li>
+</ul>
+<h4 id="基础1"><a href="#基础1" class="headerlink" title="基础1"></a>基础1</h4><ul>
+<li><p><strong>双引号和单引号的区别??</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;hello&quot;)</span><br><span class="line">print(&apos;hello&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>python代码运行助手：在线输入Python代码，然后通过本机运行的一个Python脚本来执行代码</p>
+</li>
+<li><p>print()函数也可以接受多个字符串，用逗号“,”隔开，就可以连成一串输出. print()会依次打印每个字符串，遇到逗号“,”会输出一个空格.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; print(&quot;I&quot;,&quot;am&quot;,&quot;a&quot;,&quot;dog&quot;)</span><br><span class="line">I am a dog</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>input </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name = input(&apos;please enter your name: &apos;)</span><br><span class="line">print(&apos;hello,&apos;, name)</span><br><span class="line">``` </span><br><span class="line">- output</span><br></pre></td></tr></table></figure>
@@ -566,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python练级打卡第一天"><span class="nav-number">1.</span> <span class="nav-text">python练级打卡第一天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语言类型"><span class="nav-number">1.0.1.</span> <span class="nav-text">语言类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python环境管理"><span class="nav-number">1.0.2.</span> <span class="nav-text">python环境管理</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#coding-utf-8"><span class="nav-number"></span> <span class="nav-text">-- coding: utf-8 --</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python练级打卡第一天"><span class="nav-number">1.</span> <span class="nav-text">python练级打卡第一天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语言类型"><span class="nav-number">1.0.1.</span> <span class="nav-text">语言类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python环境管理"><span class="nav-number">1.0.2.</span> <span class="nav-text">python环境管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基础1"><span class="nav-number">1.0.3.</span> <span class="nav-text">基础1</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#coding-utf-8"><span class="nav-number"></span> <span class="nav-text">-- coding: utf-8 --</span></a></div>
             
 
           </div>
