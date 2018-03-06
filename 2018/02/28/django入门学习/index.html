@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="demo项目 guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。   浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过">
+<meta name="description" content="demo项目guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。 浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过ret">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django入门学习">
 <meta property="og:url" content="http://yoursite.com/2018/02/28/django入门学习/index.html">
 <meta property="og:site_name" content="Kingvirre">
-<meta property="og:description" content="demo项目 guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。   浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过">
+<meta property="og:description" content="demo项目guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。 浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过ret">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-06T03:07:26.213Z">
+<meta property="og:updated_time" content="2018-03-06T03:14:42.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django入门学习">
-<meta name="twitter:description" content="demo项目 guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。   浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过">
+<meta name="twitter:description" content="demo项目guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。 浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过ret">
 
 
 
@@ -320,10 +320,7 @@
       
 
       
-        <h2 id="demo项目"><a href="#demo项目" class="headerlink" title="demo项目"></a>demo项目</h2><ol>
-<li>guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。</li>
-</ol>
-<ul>
+        <h2 id="demo项目"><a href="#demo项目" class="headerlink" title="demo项目"></a>demo项目</h2><h4 id="guest-urls-py-url请求映射表，除了项目的根目录下有urls-py外，项目的每个应用下都会有一个urls-py文件。"><a href="#guest-urls-py-url请求映射表，除了项目的根目录下有urls-py外，项目的每个应用下都会有一个urls-py文件。" class="headerlink" title="guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。"></a>guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。</h4><ul>
 <li>浏览器发送请求url</li>
 <li>服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。</li>
 <li><p>负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过return render(request, ‘模板文件’, 数据); 渲染到前端页面展示给用户。</p>
@@ -333,14 +330,8 @@
 </blockquote>
 </li>
 </ul>
-<ol>
-<li><p>假如一个project中有多个app, 我们可以用include的方法来配置url，首先我们在自己的app中建立一个urls.py，即myproject/myapp/目录下建立urls.py.<br>然后在项目的根目录下urls中包含刚刚app中添加的url配置，我们要做的是在myproject/myproject/urls.py输入如下内容:</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from django.conf.urls import url, include #导入了include函数</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(r&apos;^admin/&apos;, admin.site.urls),</span><br><span class="line">    url(r&apos;^myapp/&apos;, include(&quot;myapp.urls&quot;))#包含myapp中的urls</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>module数据库的迁移。</p>
-</li>
-</ol>
-<ul>
+<h4 id="url中include使用"><a href="#url中include使用" class="headerlink" title="url中include使用"></a>url中include使用</h4><p>假如一个project中有多个app, 我们可以用include的方法来配置url，首先我们在自己的app中建立一个urls.py，即myproject/myapp/目录下建立urls.py.<br>然后在项目的根目录下urls中包含刚刚app中添加的url配置，我们要做的是在myproject/myproject/urls.py输入如下内容:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from django.conf.urls import url, include #导入了include函数</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(r&apos;^admin/&apos;, admin.site.urls),</span><br><span class="line">    url(r&apos;^myapp/&apos;, include(&quot;myapp.urls&quot;))#包含myapp中的urls</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<h4 id="module数据库的迁移。"><a href="#module数据库的迁移。" class="headerlink" title="module数据库的迁移。"></a>module数据库的迁移。</h4><ul>
 <li><p>修改models.py后，需要执行以下两步进行数据库迁移.<br>第一个是makemigrations，第二个是migrate，生成migrations代码的makemigrations指令是用models里面的model和当前的migrations代码里面的model做对比，如果有新的修改，就生成新的migrations代码，<br>migrate指令是用migrations目录中代码文件和django数据库djaong_migrations表中的代码文件做对比，如果表中没有，那就对这些没有的文件按顺序及依赖关系做migrate apply，然后再把代码文件名加进migrations表中。</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 在该app下建立 migrations目录，并记录下你所有的关于models.py的改动，比如0001_initial.py， 但是这个改动还没有作用到数据库文件</span><br><span class="line">python manage.py makemigrations + app名称</span><br><span class="line"># 将改动作用到数据库</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
 </li>
@@ -349,27 +340,19 @@
 <li>删除数据库db.sqlite3后, 需要创建登录后台的管理员账号  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<ol>
-<li><p>连接两个表之间的外键。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Reporter(models.Model):</span><br><span class="line">    full_name = models.CharField(max_length=70)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.full_name</span><br><span class="line"></span><br><span class="line">class Article(models.Model):</span><br><span class="line">    pub_date = models.DateField()</span><br><span class="line">    headline = models.CharField(max_length=200)</span><br><span class="line">    reporter = models.ForeignKey(Reporter)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.headline</span><br><span class="line"></span><br><span class="line"> &gt;&gt;&gt; r = Reporter(full_name=&apos;John Smith&apos;)</span><br><span class="line"> &gt;&gt;&gt; r.article_set.all()</span><br><span class="line">&lt;QuerySet [&lt;Article: Django is cool&gt;]&gt;</span><br><span class="line">reporter是article的外键，所以reporter的article_set.all可以显示此reporter的所有文章</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>django的模板继承</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &quot;base.html&quot; %&#125;</span><br><span class="line">&#123;% block title %&#125;Articles for &#123;&#123; year &#125;&#125;&#123;% endblock %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">&lt;h1&gt;Articles for &#123;&#123; year &#125;&#125;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&#123;% for article in article_list %&#125;</span><br><span class="line">    &lt;p&gt;&#123;&#123; article.headline &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;By &#123;&#123; article.reporter.full_name &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Published &#123;&#123; article.pub_date|date:&quot;F j, Y&quot; &#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这就是 % extends “base.html” % 所做的事。它表示“首先载入‘base’ 模板，该模板中定义了一系列block，然后使用接下来的（存在于继承模板）blocks填充这些blocks”。<br>   简而言之，模板继承让你大大减少模板间的冗余内容：每个模板只需要定义它独特的部分。</p>
-</blockquote>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load staticfiles %&#125;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&#123;% block title %&#125;&#123;% endblock %&#125;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;img src=&quot;&#123;% static &quot;images/sitelogo.png&quot; %&#125;&quot; alt=&quot;Logo&quot; /&gt;</span><br><span class="line">    &#123;% block content %&#125;&#123;% endblock %&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>它定义网站的外观（使用网站的logo ），并提供“空洞”让子模板填充。这使站点的重构变得非常容易，只需改变一个文件 —— base模板。<br>   它还可以让你利用不同的基础模板并重用子模板创建一个网站的多个版本(中英文版本等)。</p>
-</blockquote>
-</li>
-<li><p>admin.py后台管理</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list_display = (&quot;name&quot;, &quot;client_id&quot;, &quot;create_time&quot;, &quot;comment&quot;) # 列表中显示哪些字段</span><br><span class="line">search_fields = [&quot;name&quot;]  # 搜索栏</span><br><span class="line">ordering = (&quot;-create_time&quot;,) # 默认排序字段，负号表示降序排序</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用djangorestframework和js做web api, serializers序列化返回json或者jsonp数据。主要是为了自动地将模型的实例对象序列化，搞成json数据更方便前端使用</p>
-</li>
-<li>django版本问题，提示错误(‘WSGIRequest’ object has no attribute ‘user’) , 需要在settings里面修改MIDDLEWARE或者MIDDLEWARE_CLASSES</li>
-</ol>
+<h4 id="连接两个表之间的外键。"><a href="#连接两个表之间的外键。" class="headerlink" title="连接两个表之间的外键。"></a>连接两个表之间的外键。</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Reporter(models.Model):</span><br><span class="line">    full_name = models.CharField(max_length=70)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.full_name</span><br><span class="line"></span><br><span class="line">class Article(models.Model):</span><br><span class="line">    pub_date = models.DateField()</span><br><span class="line">    headline = models.CharField(max_length=200)</span><br><span class="line">    reporter = models.ForeignKey(Reporter)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.headline</span><br><span class="line"></span><br><span class="line"> &gt;&gt;&gt; r = Reporter(full_name=&apos;John Smith&apos;)</span><br><span class="line"> &gt;&gt;&gt; r.article_set.all()</span><br><span class="line">&lt;QuerySet [&lt;Article: Django is cool&gt;]&gt;</span><br><span class="line">reporter是article的外键，所以reporter的article_set.all可以显示此reporter的所有文章</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="django的模板继承"><a href="#django的模板继承" class="headerlink" title="django的模板继承"></a>django的模板继承</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &quot;base.html&quot; %&#125;</span><br><span class="line">&#123;% block title %&#125;Articles for &#123;&#123; year &#125;&#125;&#123;% endblock %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">&lt;h1&gt;Articles for &#123;&#123; year &#125;&#125;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&#123;% for article in article_list %&#125;</span><br><span class="line">    &lt;p&gt;&#123;&#123; article.headline &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;By &#123;&#123; article.reporter.full_name &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Published &#123;&#123; article.pub_date|date:&quot;F j, Y&quot; &#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+&gt; 这就是 % extends &quot;base.html&quot; % 所做的事。它表示“首先载入‘base’ 模板，该模板中定义了一系列block，然后使用接下来的（存在于继承模板）blocks填充这些blocks”。
+  简而言之，模板继承让你大大减少模板间的冗余内容：每个模板只需要定义它独特的部分。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load staticfiles %&#125;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&#123;% block title %&#125;&#123;% endblock %&#125;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;img src=&quot;&#123;% static &quot;images/sitelogo.png&quot; %&#125;&quot; alt=&quot;Logo&quot; /&gt;</span><br><span class="line">    &#123;% block content %&#125;&#123;% endblock %&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+&gt; 它定义网站的外观（使用网站的logo ），并提供“空洞”让子模板填充。这使站点的重构变得非常容易，只需改变一个文件 —— base模板。
+  它还可以让你利用不同的基础模板并重用子模板创建一个网站的多个版本(中英文版本等)。
+</code></pre><h4 id="admin-py后台管理"><a href="#admin-py后台管理" class="headerlink" title="admin.py后台管理"></a>admin.py后台管理</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list_display = (&quot;name&quot;, &quot;client_id&quot;, &quot;create_time&quot;, &quot;comment&quot;) # 列表中显示哪些字段</span><br><span class="line">search_fields = [&quot;name&quot;]  # 搜索栏</span><br><span class="line">ordering = (&quot;-create_time&quot;,) # 默认排序字段，负号表示降序排序</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="serializers"><a href="#serializers" class="headerlink" title="serializers"></a>serializers</h4><p>用djangorestframework和js做web api, serializers序列化返回json或者jsonp数据。主要是为了自动地将模型的实例对象序列化，搞成json数据更方便前端使用</p>
+<h4 id="django版本问题，"><a href="#django版本问题，" class="headerlink" title="django版本问题，"></a>django版本问题，</h4><p>  提示错误(‘WSGIRequest’ object has no attribute ‘user’) , 需要在settings里面修改MIDDLEWARE或者MIDDLEWARE_CLASSES</p>
 <ul>
 <li>django1.9之前，中间件的key为MIDDLEWARE_CLASSES</li>
 <li>django1.9之后，中间件的key为MIDDLEWARE</li>
@@ -567,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#demo项目"><span class="nav-number">1.</span> <span class="nav-text">demo项目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#demo项目"><span class="nav-number">1.</span> <span class="nav-text">demo项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#guest-urls-py-url请求映射表，除了项目的根目录下有urls-py外，项目的每个应用下都会有一个urls-py文件。"><span class="nav-number">1.0.1.</span> <span class="nav-text">guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#url中include使用"><span class="nav-number">1.0.2.</span> <span class="nav-text">url中include使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#module数据库的迁移。"><span class="nav-number">1.0.3.</span> <span class="nav-text">module数据库的迁移。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接两个表之间的外键。"><span class="nav-number">1.0.4.</span> <span class="nav-text">连接两个表之间的外键。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#django的模板继承"><span class="nav-number">1.0.5.</span> <span class="nav-text">django的模板继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#admin-py后台管理"><span class="nav-number">1.0.6.</span> <span class="nav-text">admin.py后台管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#serializers"><span class="nav-number">1.0.7.</span> <span class="nav-text">serializers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#django版本问题，"><span class="nav-number">1.0.8.</span> <span class="nav-text">django版本问题，</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
