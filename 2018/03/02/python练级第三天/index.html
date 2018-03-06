@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kingvirre">
 <meta property="og:description" content="python练级打卡第三天把平时用到的地方再简单整理下 把字符串类型的字典，转换为字典类型1234567891011121314&amp;gt;&amp;gt;&amp;gt; a = &amp;apos;&amp;#123;&amp;quot;hostname&amp;quot;: &amp;quot;172.16.83.200&amp;quot;, &amp;quot;cert_id&amp;quot;: null, &amp;quot;policy&amp;quot;: null, &amp;quot">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-06T03:03:19.539Z">
+<meta property="og:updated_time" content="2018-03-06T03:11:02.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python练级第三天">
 <meta name="twitter:description" content="python练级打卡第三天把平时用到的地方再简单整理下 把字符串类型的字典，转换为字典类型1234567891011121314&amp;gt;&amp;gt;&amp;gt; a = &amp;apos;&amp;#123;&amp;quot;hostname&amp;quot;: &amp;quot;172.16.83.200&amp;quot;, &amp;quot;cert_id&amp;quot;: null, &amp;quot;policy&amp;quot;: null, &amp;quot">
@@ -334,17 +334,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import time</span><br><span class="line">&gt;&gt;&gt; t = time.time()</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">1519962961.725776</span><br><span class="line">&gt;&gt;&gt; type(t)</span><br><span class="line">&lt;class &apos;float&apos;&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>字符串（eg: 2018-01-01）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = time.localtime()</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">time.struct_time(tm_year=2018, tm_mon=3, tm_mday=2, tm_hour=14, tm_min=50, tm_sec=55, tm_wday=4, tm_yday=61, tm_isdst=0)</span><br><span class="line">&gt;&gt;&gt; type(a)</span><br><span class="line">&lt;class &apos;time.struct_time&apos;&gt;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = time.localtime()</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">time.struct_time(tm_year=2018, tm_mon=3, tm_mday=2, tm_hour=14, tm_min=50, tm_sec=55, tm_wday=4, tm_yday=61, tm_isdst=0)</span><br><span class="line">&gt;&gt;&gt; type(a)</span><br><span class="line">&lt;class &apos;time.struct_time&apos;&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>可以将struct_time转变为str类型，strftime可以将时间转换为我们需要的格式</p>
 </blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; time.strftime(&apos;%Y-%m-%d&apos;,a)</span><br><span class="line">&apos;2018-03-02&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将str类型转变为struct_time。strptime函数根据指定的格式把一个时间字符串解析为时间元组。</p>
+</blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = time.strptime(&apos;2018-01-01&apos;, &apos;%Y-%m-%d&apos;)</span><br><span class="line">&gt;&gt;&gt; type(b)</span><br><span class="line">&lt;class &apos;time.struct_time&apos;&gt;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; time.strftime(&apos;%Y-%m-%d&apos;,a)</span><br><span class="line">&apos;2018-03-02&apos;</span><br></pre></td></tr></table></figure>
-<pre><code>&gt; 将str类型转变为struct_time。strptime函数根据指定的格式把一个时间字符串解析为时间元组。
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = time.strptime(&apos;2018-01-01&apos;, &apos;%Y-%m-%d&apos;)</span><br><span class="line">&gt;&gt;&gt; type(b)</span><br><span class="line">&lt;class &apos;time.struct_time&apos;&gt;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>各种时间之间的转换</li>
+<li><p>各种时间之间的转换</p>
+</li>
 </ol>
 <ul>
 <li><p>datetime 转 str（eg: 2018-01-01）</p>
