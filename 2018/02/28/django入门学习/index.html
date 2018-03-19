@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="django," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="demo项目guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。 浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过ret">
-<meta name="keywords" content="python">
+<meta name="keywords" content="django">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django入门学习">
 <meta property="og:url" content="http://yoursite.com/2018/02/28/django入门学习/index.html">
 <meta property="og:site_name" content="Kingvirre">
 <meta property="og:description" content="demo项目guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。 浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过ret">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-06T03:14:42.199Z">
+<meta property="og:updated_time" content="2018-03-06T08:18:25.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django入门学习">
 <meta name="twitter:description" content="demo项目guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。 浏览器发送请求url 服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。 负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过ret">
@@ -357,6 +357,14 @@
 <li>django1.9之前，中间件的key为MIDDLEWARE_CLASSES</li>
 <li>django1.9之后，中间件的key为MIDDLEWARE</li>
 </ul>
+<h4 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h4><ul>
+<li>异步分布式地异步处理任务。参考资料：<a href="http://yshblog.com/blog/163" target="_blank" rel="noopener">http://yshblog.com/blog/163</a></li>
+<li>定时执行任务。参考资料：<a href="http://yshblog.com/blog/164" target="_blank" rel="noopener">http://yshblog.com/blog/164</a></li>
+</ul>
+<h4 id="中间件middleware"><a href="#中间件middleware" class="headerlink" title="中间件middleware"></a>中间件middleware</h4><ul>
+<li>参考资料：<a href="http://blog.csdn.net/orangleliu/article/details/48316919" target="_blank" rel="noopener">http://blog.csdn.net/orangleliu/article/details/48316919</a></li>
+<li>process response<br>不像 process_request()和process_view()方法，即使同一个中间件类中的process_request()和process_view()方法会因为前面的一个中间件返回HttpResponse而被跳过，process_response()方法总是会被调用。<br>在响应阶段中，中间件以相反的顺序被应用，自底向上。意思是定义在MIDDLEWARE_CLASSES最底下的类会最先被运行。</li>
+</ul>
 
       
     </div>
@@ -398,7 +406,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/django/" rel="tag"># django</a>
           
         </div>
       
@@ -504,7 +512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -517,7 +525,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -550,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#demo项目"><span class="nav-number">1.</span> <span class="nav-text">demo项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#guest-urls-py-url请求映射表，除了项目的根目录下有urls-py外，项目的每个应用下都会有一个urls-py文件。"><span class="nav-number">1.0.1.</span> <span class="nav-text">guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#url中include使用"><span class="nav-number">1.0.2.</span> <span class="nav-text">url中include使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#module数据库的迁移。"><span class="nav-number">1.0.3.</span> <span class="nav-text">module数据库的迁移。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接两个表之间的外键。"><span class="nav-number">1.0.4.</span> <span class="nav-text">连接两个表之间的外键。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#django的模板继承"><span class="nav-number">1.0.5.</span> <span class="nav-text">django的模板继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#admin-py后台管理"><span class="nav-number">1.0.6.</span> <span class="nav-text">admin.py后台管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#serializers"><span class="nav-number">1.0.7.</span> <span class="nav-text">serializers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#django版本问题，"><span class="nav-number">1.0.8.</span> <span class="nav-text">django版本问题，</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#demo项目"><span class="nav-number">1.</span> <span class="nav-text">demo项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#guest-urls-py-url请求映射表，除了项目的根目录下有urls-py外，项目的每个应用下都会有一个urls-py文件。"><span class="nav-number">1.0.1.</span> <span class="nav-text">guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#url中include使用"><span class="nav-number">1.0.2.</span> <span class="nav-text">url中include使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#module数据库的迁移。"><span class="nav-number">1.0.3.</span> <span class="nav-text">module数据库的迁移。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接两个表之间的外键。"><span class="nav-number">1.0.4.</span> <span class="nav-text">连接两个表之间的外键。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#django的模板继承"><span class="nav-number">1.0.5.</span> <span class="nav-text">django的模板继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#admin-py后台管理"><span class="nav-number">1.0.6.</span> <span class="nav-text">admin.py后台管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#serializers"><span class="nav-number">1.0.7.</span> <span class="nav-text">serializers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#django版本问题，"><span class="nav-number">1.0.8.</span> <span class="nav-text">django版本问题，</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#celery"><span class="nav-number">1.0.9.</span> <span class="nav-text">celery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间件middleware"><span class="nav-number">1.0.10.</span> <span class="nav-text">中间件middleware</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

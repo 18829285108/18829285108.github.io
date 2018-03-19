@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="python练级打卡第五天python程序同时兼容Python2 和 python3 2to3 工具对代码检查（/.pyenv/versions/3.6.2/bin文件下面）2to3.py是python自带的代码转换工具，将python2代码转换为python3代码，但是代码并未对兼容做任何处理。python 2to3.py -w + 要转换的python2代码的路径，会直接覆盖掉原先的pytho">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python练级第五天">
+<meta property="og:url" content="http://yoursite.com/2018/03/12/python练级第五天/index.html">
+<meta property="og:site_name" content="Kingvirre">
+<meta property="og:description" content="python练级打卡第五天python程序同时兼容Python2 和 python3 2to3 工具对代码检查（/.pyenv/versions/3.6.2/bin文件下面）2to3.py是python自带的代码转换工具，将python2代码转换为python3代码，但是代码并未对兼容做任何处理。python 2to3.py -w + 要转换的python2代码的路径，会直接覆盖掉原先的pytho">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-15T04:03:49.644Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python练级第五天">
+<meta name="twitter:description" content="python练级打卡第五天python程序同时兼容Python2 和 python3 2to3 工具对代码检查（/.pyenv/versions/3.6.2/bin文件下面）2to3.py是python自带的代码转换工具，将python2代码转换为python3代码，但是代码并未对兼容做任何处理。python 2to3.py -w + 要转换的python2代码的路径，会直接覆盖掉原先的pytho">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/12/python练级第五天/"/>
+
+
+
+
+
+  <title>python练级第五天 | Kingvirre</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kingvirre</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">人生自是有情始，此事不关风与月</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/python练级第五天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python练级第五天</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T14:38:03+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="python练级打卡第五天"><a href="#python练级打卡第五天" class="headerlink" title="python练级打卡第五天"></a>python练级打卡第五天</h2><h4 id="python程序同时兼容Python2-和-python3"><a href="#python程序同时兼容Python2-和-python3" class="headerlink" title="python程序同时兼容Python2 和 python3"></a>python程序同时兼容Python2 和 python3</h4><ul>
+<li>2to3 工具对代码检查（/.pyenv/versions/3.6.2/bin文件下面）<br>2to3.py是python自带的代码转换工具，将python2代码转换为python3代码，但是代码并未对兼容做任何处理。<br>python 2to3.py -w + 要转换的python2代码的路径，会直接覆盖掉原先的python2代码，但同时会给原来的python2代码备份。</li>
+<li>使用python -3执行python程序<br>2to3 可以检查出很多python2＆3的兼容性问题，但也有很多问题是2to3发现不了的。<br>在加上 -3 参数后，程序在运行时会在控制台上将python2和python3不一致，同时2to3无法处理的问题提示出来。<br>比如python3和python2中对除法的处理规则做过改变。使用-3参数执行4/2将提示 DeprecationWarning: classic int division。</li>
+<li>from <strong>future</strong> import<br>from <strong>future</strong> import print_function: 这样在python2中print(1,2)会输出1和2两个数字，而不是(1，2)一个元组<br>from <strong>future</strong> import unicode_literals：这样python2中定义普通字符将自动识别为unicode,不用在字符前加u</li>
+<li><p>import问题</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try:#python2</span><br><span class="line">    from UserDict import UserDict</span><br><span class="line">    #建议按照python3的名字进行import</span><br><span class="line">    from UserDict import DictMixin as MutableMapping</span><br><span class="line">except ImportError:#python3</span><br><span class="line">    from collections import UserDict</span><br><span class="line">    from collections import MutableMapping</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据不同的python版本执行不同程序</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">if sys.version &gt; &apos;3&apos;:</span><br><span class="line">    from urllib.parse import urlparse, urlunsplit, urljoin, quote</span><br><span class="line">else:</span><br><span class="line">    from urlparse import urlparse, urlunsplit, urljoin</span><br><span class="line">    from urllib import quote</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>python2 和 python3编码问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">python2: 只有str和unicode两种类型.str和Unicode分别存储的是字节数据和Unicode数据.</span><br><span class="line">&gt;&gt;&gt; type(&apos;11&apos;)</span><br><span class="line">&lt;type &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(u&apos;11&apos;)</span><br><span class="line">&lt;type &apos;unicode&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(b&apos;11&apos;)</span><br><span class="line">&lt;type &apos;str&apos;&gt;</span><br><span class="line"></span><br><span class="line">python3: 只有str和bytes两种类型。str类型存unicode数据，bytse类型存bytes数据</span><br><span class="line">&gt;&gt;&gt; type(&apos;11&apos;)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(u&apos;11&apos;)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(b&apos;11&apos;)</span><br><span class="line">&lt;class &apos;bytes&apos;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h4><h5 id="python3编码思想"><a href="#python3编码思想" class="headerlink" title="python3编码思想"></a>python3编码思想</h5><p>Python 3清晰地将文本和二进制数据区分开了，不会对bytes字节串进行自动解码。文本总是Unicode，由str类型表示，二进制数据则由bytes类型表示。<br>Python 3不会以任意隐式的方式混用str和bytes，将两者明确地区分开。<br>基于此，Python3中不能拼接字符串和字节包，也不可以在字节包里搜索字符串（反之亦然），也不能向使用字符串参数的函数中传入字节包参数（反之亦然）。</p>
+<h5 id="文件存储读取过程中的编码问题"><a href="#文件存储读取过程中的编码问题" class="headerlink" title="文件存储读取过程中的编码问题"></a>文件存储读取过程中的编码问题</h5><ul>
+<li>对于文本编辑器word等软件，当我们在这些软件上编辑文字的时候，数据是通过unicode数据存在的，<br>为什么要存unicode数据，这是因为无论世界上的任何字符它都有唯一编码对应，兼容性是最好的。</li>
+<li>当我们保存了存到磁盘上的数据是通过某种编码方式编码的bytes字节串。<br>比如utf8-－－一种可变长编码，很好的节省了空间；还可以是gbk等编码方式。</li>
+<li>当我们保存的时候，这些编辑软件已经”默默地”做了编码工作。那当我们再打开这个文件时，软件又默默地给我们做了解码的工作，将数据再解码成unicode,然后就可以呈现明文给用户了。</li>
+<li>unicode是离用户更近的数据，bytes是离计算机更近的数据。</li>
+</ul>
+<h5 id="python2版本，UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误"><a href="#python2版本，UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误" class="headerlink" title="python2版本，UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误"></a>python2版本，<strong>UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误</strong></h5><p>  是因为Unicode编码与ASCII编码的不兼容，以下三行解决问题。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&apos;utf-8&apos;)</span><br></pre></td></tr></table></figure></p>
+<h5 id="python2-str和unicode转换"><a href="#python2-str和unicode转换" class="headerlink" title="python2:str和unicode转换"></a>python2:str和unicode转换</h5><ul>
+<li><p>str转换为unicode</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = &apos;11&apos;</span><br><span class="line">&gt;&gt;&gt; a.decode()</span><br><span class="line">u&apos;11&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>unicode转换为str</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b = u&apos;11&apos;</span><br><span class="line">&gt;&gt;&gt; b.encode()</span><br><span class="line">&apos;11&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="python3-str和bytes转换"><a href="#python3-str和bytes转换" class="headerlink" title="python3:str和bytes转换"></a>python3:str和bytes转换</h5><ul>
+<li><p>str转换为bytes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a=&apos;abc&apos;</span><br><span class="line">&gt;&gt;&gt; b = str.encode(a)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">b&apos;abc&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>bytes转换为str</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b</span><br><span class="line">b&apos;abc&apos;</span><br><span class="line">&gt;&gt;&gt; c = bytes.decode(b)</span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">&apos;abc&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h5><ul>
+<li>base64: 是常见的二进制编码方法，是一种用64个字符来表示任意二进制数据的方法。<br>Base64是一种任意二进制到文本字符串的编码方法，常用于在URL、Cookie、网页中传输少量二进制数据。<br>Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4个子节的bytes数据，补了两个==，代表补了两个字节，一共6个字节。</span><br><span class="line">&gt;&gt;&gt; base64.b64encode(b&apos;abcd&apos;)</span><br><span class="line">b&apos;YWJjZA==&apos;</span><br><span class="line">&gt;&gt;&gt; base64.b64decode(b&apos;YWJjZA==&apos;)</span><br><span class="line">b&apos;abcd&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>由于标准的Base64编码后可能出现字符+和/，在URL中就不能直接作为参数，所以又有一种”url safe”的base64编码，其实就是把字符+和/分别变成-和_：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; base64.b64encode(b&apos;i\xb7\x1d\xfb\xef\xff&apos;)</span><br><span class="line">b&apos;abcd++//&apos;</span><br><span class="line">&gt;&gt;&gt; base64.urlsafe_b64encode(b&apos;i\xb7\x1d\xfb\xef\xff&apos;)</span><br><span class="line">b&apos;abcd--__&apos;</span><br><span class="line">&gt;&gt;&gt; base64.urlsafe_b64decode(&apos;abcd--__&apos;)</span><br><span class="line">b&apos;i\xb7\x1d\xfb\xef\xff&apos;</span><br></pre></td></tr></table></figure></p>
+<h5 id="urllib"><a href="#urllib" class="headerlink" title="urllib"></a>urllib</h5><ul>
+<li>urllib: 就是利用程序去执行各种HTTP请求。如果要模拟浏览器完成特定功能，需要把请求伪装成浏览器。伪装的方法是先监控浏览器发出的请求，再根据浏览器的请求头来伪装，User-Agent头就是用来标识浏览器的。</li>
+<li>urllib的request模块可以非常方便地抓取URL内容，也就是发送一个GET请求到指定的页面，然后返回HTTP的响应.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from urllib import request</span><br><span class="line">&gt;&gt;&gt; f =request.urlopen(&apos;https://api.douban.com/v2/book/2129650&apos;)</span><br><span class="line">&gt;&gt;&gt; f.status</span><br><span class="line">200</span><br><span class="line">&gt;&gt;&gt; f.reason</span><br><span class="line">&apos;OK&apos;</span><br><span class="line">&gt;&gt;&gt; f.getheaders()</span><br><span class="line">[(&apos;Date&apos;, &apos;Mon, 12 Mar 2018 07:44:55 GMT&apos;), (&apos;Content-Type&apos;, &apos;application/json; charset=utf-8&apos;)...]</span><br><span class="line">&gt;&gt;&gt; print(&apos;Data:&apos;, f.read().decode(&apos;utf-8&apos;))</span><br><span class="line">Data: &#123;&quot;rating&quot;:&#123;&quot;max&quot;:10,&quot;numRaters&quot;:16,&quot;average&quot;:&quot;7.4&quot;,&quot;min&quot;:0&#125;,&quot;subtitle&quot;:&quot;&quot;,...&#125;</span><br><span class="line">utf-8解码</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果我们要想模拟浏览器发送GET请求，就需要使用Request对象，通过往Request对象添加HTTP头，我们就可以把请求伪装成浏览器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from urllib import request</span><br><span class="line">req = request.Request(&apos;http://www.douban.com/&apos;)</span><br><span class="line">req.add_header(&apos;User-Agent&apos;, &apos;Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25&apos;)</span><br><span class="line">f = request.urlopen(req)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>post<br>如果要以POST发送一个请求，只需要把参数data以bytes形式传入。</p>
+</li>
+<li><p>Handler: 如果还需要更复杂的控制，比如通过一个Proxy去访问网站，我们需要利用ProxyHandler来处理<br><strong>其实还是不太理解。以后遇到再说吧</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">proxy_handler = urllib.request.ProxyHandler(&#123;&apos;http&apos;: &apos;http://www.example.com:3128/&apos;&#125;)</span><br><span class="line">proxy_auth_handler = urllib.request.ProxyBasicAuthHandler()</span><br><span class="line">proxy_auth_handler.add_password(&apos;realm&apos;, &apos;host&apos;, &apos;username&apos;, &apos;password&apos;)</span><br><span class="line">opener = urllib.request.build_opener(proxy_handler, proxy_auth_handler)</span><br><span class="line">with opener.open(&apos;http://www.example.com/login.html&apos;) as f:</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><ul>
+<li>assert x &gt; 0, “错误:x小于等于0”<br>如果不满足断言里条件，输出后面的报错。<br>assert + 条件表达式 + 不满足条件时输出报错(可以自己写)。</li>
+</ul>
+<h4 id="小知识"><a href="#小知识" class="headerlink" title="小知识"></a>小知识</h4><ul>
+<li><p>parser.parse_args():定义了所有参数之后，你就可以给 parse_args()传递一组参数字符串来解析命令行。<br>parse_args() 的返回值是一个命名空间，包含传递给命令的参数。<br>该对象将参数保存其属性，因此如果你的参数 dest 是 “myoption”，那么你就可以args.myoption 来访问该值。</p>
+</li>
+<li><p>gevent.pool.pool()<br>线程问题</p>
+</li>
+<li><p>enumerate(sequence, [start=0])</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sequence -- 一个序列、迭代器或其他支持迭代对象, start -- 下标起始位置</span><br><span class="line">&gt;&gt;&gt;seasons = [&apos;Spring&apos;, &apos;Summer&apos;, &apos;Fall&apos;, &apos;Winter&apos;]</span><br><span class="line">&gt;&gt;&gt;list(enumerate(seasons))</span><br><span class="line">[(0, &apos;Spring&apos;), (1, &apos;Summer&apos;), (2, &apos;Fall&apos;), (3, &apos;Winter&apos;)]</span><br><span class="line">&gt;&gt;&gt;list(enumerate(seasons, start=1))       # 小标从 1 开始</span><br><span class="line">[(1, &apos;Spring&apos;), (2, &apos;Summer&apos;), (3, &apos;Fall&apos;), (4, &apos;Winter&apos;)]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>zip([iterable, …]),iterabl – 一个或多个迭代器，返回元组列表。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = [1,2,3]</span><br><span class="line">&gt;&gt;&gt; b = [4,5,6]</span><br><span class="line">&gt;&gt;&gt; c = [4,5,6,7,8]</span><br><span class="line">&gt;&gt;&gt; zipped = zip(a,b)     # 打包为元组的列表</span><br><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br><span class="line">&gt;&gt;&gt; zip(a,c)              # 元素个数与最短的列表一致</span><br><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br><span class="line">&gt;&gt;&gt; zip(*zipped)          # 与 zip 相反，可理解为解压，返回二维矩阵式</span><br><span class="line">[(1, 2, 3), (4, 5, 6)]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>isinstance:来判断一个对象是否是一个已知的类型，类似 type()<br>type() 不会认为子类是一种父类类型，不考虑继承关系。<br>isinstance() 会认为子类是一种父类类型，考虑继承关系。如果要判断两个类型是否相同推荐使用 isinstance()。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = 2</span><br><span class="line">&gt;&gt;&gt; isinstance (a,int)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance (a,str)</span><br><span class="line">False</span><br><span class="line">&gt;&gt;&gt; isinstance (a,(str,int,list))    # 是元组中的一个返回 True</span><br><span class="line">True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type() 与 isinstance()区别：</span><br><span class="line">class A:</span><br><span class="line">    pass</span><br><span class="line">class B(A):</span><br><span class="line">    pass</span><br><span class="line">isinstance(A(), A)    # returns True</span><br><span class="line">type(A()) == A        # returns True</span><br><span class="line">isinstance(B(), A)    # returns True</span><br><span class="line">type(B()) == A        # returns False</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ljust:返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str.ljust(width[, fillchar]) width为指定字符串长度，fillchar为填充字符，默认为空格。</span><br><span class="line">str = &quot;this is string example....wow!!!&quot;;</span><br><span class="line">print str.ljust(50, &apos;0&apos;);</span><br><span class="line">this is string example....wow!!!000000000000000000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>os.path.dirname(path): 返回path的目录。其实就是os.path.split(path)的第一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import os</span><br><span class="line">&gt;&gt;&gt; os.path.dirname(&apos;C://ss/ss&apos;)</span><br><span class="line">&apos;C://ss&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>os.chdir() 方法用于改变当前工作目录到指定的路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import os, sys</span><br><span class="line">path = &quot;/tmp&quot;</span><br><span class="line"></span><br><span class="line"># 查看当前工作目录</span><br><span class="line">retval = os.getcwd()</span><br><span class="line">print &quot;当前工作目录为 %s&quot; % retval</span><br><span class="line"></span><br><span class="line"># 修改当前工作目录</span><br><span class="line">os.chdir( path )</span><br><span class="line"></span><br><span class="line"># 查看修改后的工作目录</span><br><span class="line">retval = os.getcwd()</span><br><span class="line"></span><br><span class="line">print &quot;目录修改成功 %s&quot; % retval</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sys.exit()和os.exit()<br>os._exit()会直接将python程序终止，之后的所有代码都不会继续执行。<br>sys.exit()会引发一个异常：SystemExit，如果这个异常没有被捕获，那么python解释器将会退出。<br>如果有捕获此异常的代码，那么这些代码还是会执行。捕获这个异常可以做一些额外的清理工作。0为正常退出，其他数值（1-127）为不正常，可抛异常事件供捕获.</p>
+</li>
+</ul>
+<p>一般情况下使用sys.exit()即可，一般在fork出来的子进程中使用os._exit()<br>一般来说os._exit() 用于在线程中退出<br>sys.exit() 用于在主线程中退出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit(0)：无错误退出</span><br><span class="line">exit(1)：有错误退出</span><br><span class="line">退出代码是告诉解释器的（或操作系统）</span><br></pre></td></tr></table></figure>
+<ul>
+<li>os.path.exists() 用于判断变量、文件等是否存在</li>
+<li>os.path.normpath(path)规范化路径</li>
+<li><p>os.path.join(path1[, path2[, …]]): 将多个路径组合后返回，第一个绝对路径之前的参数将被忽略。</p>
+</li>
+<li><p>urlparse: 该函数将一个url字符串分解为6个元素，以元组的形式返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3.6.2</span><br><span class="line">&gt;&gt;&gt; from urllib.parse import urlparse</span><br><span class="line">&gt;&gt;&gt; o = urlparse(&apos;http://www.cwi.nl:80/%7Eguido/Python.html&apos;)</span><br><span class="line">&gt;&gt;&gt; o</span><br><span class="line">ParseResult(scheme=&apos;http&apos;, netloc=&apos;www.cwi.nl:80&apos;, path=&apos;/%7Eguido/Python.html&apos;, params=&apos;&apos;, query=&apos;&apos;, fragment=&apos;&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>quote: 编码：urllib.quote(string[, safe])，除了三个符号“_.-”外，将所有符号编码，(按照当前编码格式下的方式编码),后面的参数safe是不编码的字符，<br>使用的时候如果不设置的话，会将斜杠，冒号，等号，问号都给编码了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from urllib.parse import quote</span><br><span class="line">&gt;&gt;&gt; quote(&quot;http://neeao.com/index.php?id=1&quot;)</span><br><span class="line">&apos;http%3A//neeao.com/index.php%3Fid%3D1&apos;</span><br><span class="line">&gt;&gt;&gt; quote(&quot;http://neeao.com/index.php?id=1&quot;,&quot;:?=/&quot;) #将&apos;?=/&apos;不参与编码</span><br><span class="line">&apos;http://neeao.com/index.php?id=1&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>json.loads、load、dumps、dump</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">json.dumps : dict转成str     json.dump是将python数据保存成json</span><br><span class="line">json.loads:str转成dict          json.load是读取json数据</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>repr() 函数将对象转化为供解释器读取的形式。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>嘻嘻嘻，给口饭吃</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Wechatpay.jpg" alt="Kingvirre WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/06/python练级第四天/" rel="next" title="python练级第四天">
+                <i class="fa fa-chevron-left"></i> python练级第四天
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/14/单元测试框架unittest/" rel="prev" title="单元测试框架unittest">
+                单元测试框架unittest <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/blog-logo.jpg"
+                alt="Kingvirre" />
+            
+              <p class="site-author-name" itemprop="name">Kingvirre</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python练级打卡第五天"><span class="nav-number">1.</span> <span class="nav-text">python练级打卡第五天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#python程序同时兼容Python2-和-python3"><span class="nav-number">1.0.1.</span> <span class="nav-text">python程序同时兼容Python2 和 python3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编码问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">编码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#python3编码思想"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">python3编码思想</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件存储读取过程中的编码问题"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">文件存储读取过程中的编码问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#python2版本，UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">python2版本，UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#python2-str和unicode转换"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">python2:str和unicode转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#python3-str和bytes转换"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">python3:str和bytes转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#base64"><span class="nav-number">1.0.2.6.</span> <span class="nav-text">base64</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#urllib"><span class="nav-number">1.0.2.7.</span> <span class="nav-text">urllib</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#断言"><span class="nav-number">1.0.3.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小知识"><span class="nav-number">1.0.4.</span> <span class="nav-text">小知识</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+
+&copy; 
+<span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kingvirre</span>
+</div>
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv"> <span id="busuanzi_value_site_uv"></span></span>
+  </div>
+
+  <div class="theme-info">
+  访客量 &mdash;
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

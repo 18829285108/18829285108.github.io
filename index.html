@@ -249,6 +249,516 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/github和travis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/15/github和travis/" itemprop="url">github和travis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-15T11:09:36+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="github修改别人的项目并提交到项目上"><a href="#github修改别人的项目并提交到项目上" class="headerlink" title="github修改别人的项目并提交到项目上"></a>github修改别人的项目并提交到项目上</h2><h3 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h3><ol>
+<li>先fork下别人的代码，于是你的github上就出现了同名的项目，这个项目就属于你自己了。</li>
+<li>你把这个自己的项目git clone到本地，修修改改，然后push到你自己的项目里。</li>
+<li>在github上你的项目页面有个按钮，叫Pull request，就会把你的修改发到对方的项目里，由原项目主人决定是否接受你的修改。</li>
+</ol>
+<h3 id="自己和原作者同时修改了项目代码"><a href="#自己和原作者同时修改了项目代码" class="headerlink" title="自己和原作者同时修改了项目代码"></a>自己和原作者同时修改了项目代码</h3><ol>
+<li>在本地操作git remote add [sort name] [your url]，意思就是添加第二个远程仓库地址，这个仓库的“昵称”就是你刚指定的[sort name]，</li>
+<li>之后push文件，就通过指定这个［sort name］来push到这个你自己的仓库里</li>
+<li>等你觉得想要把你改的发给原项目同步，就在你的项目上点Pull request按钮.</li>
+<li>如果是，原项目发生了改动，你要想同步到本地，就直接从git fetch origin 从原项目的地址同步代码，然后再merge就好了</li>
+<li>当然，你可以通过新建分支的方式往自己的项目上push，这样同步的时候直接fetch就行了</li>
+</ol>
+<h2 id="travis"><a href="#travis" class="headerlink" title="travis"></a>travis</h2><h3 id="travis简介"><a href="#travis简介" class="headerlink" title="travis简介"></a>travis简介</h3><p>Travis是一个为GitHub服务的CI，支持多数主流语言。</p>
+<p>CI即持续集成系统。对个人而言，就是让你的代码在提交到远程(这里是GitHub)后，立即自动编译，并且在失败后可以自动给你发邮件的东西。当然，除了编译，还能做自动化测试、自动部署等。</p>
+<p>Travis有两个网址：</p>
+<pre><code>https://travis-ci.org/
+https://travis-ci.com/
+</code></pre><p>org的那个是非盈利的，为GitHub上public的repository提供免费服务；<br>com的那个是盈利的，可以对private的提供付费服务。com前100次build是免费的，此后按月收费。</p>
+<p>二者的账户是相互独立的，但都可以用GitHub账户注册、登录。</p>
+<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><ol>
+<li>在travis-ci.org上以GitHub账户注册、登录。</li>
+<li>在主页点加号【Add new repository】，添加需要CI的那个库。</li>
+<li>在那个库的根目录下，添加一个.travis.yml文件。</li>
+</ol>
+<p>流程很简明，但绝大多数复杂度都集中在这个.travis.yml文件。这是一个YAML文件，主要用来做CI的配置。Travis会按照这个文件配置的方式来运行。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>可以把Travis看做一个远程服务器。它会监控你添加的GitHub库。如果有新的提交或Pull Request，就会触发一次在线编译。<br>这台服务器每次都从近乎裸机状态，把你的库clone过来，然后执行其中的.travis.yml。</p>
+<p>除了首行的language指定语言类型以外，其它可选的有10个步骤：</p>
+<ol>
+<li>Install apt addons</li>
+<li>before_install</li>
+<li>install</li>
+<li>before_script</li>
+<li>script</li>
+<li>after_success or after_failure</li>
+<li>OPTIONAL before_deploy</li>
+<li>OPTIONAL deploy</li>
+<li>OPTIONAL after_deploy</li>
+<li>after_script</li>
+</ol>
+<p>最重要的步骤就是第5步的script，这步通常是测试、编译、打包。<br>前面的步骤都是为了成功执行第5步而执行的裸机环境配置，后面的步骤都是在执行第5步后而做出的应对。<br>所有这些步骤，在language设置后基本都有默认值。所以，即使只有一行language: LANG，很多项目也可以build。</p>
+<p>另外，如果多次提交同时push，默认只在最新提交执行一次build；在git commit中如果包含[skip ci]或[ci skip]，该提交就不会触发一次build。</p>
+<h3 id="README-md"><a href="#README-md" class="headerlink" title="README.md"></a>README.md</h3><p><img src="/2018/03/15/github和travis/1.jpg" alt="build status"></p>
+<p>在Travis网站上，点击上面那样的Status图标，可以在弹出界面中得到该项目的状态图标链接。<br>选择Markdown版本的连接，放到repository的README.md中，就可以在GitHub页面得到编译状态的展示了。</p>
+<p>这个链接通常是这种形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[![Build Status](https://travis-ci.org/YOUR/PROJECT.svg?branch=master)](https://travis-ci.org/YOUR/PROJECT)</span><br></pre></td></tr></table></figure></p>
+<p>上次编译是成功还是失败，从此一目了然。有了这个“勋章”的开源项目，看上去瞬间高大上了。</p>
+<p>参考资料:<br><a href="http://blog.csdn.net/xiaoyangsavvy/article/details/73775985" target="_blank" rel="noopener">http://blog.csdn.net/xiaoyangsavvy/article/details/73775985</a><br><a href="https://www.jianshu.com/p/c80b37f775a0" target="_blank" rel="noopener">https://www.jianshu.com/p/c80b37f775a0</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/单元测试框架unittest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/14/单元测试框架unittest/" itemprop="url">单元测试框架unittest</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T10:40:07+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="unittest核心工作原理"><a href="#unittest核心工作原理" class="headerlink" title="unittest核心工作原理"></a>unittest核心工作原理</h3><p><img src="/2018/03/14/单元测试框架unittest/1.jpg" alt="总览"></p>
+<p>-</p>
+<p>参考资料: <a href="https://huilansame.github.io/huilansame.github.io/category/" target="_blank" rel="noopener">https://huilansame.github.io/huilansame.github.io/category/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/python练级第五天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/12/python练级第五天/" itemprop="url">python练级第五天</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T14:38:03+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="python练级打卡第五天"><a href="#python练级打卡第五天" class="headerlink" title="python练级打卡第五天"></a>python练级打卡第五天</h2><h4 id="python程序同时兼容Python2-和-python3"><a href="#python程序同时兼容Python2-和-python3" class="headerlink" title="python程序同时兼容Python2 和 python3"></a>python程序同时兼容Python2 和 python3</h4><ul>
+<li>2to3 工具对代码检查（/.pyenv/versions/3.6.2/bin文件下面）<br>2to3.py是python自带的代码转换工具，将python2代码转换为python3代码，但是代码并未对兼容做任何处理。<br>python 2to3.py -w + 要转换的python2代码的路径，会直接覆盖掉原先的python2代码，但同时会给原来的python2代码备份。</li>
+<li>使用python -3执行python程序<br>2to3 可以检查出很多python2＆3的兼容性问题，但也有很多问题是2to3发现不了的。<br>在加上 -3 参数后，程序在运行时会在控制台上将python2和python3不一致，同时2to3无法处理的问题提示出来。<br>比如python3和python2中对除法的处理规则做过改变。使用-3参数执行4/2将提示 DeprecationWarning: classic int division。</li>
+<li>from <strong>future</strong> import<br>from <strong>future</strong> import print_function: 这样在python2中print(1,2)会输出1和2两个数字，而不是(1，2)一个元组<br>from <strong>future</strong> import unicode_literals：这样python2中定义普通字符将自动识别为unicode,不用在字符前加u</li>
+<li><p>import问题</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try:#python2</span><br><span class="line">    from UserDict import UserDict</span><br><span class="line">    #建议按照python3的名字进行import</span><br><span class="line">    from UserDict import DictMixin as MutableMapping</span><br><span class="line">except ImportError:#python3</span><br><span class="line">    from collections import UserDict</span><br><span class="line">    from collections import MutableMapping</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据不同的python版本执行不同程序</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">if sys.version &gt; &apos;3&apos;:</span><br><span class="line">    from urllib.parse import urlparse, urlunsplit, urljoin, quote</span><br><span class="line">else:</span><br><span class="line">    from urlparse import urlparse, urlunsplit, urljoin</span><br><span class="line">    from urllib import quote</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>python2 和 python3编码问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">python2: 只有str和unicode两种类型.str和Unicode分别存储的是字节数据和Unicode数据.</span><br><span class="line">&gt;&gt;&gt; type(&apos;11&apos;)</span><br><span class="line">&lt;type &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(u&apos;11&apos;)</span><br><span class="line">&lt;type &apos;unicode&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(b&apos;11&apos;)</span><br><span class="line">&lt;type &apos;str&apos;&gt;</span><br><span class="line"></span><br><span class="line">python3: 只有str和bytes两种类型。str类型存unicode数据，bytse类型存bytes数据</span><br><span class="line">&gt;&gt;&gt; type(&apos;11&apos;)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(u&apos;11&apos;)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(b&apos;11&apos;)</span><br><span class="line">&lt;class &apos;bytes&apos;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h4><h5 id="python3编码思想"><a href="#python3编码思想" class="headerlink" title="python3编码思想"></a>python3编码思想</h5><p>Python 3清晰地将文本和二进制数据区分开了，不会对bytes字节串进行自动解码。文本总是Unicode，由str类型表示，二进制数据则由bytes类型表示。<br>Python 3不会以任意隐式的方式混用str和bytes，将两者明确地区分开。<br>基于此，Python3中不能拼接字符串和字节包，也不可以在字节包里搜索字符串（反之亦然），也不能向使用字符串参数的函数中传入字节包参数（反之亦然）。</p>
+<h5 id="文件存储读取过程中的编码问题"><a href="#文件存储读取过程中的编码问题" class="headerlink" title="文件存储读取过程中的编码问题"></a>文件存储读取过程中的编码问题</h5><ul>
+<li>对于文本编辑器word等软件，当我们在这些软件上编辑文字的时候，数据是通过unicode数据存在的，<br>为什么要存unicode数据，这是因为无论世界上的任何字符它都有唯一编码对应，兼容性是最好的。</li>
+<li>当我们保存了存到磁盘上的数据是通过某种编码方式编码的bytes字节串。<br>比如utf8-－－一种可变长编码，很好的节省了空间；还可以是gbk等编码方式。</li>
+<li>当我们保存的时候，这些编辑软件已经”默默地”做了编码工作。那当我们再打开这个文件时，软件又默默地给我们做了解码的工作，将数据再解码成unicode,然后就可以呈现明文给用户了。</li>
+<li>unicode是离用户更近的数据，bytes是离计算机更近的数据。</li>
+</ul>
+<h5 id="python2版本，UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误"><a href="#python2版本，UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误" class="headerlink" title="python2版本，UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误"></a>python2版本，<strong>UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误</strong></h5><p>  是因为Unicode编码与ASCII编码的不兼容，以下三行解决问题。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&apos;utf-8&apos;)</span><br></pre></td></tr></table></figure></p>
+<h5 id="python2-str和unicode转换"><a href="#python2-str和unicode转换" class="headerlink" title="python2:str和unicode转换"></a>python2:str和unicode转换</h5><ul>
+<li><p>str转换为unicode</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = &apos;11&apos;</span><br><span class="line">&gt;&gt;&gt; a.decode()</span><br><span class="line">u&apos;11&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>unicode转换为str</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b = u&apos;11&apos;</span><br><span class="line">&gt;&gt;&gt; b.encode()</span><br><span class="line">&apos;11&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="python3-str和bytes转换"><a href="#python3-str和bytes转换" class="headerlink" title="python3:str和bytes转换"></a>python3:str和bytes转换</h5><ul>
+<li><p>str转换为bytes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a=&apos;abc&apos;</span><br><span class="line">&gt;&gt;&gt; b = str.encode(a)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">b&apos;abc&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>bytes转换为str</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b</span><br><span class="line">b&apos;abc&apos;</span><br><span class="line">&gt;&gt;&gt; c = bytes.decode(b)</span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">&apos;abc&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h5><ul>
+<li>base64: 是常见的二进制编码方法，是一种用64个字符来表示任意二进制数据的方法。<br>Base64是一种任意二进制到文本字符串的编码方法，常用于在URL、Cookie、网页中传输少量二进制数据。<br>Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4个子节的bytes数据，补了两个==，代表补了两个字节，一共6个字节。</span><br><span class="line">&gt;&gt;&gt; base64.b64encode(b&apos;abcd&apos;)</span><br><span class="line">b&apos;YWJjZA==&apos;</span><br><span class="line">&gt;&gt;&gt; base64.b64decode(b&apos;YWJjZA==&apos;)</span><br><span class="line">b&apos;abcd&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>由于标准的Base64编码后可能出现字符+和/，在URL中就不能直接作为参数，所以又有一种”url safe”的base64编码，其实就是把字符+和/分别变成-和_：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; base64.b64encode(b&apos;i\xb7\x1d\xfb\xef\xff&apos;)</span><br><span class="line">b&apos;abcd++//&apos;</span><br><span class="line">&gt;&gt;&gt; base64.urlsafe_b64encode(b&apos;i\xb7\x1d\xfb\xef\xff&apos;)</span><br><span class="line">b&apos;abcd--__&apos;</span><br><span class="line">&gt;&gt;&gt; base64.urlsafe_b64decode(&apos;abcd--__&apos;)</span><br><span class="line">b&apos;i\xb7\x1d\xfb\xef\xff&apos;</span><br></pre></td></tr></table></figure></p>
+<h5 id="urllib"><a href="#urllib" class="headerlink" title="urllib"></a>urllib</h5><ul>
+<li>urllib: 就是利用程序去执行各种HTTP请求。如果要模拟浏览器完成特定功能，需要把请求伪装成浏览器。伪装的方法是先监控浏览器发出的请求，再根据浏览器的请求头来伪装，User-Agent头就是用来标识浏览器的。</li>
+<li>urllib的request模块可以非常方便地抓取URL内容，也就是发送一个GET请求到指定的页面，然后返回HTTP的响应.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from urllib import request</span><br><span class="line">&gt;&gt;&gt; f =request.urlopen(&apos;https://api.douban.com/v2/book/2129650&apos;)</span><br><span class="line">&gt;&gt;&gt; f.status</span><br><span class="line">200</span><br><span class="line">&gt;&gt;&gt; f.reason</span><br><span class="line">&apos;OK&apos;</span><br><span class="line">&gt;&gt;&gt; f.getheaders()</span><br><span class="line">[(&apos;Date&apos;, &apos;Mon, 12 Mar 2018 07:44:55 GMT&apos;), (&apos;Content-Type&apos;, &apos;application/json; charset=utf-8&apos;)...]</span><br><span class="line">&gt;&gt;&gt; print(&apos;Data:&apos;, f.read().decode(&apos;utf-8&apos;))</span><br><span class="line">Data: &#123;&quot;rating&quot;:&#123;&quot;max&quot;:10,&quot;numRaters&quot;:16,&quot;average&quot;:&quot;7.4&quot;,&quot;min&quot;:0&#125;,&quot;subtitle&quot;:&quot;&quot;,...&#125;</span><br><span class="line">utf-8解码</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果我们要想模拟浏览器发送GET请求，就需要使用Request对象，通过往Request对象添加HTTP头，我们就可以把请求伪装成浏览器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from urllib import request</span><br><span class="line">req = request.Request(&apos;http://www.douban.com/&apos;)</span><br><span class="line">req.add_header(&apos;User-Agent&apos;, &apos;Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25&apos;)</span><br><span class="line">f = request.urlopen(req)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>post<br>如果要以POST发送一个请求，只需要把参数data以bytes形式传入。</p>
+</li>
+<li><p>Handler: 如果还需要更复杂的控制，比如通过一个Proxy去访问网站，我们需要利用ProxyHandler来处理<br><strong>其实还是不太理解。以后遇到再说吧</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">proxy_handler = urllib.request.ProxyHandler(&#123;&apos;http&apos;: &apos;http://www.example.com:3128/&apos;&#125;)</span><br><span class="line">proxy_auth_handler = urllib.request.ProxyBasicAuthHandler()</span><br><span class="line">proxy_auth_handler.add_password(&apos;realm&apos;, &apos;host&apos;, &apos;username&apos;, &apos;password&apos;)</span><br><span class="line">opener = urllib.request.build_opener(proxy_handler, proxy_auth_handler)</span><br><span class="line">with opener.open(&apos;http://www.example.com/login.html&apos;) as f:</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><ul>
+<li>assert x &gt; 0, “错误:x小于等于0”<br>如果不满足断言里条件，输出后面的报错。<br>assert + 条件表达式 + 不满足条件时输出报错(可以自己写)。</li>
+</ul>
+<h4 id="小知识"><a href="#小知识" class="headerlink" title="小知识"></a>小知识</h4><ul>
+<li><p>parser.parse_args():定义了所有参数之后，你就可以给 parse_args()传递一组参数字符串来解析命令行。<br>parse_args() 的返回值是一个命名空间，包含传递给命令的参数。<br>该对象将参数保存其属性，因此如果你的参数 dest 是 “myoption”，那么你就可以args.myoption 来访问该值。</p>
+</li>
+<li><p>gevent.pool.pool()<br>线程问题</p>
+</li>
+<li><p>enumerate(sequence, [start=0])</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sequence -- 一个序列、迭代器或其他支持迭代对象, start -- 下标起始位置</span><br><span class="line">&gt;&gt;&gt;seasons = [&apos;Spring&apos;, &apos;Summer&apos;, &apos;Fall&apos;, &apos;Winter&apos;]</span><br><span class="line">&gt;&gt;&gt;list(enumerate(seasons))</span><br><span class="line">[(0, &apos;Spring&apos;), (1, &apos;Summer&apos;), (2, &apos;Fall&apos;), (3, &apos;Winter&apos;)]</span><br><span class="line">&gt;&gt;&gt;list(enumerate(seasons, start=1))       # 小标从 1 开始</span><br><span class="line">[(1, &apos;Spring&apos;), (2, &apos;Summer&apos;), (3, &apos;Fall&apos;), (4, &apos;Winter&apos;)]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>zip([iterable, …]),iterabl – 一个或多个迭代器，返回元组列表。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = [1,2,3]</span><br><span class="line">&gt;&gt;&gt; b = [4,5,6]</span><br><span class="line">&gt;&gt;&gt; c = [4,5,6,7,8]</span><br><span class="line">&gt;&gt;&gt; zipped = zip(a,b)     # 打包为元组的列表</span><br><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br><span class="line">&gt;&gt;&gt; zip(a,c)              # 元素个数与最短的列表一致</span><br><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br><span class="line">&gt;&gt;&gt; zip(*zipped)          # 与 zip 相反，可理解为解压，返回二维矩阵式</span><br><span class="line">[(1, 2, 3), (4, 5, 6)]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>isinstance:来判断一个对象是否是一个已知的类型，类似 type()<br>type() 不会认为子类是一种父类类型，不考虑继承关系。<br>isinstance() 会认为子类是一种父类类型，考虑继承关系。如果要判断两个类型是否相同推荐使用 isinstance()。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = 2</span><br><span class="line">&gt;&gt;&gt; isinstance (a,int)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance (a,str)</span><br><span class="line">False</span><br><span class="line">&gt;&gt;&gt; isinstance (a,(str,int,list))    # 是元组中的一个返回 True</span><br><span class="line">True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type() 与 isinstance()区别：</span><br><span class="line">class A:</span><br><span class="line">    pass</span><br><span class="line">class B(A):</span><br><span class="line">    pass</span><br><span class="line">isinstance(A(), A)    # returns True</span><br><span class="line">type(A()) == A        # returns True</span><br><span class="line">isinstance(B(), A)    # returns True</span><br><span class="line">type(B()) == A        # returns False</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ljust:返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str.ljust(width[, fillchar]) width为指定字符串长度，fillchar为填充字符，默认为空格。</span><br><span class="line">str = &quot;this is string example....wow!!!&quot;;</span><br><span class="line">print str.ljust(50, &apos;0&apos;);</span><br><span class="line">this is string example....wow!!!000000000000000000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>os.path.dirname(path): 返回path的目录。其实就是os.path.split(path)的第一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import os</span><br><span class="line">&gt;&gt;&gt; os.path.dirname(&apos;C://ss/ss&apos;)</span><br><span class="line">&apos;C://ss&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>os.chdir() 方法用于改变当前工作目录到指定的路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import os, sys</span><br><span class="line">path = &quot;/tmp&quot;</span><br><span class="line"></span><br><span class="line"># 查看当前工作目录</span><br><span class="line">retval = os.getcwd()</span><br><span class="line">print &quot;当前工作目录为 %s&quot; % retval</span><br><span class="line"></span><br><span class="line"># 修改当前工作目录</span><br><span class="line">os.chdir( path )</span><br><span class="line"></span><br><span class="line"># 查看修改后的工作目录</span><br><span class="line">retval = os.getcwd()</span><br><span class="line"></span><br><span class="line">print &quot;目录修改成功 %s&quot; % retval</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sys.exit()和os.exit()<br>os._exit()会直接将python程序终止，之后的所有代码都不会继续执行。<br>sys.exit()会引发一个异常：SystemExit，如果这个异常没有被捕获，那么python解释器将会退出。<br>如果有捕获此异常的代码，那么这些代码还是会执行。捕获这个异常可以做一些额外的清理工作。0为正常退出，其他数值（1-127）为不正常，可抛异常事件供捕获.</p>
+</li>
+</ul>
+<p>一般情况下使用sys.exit()即可，一般在fork出来的子进程中使用os._exit()<br>一般来说os._exit() 用于在线程中退出<br>sys.exit() 用于在主线程中退出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit(0)：无错误退出</span><br><span class="line">exit(1)：有错误退出</span><br><span class="line">退出代码是告诉解释器的（或操作系统）</span><br></pre></td></tr></table></figure>
+<ul>
+<li>os.path.exists() 用于判断变量、文件等是否存在</li>
+<li>os.path.normpath(path)规范化路径</li>
+<li><p>os.path.join(path1[, path2[, …]]): 将多个路径组合后返回，第一个绝对路径之前的参数将被忽略。</p>
+</li>
+<li><p>urlparse: 该函数将一个url字符串分解为6个元素，以元组的形式返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3.6.2</span><br><span class="line">&gt;&gt;&gt; from urllib.parse import urlparse</span><br><span class="line">&gt;&gt;&gt; o = urlparse(&apos;http://www.cwi.nl:80/%7Eguido/Python.html&apos;)</span><br><span class="line">&gt;&gt;&gt; o</span><br><span class="line">ParseResult(scheme=&apos;http&apos;, netloc=&apos;www.cwi.nl:80&apos;, path=&apos;/%7Eguido/Python.html&apos;, params=&apos;&apos;, query=&apos;&apos;, fragment=&apos;&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>quote: 编码：urllib.quote(string[, safe])，除了三个符号“_.-”外，将所有符号编码，(按照当前编码格式下的方式编码),后面的参数safe是不编码的字符，<br>使用的时候如果不设置的话，会将斜杠，冒号，等号，问号都给编码了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from urllib.parse import quote</span><br><span class="line">&gt;&gt;&gt; quote(&quot;http://neeao.com/index.php?id=1&quot;)</span><br><span class="line">&apos;http%3A//neeao.com/index.php%3Fid%3D1&apos;</span><br><span class="line">&gt;&gt;&gt; quote(&quot;http://neeao.com/index.php?id=1&quot;,&quot;:?=/&quot;) #将&apos;?=/&apos;不参与编码</span><br><span class="line">&apos;http://neeao.com/index.php?id=1&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>json.loads、load、dumps、dump</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">json.dumps : dict转成str     json.dump是将python数据保存成json</span><br><span class="line">json.loads:str转成dict          json.load是读取json数据</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>repr() 函数将对象转化为供解释器读取的形式。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/python练级第四天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -320,22 +830,35 @@
       
         
           
-            <h2 id="python练级打卡第四天"><a href="#python练级打卡第四天" class="headerlink" title="python练级打卡第四天"></a>python练级打卡第四天</h2><h4 id="map和reduce"><a href="#map和reduce" class="headerlink" title="map和reduce"></a>map和reduce</h4><ol>
+            <h2 id="python练级打卡第四天"><a href="#python练级打卡第四天" class="headerlink" title="python练级打卡第四天"></a>python练级打卡第四天</h2><h4 id="python的假多线程"><a href="#python的假多线程" class="headerlink" title="python的假多线程"></a>python的假多线程</h4><ol>
+<li>对所有面向I/O的（会调用内建的操作系统C代码的）程序来说，GIL会在这个I/O调用之前被释放，以允许其他线程在这个线程等待I/O的时候运行。<br>如果某线程并未使用很多I/O操作，它会在自己的时间片内一直占用处理器和GIL。所以说，I/O密集型的Python程序比计算密集型的Python程序更能充分利用多线程的好处。</li>
+<li>python线程不能利用多核，进程可以利用多核。java线程和进程都可以利用多核。</li>
+<li>Python多线程相当于单核多线程，多线程有两个好处：CPU并行，I/O并行，单核多线程相当于自断一臂。<br>所以，在Python中，可以使用多线程，但不要指望能有效利用多核。如果一定要通过多线程利用多核，那只能通过C扩展来实现，不过这样就失去了Python简单易用的特点。<br>不过，也不用过于担心，Python虽然不能利用多线程实现多核任务，但可以通过多进程实现多核任务。多个Python进程有各自独立的GIL锁，互不影响。</li>
+</ol>
+<h4 id="map和reduce"><a href="#map和reduce" class="headerlink" title="map和reduce"></a>map和reduce</h4><ol>
 <li><p>map()函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">把这个list所有数字转为字符串</span><br><span class="line">&gt;&gt;&gt; list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))</span><br><span class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;]</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">把这个list所有数字转为字符串</span><br><span class="line">&gt;&gt;&gt; list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))</span><br><span class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;]</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>reduce把一个函数作用在一个序列[x1, x2, x3, …]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)</span><br><span class="line"></span><br><span class="line">from functools import reduce</span><br><span class="line"></span><br><span class="line">DIGITS = &#123;&apos;0&apos;: 0, &apos;1&apos;: 1, &apos;2&apos;: 2, &apos;3&apos;: 3, &apos;4&apos;: 4, &apos;5&apos;: 5, &apos;6&apos;: 6, &apos;7&apos;: 7, &apos;8&apos;: 8, &apos;9&apos;: 9&#125;</span><br><span class="line"></span><br><span class="line">def char2num(s):</span><br><span class="line">    return DIGITS[s]</span><br><span class="line"></span><br><span class="line">def str2int(s):</span><br><span class="line">    return reduce(lambda x, y: x * 10 + y, map(char2num, s))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; str2int(&apos;13579&apos;)</span><br><span class="line">13579</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)</span><br><span class="line"></span><br><span class="line">from functools import reduce</span><br><span class="line"></span><br><span class="line">DIGITS = &#123;&apos;0&apos;: 0, &apos;1&apos;: 1, &apos;2&apos;: 2, &apos;3&apos;: 3, &apos;4&apos;: 4, &apos;5&apos;: 5, &apos;6&apos;: 6, &apos;7&apos;: 7, &apos;8&apos;: 8, &apos;9&apos;: 9&#125;</span><br><span class="line"></span><br><span class="line">def char2num(s):</span><br><span class="line">    return DIGITS[s]</span><br><span class="line"></span><br><span class="line">def str2int(s):</span><br><span class="line">    return reduce(lambda x, y: x * 10 + y, map(char2num, s))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; str2int(&apos;13579&apos;)</span><br><span class="line">13579</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>lambda基础:lambda语句中，冒号前是参数，可以有多个，用逗号隔开，冒号右边的返回值。lambda语句构建的其实是一个函数对象.</p>
 </blockquote>
 </li>
 </ol>
 <ol>
-<li>练习题<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">利用map和reduce编写一个str2float函数，把字符串&apos;123.456&apos;转换成浮点数123.456：</span><br><span class="line"></span><br><span class="line">int_part, dec_part = s.split(&apos;.&apos;)</span><br><span class="line">    return reduce(lambda x, y: 10*x+y, map(int, int_part)) + \</span><br><span class="line">           reduce(lambda x, y: 10*x+y, map(int, dec_part))*10**(-len(dec_part))</span><br></pre></td></tr></table></figure>
+<li>练习题 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">利用map和reduce编写一个str2float函数，把字符串&apos;123.456&apos;转换成浮点数123.456：</span><br><span class="line"></span><br><span class="line">int_part, dec_part = s.split(&apos;.&apos;)</span><br><span class="line">    return reduce(lambda x, y: 10*x+y, map(int, int_part)) + \</span><br><span class="line">           reduce(lambda x, y: 10*x+y, map(int, dec_part))*10**(-len(dec_part))</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><ol>
+<li><p>和map()类似，filter()也接收一个函数和一个序列。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃该元素。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">筛选素数的函数。注意filter里面的用法。</span><br><span class="line">&gt;&gt;&gt; def _odd_iter():</span><br><span class="line">...     n = 1</span><br><span class="line">...     while True:</span><br><span class="line">...         n = n + 2</span><br><span class="line">...         yield n</span><br><span class="line">...</span><br><span class="line">&gt;&gt;&gt; def _not_divisible(n):</span><br><span class="line">...     return lambda x: x % n &gt; 0</span><br><span class="line">...</span><br><span class="line">&gt;&gt;&gt; def primes():</span><br><span class="line">...     yield 2</span><br><span class="line">...     it = _odd_iter() # 初始序列</span><br><span class="line">...     while True:</span><br><span class="line">...         n = next(it) # 返回序列的第一个数</span><br><span class="line">...         yield n</span><br><span class="line">...         it = filter(_not_divisible(n), it)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sorted()函数，高阶函数，默认排序从小到大，用sorted()排序的关键在于实现一个映射函数。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21])</span><br><span class="line">[-21, -12, 5, 9, 36]</span><br><span class="line">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)</span><br><span class="line">[5, 9, -12, -21, 36]</span><br><span class="line">要进行反向排序，不必改动key函数，可以传入第三个参数reverse=True：</span><br><span class="line">&gt;&gt;&gt; sorted([&apos;bob&apos;, &apos;about&apos;, &apos;Zoo&apos;, &apos;Credit&apos;], key=str.lower, reverse=True)</span><br><span class="line">[&apos;Zoo&apos;, &apos;Credit&apos;, &apos;bob&apos;, &apos;about&apos;]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="python多进程"><a href="#python多进程" class="headerlink" title="python多进程"></a>python多进程</h4>
           
         
       
@@ -650,6 +1173,14 @@
 <ul>
 <li>django1.9之前，中间件的key为MIDDLEWARE_CLASSES</li>
 <li>django1.9之后，中间件的key为MIDDLEWARE</li>
+</ul>
+<h4 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h4><ul>
+<li>异步分布式地异步处理任务。参考资料：<a href="http://yshblog.com/blog/163" target="_blank" rel="noopener">http://yshblog.com/blog/163</a></li>
+<li>定时执行任务。参考资料：<a href="http://yshblog.com/blog/164" target="_blank" rel="noopener">http://yshblog.com/blog/164</a></li>
+</ul>
+<h4 id="中间件middleware"><a href="#中间件middleware" class="headerlink" title="中间件middleware"></a>中间件middleware</h4><ul>
+<li>参考资料：<a href="http://blog.csdn.net/orangleliu/article/details/48316919" target="_blank" rel="noopener">http://blog.csdn.net/orangleliu/article/details/48316919</a></li>
+<li>process response<br>不像 process_request()和process_view()方法，即使同一个中间件类中的process_request()和process_view()方法会因为前面的一个中间件返回HttpResponse而被跳过，process_response()方法总是会被调用。<br>在响应阶段中，中间件以相反的顺序被应用，自底向上。意思是定义在MIDDLEWARE_CLASSES最底下的类会最先被运行。</li>
 </ul>
 
           
@@ -1536,7 +2067,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1549,7 +2080,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
