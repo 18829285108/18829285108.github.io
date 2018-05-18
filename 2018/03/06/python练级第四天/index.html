@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kingvirre">
 <meta property="og:description" content="python练级打卡第四天python的假多线程 对所有面向I/O的（会调用内建的操作系统C代码的）程序来说，GIL会在这个I/O调用之前被释放，以允许其他线程在这个线程等待I/O的时候运行。如果某线程并未使用很多I/O操作，它会在自己的时间片内一直占用处理器和GIL。所以说，I/O密集型的Python程序比计算密集型的Python程序更能充分利用多线程的好处。 python线程不能利用多核，进程">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-21T10:03:25.538Z">
+<meta property="og:updated_time" content="2018-03-27T02:12:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python练级第四天">
 <meta name="twitter:description" content="python练级打卡第四天python的假多线程 对所有面向I/O的（会调用内建的操作系统C代码的）程序来说，GIL会在这个I/O调用之前被释放，以允许其他线程在这个线程等待I/O的时候运行。如果某线程并未使用很多I/O操作，它会在自己的时间片内一直占用处理器和GIL。所以说，I/O密集型的Python程序比计算密集型的Python程序更能充分利用多线程的好处。 python线程不能利用多核，进程">
@@ -363,7 +363,7 @@
 <li>内部函数可以修改外部list中的元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def createCounter():</span><br><span class="line">    s=0</span><br><span class="line">    def counter():</span><br><span class="line">        s[0]+=1</span><br><span class="line">        return s[0]</span><br><span class="line">    return counter</span><br><span class="line"></span><br><span class="line">counterA = createCounter()</span><br><span class="line">&gt;&gt;&gt; print(counterA(), counterA(), counterA(), counterA())</span><br><span class="line">&gt;&gt;&gt; 1 2 3 4</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="python多进程"><a href="#python多进程" class="headerlink" title="python多进程"></a>python多进程</h4>
+
       
     </div>
     
@@ -510,7 +510,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -556,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python练级打卡第四天"><span class="nav-number">1.</span> <span class="nav-text">python练级打卡第四天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#python的假多线程"><span class="nav-number">1.0.1.</span> <span class="nav-text">python的假多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map和reduce"><span class="nav-number">1.0.2.</span> <span class="nav-text">map和reduce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">1.0.3.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">1.0.4.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python多进程"><span class="nav-number">1.0.5.</span> <span class="nav-text">python多进程</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python练级打卡第四天"><span class="nav-number">1.</span> <span class="nav-text">python练级打卡第四天</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#python的假多线程"><span class="nav-number">1.0.1.</span> <span class="nav-text">python的假多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map和reduce"><span class="nav-number">1.0.2.</span> <span class="nav-text">map和reduce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">1.0.3.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">1.0.4.</span> <span class="nav-text">闭包</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
