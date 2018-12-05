@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="软件测试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="测试学习——用户登录测试基础 保证系统在各种应用场景下的功能是符合设计要求的，所以需要根据“用户登录”功能的需求，结合等价类划分和边界值分析方法来设计测试用例 首先等价类划分和边界值分析都是黑盒测试 等价类划分方法，是将所有可能的输入数据划分成若干个子集，在每个子集中，如果任意一个输入数据对于揭露程序中潜在错误都具有同等效果，那么这样的子集就构成了一个等价类。后续只要从每个等价类中任意选取一个值进">
+<meta name="keywords" content="软件测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件测试1——用户登录测试">
+<meta property="og:url" content="http://yoursite.com/2018/07/07/软件测试——用户登录测试/index.html">
+<meta property="og:site_name" content="Kingvirre">
+<meta property="og:description" content="测试学习——用户登录测试基础 保证系统在各种应用场景下的功能是符合设计要求的，所以需要根据“用户登录”功能的需求，结合等价类划分和边界值分析方法来设计测试用例 首先等价类划分和边界值分析都是黑盒测试 等价类划分方法，是将所有可能的输入数据划分成若干个子集，在每个子集中，如果任意一个输入数据对于揭露程序中潜在错误都具有同等效果，那么这样的子集就构成了一个等价类。后续只要从每个等价类中任意选取一个值进">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-05T08:59:33.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件测试1——用户登录测试">
+<meta name="twitter:description" content="测试学习——用户登录测试基础 保证系统在各种应用场景下的功能是符合设计要求的，所以需要根据“用户登录”功能的需求，结合等价类划分和边界值分析方法来设计测试用例 首先等价类划分和边界值分析都是黑盒测试 等价类划分方法，是将所有可能的输入数据划分成若干个子集，在每个子集中，如果任意一个输入数据对于揭露程序中潜在错误都具有同等效果，那么这样的子集就构成了一个等价类。后续只要从每个等价类中任意选取一个值进">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/07/软件测试——用户登录测试/"/>
+
+
+
+
+
+  <title>软件测试1——用户登录测试 | Kingvirre</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kingvirre</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">人生自是有情始，此事不关风与月</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/07/软件测试——用户登录测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件测试1——用户登录测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-07T18:39:49+08:00">
+                2018-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="测试学习——用户登录"><a href="#测试学习——用户登录" class="headerlink" title="测试学习——用户登录"></a>测试学习——用户登录</h2><h3 id="测试基础"><a href="#测试基础" class="headerlink" title="测试基础"></a>测试基础</h3><ul>
+<li>保证系统在各种应用场景下的功能是符合设计要求的，所以需要根据“用户登录”功能的需求，结合等价类划分和边界值分析方法来设计测试用例</li>
+<li>首先等价类划分和边界值分析都是黑盒测试</li>
+<li>等价类划分方法，是将所有可能的输入数据划分成若干个子集，在每个子集中，如果任意一个输入数据对于揭露程序中潜在错误都具有同等效果，那么这样的子集就构成了一个等价类。后续只要从每个等价类中任意选取一个值进行测试，就可以用少量具有代表性的测试输入取得较好的测试覆盖结果。</li>
+<li>边界值分析方法，是选取输入、输出的边界值进行测试。通常选取正好等于、刚刚大于或刚刚小于边界的值作为测试数据。从方法论上可以看出来，边界值分析是对等价类划分的补充，所以这两种测试方法经常结合起来使用。</li>
+<li>基于上述的，’用户登录’测试用例设计<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入已注册的用户名和正确的密码，验证是否登录成功；</span><br><span class="line">输入已注册的用户名和不正确的密码，验证是否登录失败，并且提示信息正确；</span><br><span class="line">输入未注册的用户名和任意密码，验证是否登录失败，并且提示信息正确；</span><br><span class="line">用户名和密码两者都为空，验证是否登录失败，并且提示信息正确；</span><br><span class="line">用户名和密码两者之一为空，验证是否登录失败，并且提示信息正确；</span><br><span class="line">如果登录功能启用了验证码功能，在用户名和密码正确的前提下，输入正确的验证码，验证是否登录成功；</span><br><span class="line">如果登录功能启用了验证码功能，在用户名和密码正确的前提下，输入错误的验证码，验证是否登录失败，并且提示信息正确。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="增加功能性测试用例"><a href="#增加功能性测试用例" class="headerlink" title="增加功能性测试用例"></a>增加功能性测试用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">用户名和密码是否大小写敏感；</span><br><span class="line">页面上的密码框是否加密显示；</span><br><span class="line">后台系统创建的用户第一次登录成功时，是否提示修改密码；</span><br><span class="line">忘记用户名和忘记密码的功能是否可用；</span><br><span class="line">前端页面是否根据设计要求限制用户名和密码长度；</span><br><span class="line">如果登录功能需要验证码，点击验证码图片是否可以更换验证码，更换后的验证码是否可用；</span><br><span class="line">刷新页面是否会刷新验证码；</span><br><span class="line">如果验证码具有时效性，需要分别验证时效内和时效外验证码的有效性；</span><br><span class="line">用户登录成功但是会话超时后，继续操作是否会重定向到用户登录界面；</span><br><span class="line">不同级别的用户，比如管理员用户和普通用户，登录系统后的权限是否正确；</span><br><span class="line">页面默认焦点是否定位在用户名的输入框中；</span><br><span class="line">快捷键 Tab 和 Enter 等，是否可以正常使用。</span><br><span class="line">网络延迟或者弱网或者切换网络或者断网时正常登录是否正常</span><br><span class="line">是否支持第三方登录</span><br><span class="line">记住密码是否有有效期，有有效期，过期之后是否会清空密码</span><br></pre></td></tr></table></figure>
+<h3 id="非功能性测试用例包括：安全性、性能以及兼容性三大方面"><a href="#非功能性测试用例包括：安全性、性能以及兼容性三大方面" class="headerlink" title="非功能性测试用例包括：安全性、性能以及兼容性三大方面"></a>非功能性测试用例包括：安全性、性能以及兼容性三大方面</h3><h3 id="安全性测试用例"><a href="#安全性测试用例" class="headerlink" title="安全性测试用例"></a>安全性测试用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用户密码后台存储是否加密；</span><br><span class="line">用户密码在网络传输过程中是否加密；</span><br><span class="line">密码是否具有有效期，密码有效期到期后，是否提示需要修改密码；</span><br><span class="line">不登录的情况下，在浏览器中直接输入登录后的 URL 地址，验证是否会重新定向到用户登录界面；</span><br><span class="line">密码输入框是否不支持复制和粘贴；</span><br><span class="line">密码输入框内输入的密码是否都可以在页面源码模式下被查看；</span><br><span class="line">用户名和密码的输入框中分别输入典型的“SQL 注入攻击”字符串，验证系统的返回页面；</span><br><span class="line">用户名和密码的输入框中分别输入典型的“XSS 跨站脚本攻击”字符串，验证系统行为是否被篡改；</span><br><span class="line">连续多次登录失败情况下，系统是否会阻止后续的尝试以应对暴力破解；</span><br><span class="line">同一用户在同一终端的多种浏览器上登录，验证登录功能的互斥性是否符合设计预期；</span><br><span class="line">同一用户先后在多台终端的浏览器上登录，验证登录是否具有互斥性。</span><br></pre></td></tr></table></figure>
+<h3 id="性能压力测试用例"><a href="#性能压力测试用例" class="headerlink" title="性能压力测试用例"></a>性能压力测试用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">单用户登录的响应时间是否小于 3 秒；</span><br><span class="line">单用户登录时，后台请求数量是否过多；</span><br><span class="line">高并发场景下用户登录的响应时间是否小于 5 秒；</span><br><span class="line">高并发场景下服务端的监控指标是否符合预期；</span><br><span class="line">高集合点并发场景下，是否存在资源死锁和不合理的资源等待；</span><br><span class="line">长时间大量用户连续登录和登出，服务器端是否存在内存泄漏。</span><br></pre></td></tr></table></figure>
+<h3 id="兼容性测试用例"><a href="#兼容性测试用例" class="headerlink" title="兼容性测试用例"></a>兼容性测试用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">不同浏览器下，验证登录页面的显示以及功能正确性；</span><br><span class="line">相同浏览器的不同版本下，验证登录页面的显示以及功能正确性；</span><br><span class="line">不同移动设备终端的不同浏览器下，验证登录页面的显示以及功能正确性；</span><br><span class="line">不同分辨率的界面下，验证登录页面的显示以及功能正确性。</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>“穷尽测试”是指包含了软件输入值和前提条件所有可能组合的测试方法，完成穷尽测试的系统里应该不残留任何未知的软件缺陷。几乎不可能做到</li>
+<li>首先，对于高质量的软件测试，用例设计不仅需要考虑明确的显式功能性需求，还要涉及兼容性、安全性和性能等一系列的非功能性需求，这些非功能性需求对软件系统的质量有着举足轻重的作用。</li>
+<li>其次，优秀的测试工程师必须具有宽广的知识面，才能设计出有针对性、更易于发现问题的测试用例。</li>
+<li>最后，软件测试的用例设计是不可穷尽的，工程实践中难免受制于时间成本和经济成本，所以优秀的测试工程师需要兼顾缺陷风险和研发成本之间的平衡。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>嘻嘻嘻，给口饭吃</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Wechatpay.jpg" alt="Kingvirre WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件测试/" rel="tag"># 软件测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/04/环境和日志验证——python/" rel="next" title="环境和日志验证——python">
+                <i class="fa fa-chevron-left"></i> 环境和日志验证——python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/blog-logo.jpg"
+                alt="Kingvirre" />
+            
+              <p class="site-author-name" itemprop="name">Kingvirre</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试学习——用户登录"><span class="nav-number">1.</span> <span class="nav-text">测试学习——用户登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试基础"><span class="nav-number">1.1.</span> <span class="nav-text">测试基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加功能性测试用例"><span class="nav-number">1.2.</span> <span class="nav-text">增加功能性测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非功能性测试用例包括：安全性、性能以及兼容性三大方面"><span class="nav-number">1.3.</span> <span class="nav-text">非功能性测试用例包括：安全性、性能以及兼容性三大方面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全性测试用例"><span class="nav-number">1.4.</span> <span class="nav-text">安全性测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能压力测试用例"><span class="nav-number">1.5.</span> <span class="nav-text">性能压力测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兼容性测试用例"><span class="nav-number">1.6.</span> <span class="nav-text">兼容性测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+
+&copy; 
+<span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kingvirre</span>
+</div>
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv"> <span id="busuanzi_value_site_uv"></span></span>
+  </div>
+
+  <div class="theme-info">
+  访客量 &mdash;
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

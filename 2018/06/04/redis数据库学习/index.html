@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数据库," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="关于我 专业: 软件测试 想学习： 安全 python开发 前端 网络 。。。。。。   计算机所有知识都认真学习的小菜鸟  1留个qq号方便交流：571348268">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="redis入门redis简介 Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单 Redis支持数据的备份，即master-slave模式的数据备份 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型 Redis的所有操作都是原子性的，意思就是要么成功执行">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis数据库学习">
+<meta property="og:url" content="http://yoursite.com/2018/06/04/redis数据库学习/index.html">
 <meta property="og:site_name" content="Kingvirre">
-<meta property="og:description" content="关于我 专业: 软件测试 想学习： 安全 python开发 前端 网络 。。。。。。   计算机所有知识都认真学习的小菜鸟  1留个qq号方便交流：571348268">
+<meta property="og:description" content="redis入门redis简介 Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单 Redis支持数据的备份，即master-slave模式的数据备份 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型 Redis的所有操作都是原子性的，意思就是要么成功执行">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-25T03:36:46.000Z">
+<meta property="og:updated_time" content="2018-07-09T01:48:53.075Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="关于我 专业: 软件测试 想学习： 安全 python开发 前端 网络 。。。。。。   计算机所有知识都认真学习的小菜鸟  1留个qq号方便交流：571348268">
+<meta name="twitter:title" content="redis数据库学习">
+<meta name="twitter:description" content="redis入门redis简介 Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单 Redis支持数据的备份，即master-slave模式的数据备份 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型 Redis的所有操作都是原子性的，意思就是要么成功执行">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/04/redis数据库学习/"/>
 
 
 
 
 
-  <title>about | Kingvirre</title>
+  <title>redis数据库学习 | Kingvirre</title>
   
 
 
@@ -240,46 +241,194 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/redis数据库学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><ul>
-<li>专业: 软件测试</li>
-<li>想学习：<ul>
-<li>安全</li>
-<li>python开发</li>
-<li>前端</li>
-<li>网络</li>
-<li>。。。。。。</li>
-</ul>
+          <h1 class="post-title" itemprop="name headline">redis数据库学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T18:27:34+08:00">
+                2018-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="redis入门"><a href="#redis入门" class="headerlink" title="redis入门"></a>redis入门</h2><h3 id="redis简介"><a href="#redis简介" class="headerlink" title="redis简介"></a>redis简介</h3><ol>
+<li>Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单</li>
+<li>Redis支持数据的备份，即master-slave模式的数据备份</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型</li>
+<li>Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</li>
+</ol>
+<h3 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h3><ol>
+<li>string</li>
+<li>hash<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HMSET myhash field1 &quot;Hello&quot; field2 &quot;World&quot;</span><br><span class="line">&quot;OK&quot;</span><br><span class="line">redis&gt; HGET myhash field1</span><br><span class="line">&quot;Hello&quot;</span><br><span class="line">redis&gt; HGET myhash field2</span><br><span class="line">&quot;World&quot;</span><br></pre></td></tr></table></figure>
 </li>
-<li>计算机所有知识都认真学习的小菜鸟</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">留个qq号方便交流：571348268</span><br></pre></td></tr></table></figure>
+</ol>
+<h3 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h3><ol>
+<li>redis客户端基本语法redis-cli。执行 PING 命令，该命令用于检测 redis 服务是否启动。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.redis的键：下面如果键被删除成功，命令执行后输出 (integer) 1，否则将输出 (integer) 0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET runoobkey redis</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; DEL runoobkey</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>同时设置多个key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSET fruit &quot;apple&quot; drink &quot;beer&quot; food &quot;cookies&quot;   # 设置多个 key</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>redis常用</p>
+</li>
+</ol>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>嘻嘻嘻，给口饭吃</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Wechatpay.jpg" alt="Kingvirre WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/18/随便写写/" rel="next" title="随便写写">
+                <i class="fa fa-chevron-left"></i> 随便写写
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/04/环境和日志验证——python/" rel="prev" title="环境和日志验证——python">
+                环境和日志验证——python <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -387,7 +536,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于我"><span class="nav-number">1.</span> <span class="nav-text">关于我</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#redis入门"><span class="nav-number">1.</span> <span class="nav-text">redis入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis简介"><span class="nav-number">1.1.</span> <span class="nav-text">redis简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">redis数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis命令"><span class="nav-number">1.3.</span> <span class="nav-text">redis命令</span></a></li></ol></li></ol></div>
             
 
           </div>
