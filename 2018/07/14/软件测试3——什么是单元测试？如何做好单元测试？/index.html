@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="软件测试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="单元测试什么是单元测试？ 单元测试是指，对软件中的最小可测试单元在与程序其他部分相隔离的情况下进行检查和验证的工作，这里的最小可测试单元通常是指函数或者类。 单元测试的实施过程还可以帮助开发工程师改善代码的设计与实现，并能在单元测试代码里提供函数的使用示例，因为单元测试的具体表现形式就是对函数以各种不同输入参数组合进行调用，这些调用方法构成了函数的使用说明。  如何做好单元测试？先弄清楚单元测试的">
+<meta name="keywords" content="软件测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件测试3——做好单元测试">
+<meta property="og:url" content="http://yoursite.com/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/index.html">
+<meta property="og:site_name" content="Kingvirre">
+<meta property="og:description" content="单元测试什么是单元测试？ 单元测试是指，对软件中的最小可测试单元在与程序其他部分相隔离的情况下进行检查和验证的工作，这里的最小可测试单元通常是指函数或者类。 单元测试的实施过程还可以帮助开发工程师改善代码的设计与实现，并能在单元测试代码里提供函数的使用示例，因为单元测试的具体表现形式就是对函数以各种不同输入参数组合进行调用，这些调用方法构成了函数的使用说明。  如何做好单元测试？先弄清楚单元测试的">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/unit1.jpeg">
+<meta property="og:updated_time" content="2019-03-23T07:52:47.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件测试3——做好单元测试">
+<meta name="twitter:description" content="单元测试什么是单元测试？ 单元测试是指，对软件中的最小可测试单元在与程序其他部分相隔离的情况下进行检查和验证的工作，这里的最小可测试单元通常是指函数或者类。 单元测试的实施过程还可以帮助开发工程师改善代码的设计与实现，并能在单元测试代码里提供函数的使用示例，因为单元测试的具体表现形式就是对函数以各种不同输入参数组合进行调用，这些调用方法构成了函数的使用说明。  如何做好单元测试？先弄清楚单元测试的">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/unit1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/"/>
+
+
+
+
+
+  <title>软件测试3——做好单元测试 | Kingvirre</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kingvirre</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">人生自是有情始，此事不关风与月</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件测试3——做好单元测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T19:49:36+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><h3 id="什么是单元测试？"><a href="#什么是单元测试？" class="headerlink" title="什么是单元测试？"></a>什么是单元测试？</h3><ul>
+<li>单元测试是指，对软件中的最小可测试单元在与程序其他部分相隔离的情况下进行检查和验证的工作，这里的最小可测试单元通常是指函数或者类。</li>
+<li>单元测试的实施过程还可以帮助开发工程师改善代码的设计与实现，并能在单元测试代码里提供函数的使用示例，因为单元测试的具体表现形式就是对函数以各种不同输入参数组合进行调用，这些调用方法构成了函数的使用说明。</li>
+</ul>
+<h3 id="如何做好单元测试？"><a href="#如何做好单元测试？" class="headerlink" title="如何做好单元测试？"></a>如何做好单元测试？</h3><pre><code>先弄清楚单元测试的对象是代码，以及代码的基本特征和产生错误的原因，掌握什么是驱动代码、桩代码和 Mock 代码等。
+</code></pre><h4 id="代码的基本特征与产生错误的原因"><a href="#代码的基本特征与产生错误的原因" class="headerlink" title="代码的基本特征与产生错误的原因"></a>代码的基本特征与产生错误的原因</h4><p>因为无论是开发语言还是脚本语言，都会有条件分支、循环处理和函数调用等最基本的逻辑控制。<br>仅看代码结构的话，你会发现所有的代码都是在对数据进行分类处理，每一次条件判定都是一次分类处理，嵌套的条件判定或者循环执行，也是在做分类处理。<br>要做到代码功能逻辑正确，必须做到分类正确并且完备无遗漏，同时每个分类的处理逻辑必须正确。</p>
+<ul>
+<li>在具体的工程实践中，开发工程师为了设计并实现逻辑功能正确的代码，通常会有如下的考虑过程：</li>
+<li>如果要实现正确的功能逻辑，会有哪几种正常的输入；是否有需要特殊处理的多种边界输入；各种潜在非法输入的可能性以及如何处理。</li>
+<li>这些开发工程师眼中的代码“功能点”，就是单元测试的“等价类”。</li>
+</ul>
+<h4 id="单元测试用例详解"><a href="#单元测试用例详解" class="headerlink" title="单元测试用例详解"></a>单元测试用例详解</h4><blockquote>
+<p>通常来讲，单元测试的用例是一个“输入数据”和“预计输出”的集合。</p>
+</blockquote>
+<ol>
+<li>被测试函数的输入参数；</li>
+</ol>
+<ul>
+<li>被测试函数内部需要读取的全局静态变量；</li>
+<li>被测试函数内部需要读取的成员变量；</li>
+<li>函数内部调用子函数获得的数据；</li>
+<li>函数内部调用子函数改写的数据；</li>
+<li>嵌入式系统中，在中断调用时改写的数据；</li>
+<li>…</li>
+</ul>
+<ol>
+<li>“预计输出” 绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。</li>
+</ol>
+<ul>
+<li>被测试函数的返回值；</li>
+<li>被测试函数的输出参数；</li>
+<li>被测试函数所改写的成员变量；</li>
+<li>被测试函数所改写的全局变量；</li>
+<li>被测试函数中进行的文件更新；</li>
+<li>被测试函数中进行的数据库更新；</li>
+<li>被测试函数中进行的消息队列更新；</li>
+<li>…</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">另外，对于预计输出值，你必须严格根据代码的功能逻辑来设定，而不能通过阅读代码来推算预期输出。</span><br><span class="line">最后，如果某些等价类或者边界值，开发工程师在开发的时候都没有考虑到，测试的时候就更不会去设计对应的测试用例了，这样也就会造成测试盲区。</span><br></pre></td></tr></table></figure>
+<h4 id="驱动代码，桩代码和-Mock-代码"><a href="#驱动代码，桩代码和-Mock-代码" class="headerlink" title="驱动代码，桩代码和 Mock 代码"></a>驱动代码，桩代码和 Mock 代码</h4><pre><code>驱动代码是用来调用被测函数的，而桩代码和 Mock 代码是用来代替被测函数调用的真实代码的。
+</code></pre><ol>
+<li>驱动代码，桩代码和 Mock 代码三者的逻辑关系:<br><img src="/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/unit1.jpeg" alt="三者关系"></li>
+</ol>
+<ul>
+<li>驱动代码（Driver）指调用被测函数的代码，模拟请求去调用被测试的函数。在单元测试过程中，驱动模块通常包括调用被测函数前的数据准备、调用被测函数以及验证相关结果三个步骤。驱动代码的结构，通常由单元测试的框架决定。</li>
+<li>桩代码（Stub）是用来代替真实代码的临时代码。 比如，某个函数 A 的内部实现中调用了一个尚未实现的函数 B，为了对函数 A 的逻辑进行测试，那么就需要模拟一个函数 B，这个模拟的函数 B 的实现就是所谓的桩代码。</li>
+</ul>
+<blockquote>
+<p>例子：假定函数 A 是被测函数，其内部调用了函数 B：<br>在单元测试阶段，由于函数 B 尚未实现，但是为了不影响对函数 A 自身实现逻辑的测试，你可以用一个假的函数 B 来代替真实的函数 B，那么这个假的函数 B 就是桩函数。<br>为了实现函数 A 的全路径覆盖，你需要控制不同的测试用例中函数 B 的返回值。</p>
+</blockquote>
+<ol>
+<li>桩函数内部实现</li>
+</ol>
+<p>桩代码的应用首先起到了隔离和补齐的作用，使被测代码能够独立编译、链接，并独立运行。同时，桩代码还具有控制被测函数执行路径的作用。</p>
+<p>编写桩代码通常需要遵守以下三个原则：</p>
+<ul>
+<li>桩函数要具有与原函数完全相同的原形，仅仅是内部实现不同，这样测试代码才能正确链接到桩函数；</li>
+<li>用于实现隔离和补齐的桩函数比较简单，只需保持原函数的声明，加一个空的实现，目的是通过编译链接；</li>
+<li>实现控制功能的桩函数是应用最广泛的，要根据测试用例的需要，输出合适的数据作为被测函数的内部输入。</li>
+</ul>
+<ol>
+<li>Mock 代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。</li>
+</ol>
+<blockquote>
+<p>在我看来，Mock 代码和桩代码的本质区别是：测试期待结果的验证（Assert and Expectiation）。<br>对于 Mock 代码来说，关注点是 Mock 方法有没有被调用，以什么样的参数被调用，被调用的次数，以及多个 Mock 函数的先后调用顺序。所以，在使用 Mock 代码的测试中，对于结果的验证，通常出现在 Mock 函数中。<br>对于桩代码来说，关注点是利用 Stub 来控制被测函数的执行路径，不会去关注 Stub 是否被调用以及怎么样被调用。所以，你在使用 Stub 的测试中，对于结果的验证，通常出现在驱动代码中。</p>
+</blockquote>
+<h3 id="实际项目中如何开展单元测试？"><a href="#实际项目中如何开展单元测试？" class="headerlink" title="实际项目中如何开展单元测试？"></a>实际项目中如何开展单元测试？</h3><p>并不是所有的代码都要进行单元测试，通常只有底层模块或者核心模块的测试中才会采用单元测试。</p>
+<ul>
+<li>你需要确定单元测试框架的选型，这和开发语言直接相关。比如，Java 最常用的单元测试框架是 Junit 和 TestNG；C/C++ 最常用的单元测试框架是 CppTest 和 Parasoft C/C++test；框架选型完成后，你还需要对桩代码框架和 Mock 代码框架选型。</li>
+<li>为了能够衡量单元测试的代码覆盖率，通常你还需要引入计算代码覆盖率的工具。不同的语言会有不同的代码覆盖率统计工具，比如 Java 的 JaCoCo，JavaScript 的 Istanbul。</li>
+<li>最后你需要把单元测试执行、代码覆盖率统计和持续集成流水线做集成，以确保每次代码递交，都会自动触发单元测试，并在单元测试执行过程中自动统计代码覆盖率，最后以“单元测试通过率”和“代码覆盖率”为标准来决定本次代码递交是否能够被接受。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">真正在项目中全面推行单元测试时，还有一些困难需要克服：</span><br><span class="line">紧密耦合的代码难以隔离；</span><br><span class="line">隔离后编译链接运行困难；</span><br><span class="line">代码本身的可测试性较差，通常代码的可测试性和代码规模成正比；</span><br><span class="line">无法通过桩代码直接模拟系统底层函数的调用；</span><br><span class="line">代码覆盖率越往后越难提高。</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>代码要做到功能逻辑正确，必须做到分类正确并且完备无遗漏，同时每个分类的处理逻辑必须正确；</li>
+<li>单元测试是对软件中的最小可测试单元在与软件其他部分相隔离的情况下进行的代码级测试；</li>
+<li>桩代码起到了隔离和补齐的作用，使被测代码能够独立编译、链接，并运行。</li>
+</ol>
+<hr>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>嘻嘻嘻，给口饭吃</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Wechatpay.jpg" alt="Kingvirre WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件测试/" rel="tag"># 软件测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/08/软件测试2——如何设计一个好的测试用例/" rel="next" title="软件测试2——设计一个好的测试用例">
+                <i class="fa fa-chevron-left"></i> 软件测试2——设计一个好的测试用例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/15/软件测试4——是否需要自动化测试？/" rel="prev" title="软件测试4——自动化测试">
+                软件测试4——自动化测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/blog-logo.jpg"
+                alt="Kingvirre" />
+            
+              <p class="site-author-name" itemprop="name">Kingvirre</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试"><span class="nav-number">1.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是单元测试？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是单元测试？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何做好单元测试？"><span class="nav-number">1.2.</span> <span class="nav-text">如何做好单元测试？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码的基本特征与产生错误的原因"><span class="nav-number">1.2.1.</span> <span class="nav-text">代码的基本特征与产生错误的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单元测试用例详解"><span class="nav-number">1.2.2.</span> <span class="nav-text">单元测试用例详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#驱动代码，桩代码和-Mock-代码"><span class="nav-number">1.2.3.</span> <span class="nav-text">驱动代码，桩代码和 Mock 代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际项目中如何开展单元测试？"><span class="nav-number">1.3.</span> <span class="nav-text">实际项目中如何开展单元测试？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+
+&copy; 
+<span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kingvirre</span>
+</div>
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv"> <span id="busuanzi_value_site_uv"></span></span>
+  </div>
+
+  <div class="theme-info">
+  访客量 &mdash;
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

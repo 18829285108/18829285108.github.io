@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据库," />
+  <meta name="keywords" content="软件测试," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="redis入门redis简介 Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单 Redis支持数据的备份，即master-slave模式的数据备份 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型 Redis的所有操作都是原子性的，意思就是要么成功执行">
-<meta name="keywords" content="数据库">
+<meta name="description" content="好的测试用例“好的”测试用例一定是一个完备的集合，它能够覆盖所有等价类以及各种边界值，而跟能否发现缺陷无关。 好的测试用例特征 整体完备性： “好的”测试用例一定是一个完备的整体，是有效测试用例组成的集合，能够完全覆盖测试需求。 等价类划分的准确性： 指的是对于每个等价类都能保证只要其中一个输入测试通过，其他输入也一定测试通过。 等价类集合的完备性： 需要保证所有可能的边界值和边界条件都已经正确识">
+<meta name="keywords" content="软件测试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis数据库学习">
-<meta property="og:url" content="http://yoursite.com/2018/06/04/redis数据库学习/index.html">
+<meta property="og:title" content="软件测试2——设计一个好的测试用例">
+<meta property="og:url" content="http://yoursite.com/2018/07/08/软件测试2——如何设计一个好的测试用例/index.html">
 <meta property="og:site_name" content="Kingvirre">
-<meta property="og:description" content="redis入门redis简介 Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单 Redis支持数据的备份，即master-slave模式的数据备份 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型 Redis的所有操作都是原子性的，意思就是要么成功执行">
+<meta property="og:description" content="好的测试用例“好的”测试用例一定是一个完备的集合，它能够覆盖所有等价类以及各种边界值，而跟能否发现缺陷无关。 好的测试用例特征 整体完备性： “好的”测试用例一定是一个完备的整体，是有效测试用例组成的集合，能够完全覆盖测试需求。 等价类划分的准确性： 指的是对于每个等价类都能保证只要其中一个输入测试通过，其他输入也一定测试通过。 等价类集合的完备性： 需要保证所有可能的边界值和边界条件都已经正确识">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-09T01:48:53.075Z">
+<meta property="og:image" content="http://yoursite.com/2018/07/08/软件测试2——如何设计一个好的测试用例/2.jpeg">
+<meta property="og:updated_time" content="2019-03-23T07:30:03.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis数据库学习">
-<meta name="twitter:description" content="redis入门redis简介 Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单 Redis支持数据的备份，即master-slave模式的数据备份 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型 Redis的所有操作都是原子性的，意思就是要么成功执行">
+<meta name="twitter:title" content="软件测试2——设计一个好的测试用例">
+<meta name="twitter:description" content="好的测试用例“好的”测试用例一定是一个完备的集合，它能够覆盖所有等价类以及各种边界值，而跟能否发现缺陷无关。 好的测试用例特征 整体完备性： “好的”测试用例一定是一个完备的整体，是有效测试用例组成的集合，能够完全覆盖测试需求。 等价类划分的准确性： 指的是对于每个等价类都能保证只要其中一个输入测试通过，其他输入也一定测试通过。 等价类集合的完备性： 需要保证所有可能的边界值和边界条件都已经正确识">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/08/软件测试2——如何设计一个好的测试用例/2.jpeg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/04/redis数据库学习/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/08/软件测试2——如何设计一个好的测试用例/"/>
 
 
 
 
 
-  <title>redis数据库学习 | Kingvirre</title>
+  <title>软件测试2——设计一个好的测试用例 | Kingvirre</title>
   
 
 
@@ -253,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/redis数据库学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/08/软件测试2——如何设计一个好的测试用例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kingvirre">
@@ -270,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">redis数据库学习</h1>
+          <h1 class="post-title" itemprop="name headline">软件测试2——设计一个好的测试用例</h1>
         
 
         <div class="post-meta">
@@ -282,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T18:27:34+08:00">
-                2018-06-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-08T20:18:32+08:00">
+                2018-07-08
               </time>
             
 
@@ -320,29 +322,54 @@
       
 
       
-        <h2 id="redis入门"><a href="#redis入门" class="headerlink" title="redis入门"></a>redis入门</h2><h3 id="redis简介"><a href="#redis简介" class="headerlink" title="redis简介"></a>redis简介</h3><ol>
-<li>Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单</li>
-<li>Redis支持数据的备份，即master-slave模式的数据备份</li>
-<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型</li>
-<li>Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</li>
+        <h2 id="好的测试用例"><a href="#好的测试用例" class="headerlink" title="好的测试用例"></a>好的测试用例</h2><p>“好的”测试用例一定是一个完备的集合，它能够覆盖所有等价类以及各种边界值，而跟能否发现缺陷无关。</p>
+<h3 id="好的测试用例特征"><a href="#好的测试用例特征" class="headerlink" title="好的测试用例特征"></a>好的测试用例特征</h3><ol>
+<li>整体完备性： “好的”测试用例一定是一个完备的整体，是有效测试用例组成的集合，能够完全覆盖测试需求。</li>
+<li>等价类划分的准确性： 指的是对于每个等价类都能保证只要其中一个输入测试通过，其他输入也一定测试通过。</li>
+<li>等价类集合的完备性： 需要保证所有可能的边界值和边界条件都已经正确识别。</li>
 </ol>
-<h3 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h3><ol>
-<li>string</li>
-<li>hash<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HMSET myhash field1 &quot;Hello&quot; field2 &quot;World&quot;</span><br><span class="line">&quot;OK&quot;</span><br><span class="line">redis&gt; HGET myhash field1</span><br><span class="line">&quot;Hello&quot;</span><br><span class="line">redis&gt; HGET myhash field2</span><br><span class="line">&quot;World&quot;</span><br></pre></td></tr></table></figure>
-</li>
+<h3 id="如何设计好的测试用例"><a href="#如何设计好的测试用例" class="headerlink" title="如何设计好的测试用例"></a>如何设计好的测试用例</h3><ol>
+<li>等价类划分方法</li>
 </ol>
-<h3 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h3><ol>
-<li>redis客户端基本语法redis-cli。执行 PING 命令，该命令用于检测 redis 服务是否启动。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>2.redis的键：下面如果键被删除成功，命令执行后输出 (integer) 1，否则将输出 (integer) 0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET runoobkey redis</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; DEL runoobkey</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>例子：学生信息系统中有一个“考试成绩”的输入项，成绩的取值范围是 0~100 之间的整数，考试成绩及格的分数线是 60。</p>
+<ul>
+<li>有效等价类 1：0~59 之间的任意整数；</li>
+<li>有效等价类 2：59~100 之间的任意整数；</li>
+<li>无效等价类 1：小于 0 的负数；</li>
+<li>无效等价类 2：大于 100 的整数；</li>
+<li>无效等价类 3：0~100 之间的任何浮点数；</li>
+<li>无效等价类 4：其他任意非数字字符。</li>
+</ul>
+</blockquote>
 <ol>
-<li><p>同时设置多个key</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSET fruit &quot;apple&quot; drink &quot;beer&quot; food &quot;cookies&quot;   # 设置多个 key</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>redis常用</p>
-</li>
+<li>边界值分析方法</li>
 </ol>
+<ul>
+<li>通常选取正好等于、刚刚大于或刚刚小于边界的值作为测试数据。</li>
+<li>我们继续看学生信息系统中“考试成绩”的例子，选取的边界值数据应该包括：-1，0，1，59，60，61，99，100，101。</li>
+</ul>
+<ol>
+<li>错误推测方法</li>
+</ol>
+<blockquote>
+<p>比如，Web 界面的 GUI 功能测试，需要考虑浏览器在有缓存和没有缓存下的表现；Web Service 的 API 测试，<br>需要考虑被测 API 所依赖的第三方 API 出错下的处理逻辑；<br>对于代码级的单元测试，需要考虑被测函数的输入参数为空情况下的内部处理逻辑等等。</p>
+</blockquote>
+<h3 id="“好的”测试用例？"><a href="#“好的”测试用例？" class="headerlink" title="“好的”测试用例？"></a>“好的”测试用例？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">面向终端用户的 GUI 测试为例</span><br><span class="line">面向终端用户的 GUI 测试，最核心的测试点就是验证软件对需求的满足程度，这就要求测试工程师对被测软件的需求有深入的理解。</span><br><span class="line">在具体的用例设计时，首先需要搞清楚每一个业务需求所对应的多个软件功能需求e点，然后分析出每个软件功能需求点对应的多个测试需求点，最后再针对每个测试需求点设计测试用例。</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/08/软件测试2——如何设计一个好的测试用例/2.jpeg" alt=""></p>
+<p>图中的业务需求——软件功能需求——测试需求——测试用例的映射关系.</p>
+<ol>
+<li>从软件功能需求出发，全面地、无遗漏地识别出测试需求是至关重要的，这将直接关系到用例的测试覆盖率。<blockquote>
+<p>比如，如果你没有识别出用户登录功能的安全性测试需求，那么后续设计的测试用例就完全不会涉及安全性，最终造成重要测试漏洞。</p>
+</blockquote>
+</li>
+<li>对于识别出的每个测试需求点，需要综合运用等价类划分、边界值分析和错误推测方法来全面地设计测试用例。</li>
+</ol>
+<blockquote>
+<p>作为测试工程师，切忌不能把整个被测系统看作一个大黑盒，你必须对内部的架构有清楚的认识，比如数据库连接方式、数据库的读写分离、消息中间件 Kafka 的配置、缓存系统的层级分布、第三方系统的集成等等。<br>如果想设计一个“好的”测试用例，你必须要深入理解被测软件的架构设计，深入软件内部的处理逻辑，需求覆盖率和代码覆盖率这两个指标可以帮你衡量测试执行的完备性。</p>
+</blockquote>
+<hr>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
 
       
     </div>
@@ -384,7 +411,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+            <a href="/tags/软件测试/" rel="tag"># 软件测试</a>
           
         </div>
       
@@ -397,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/18/随便写写/" rel="next" title="随便写写">
-                <i class="fa fa-chevron-left"></i> 随便写写
+              <a href="/2018/07/07/软件测试——用户登录测试/" rel="next" title="软件测试1——用户登录测试">
+                <i class="fa fa-chevron-left"></i> 软件测试1——用户登录测试
               </a>
             
           </div>
@@ -407,8 +434,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/04/环境和日志验证——python/" rel="prev" title="环境和日志验证——python">
-                环境和日志验证——python <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/" rel="prev" title="软件测试3——做好单元测试">
+                软件测试3——做好单元测试 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -536,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#redis入门"><span class="nav-number">1.</span> <span class="nav-text">redis入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis简介"><span class="nav-number">1.1.</span> <span class="nav-text">redis简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">redis数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis命令"><span class="nav-number">1.3.</span> <span class="nav-text">redis命令</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#好的测试用例"><span class="nav-number">1.</span> <span class="nav-text">好的测试用例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#好的测试用例特征"><span class="nav-number">1.1.</span> <span class="nav-text">好的测试用例特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何设计好的测试用例"><span class="nav-number">1.2.</span> <span class="nav-text">如何设计好的测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“好的”测试用例？"><span class="nav-number">1.3.</span> <span class="nav-text">“好的”测试用例？</span></a></li></ol></li></ol></div>
             
 
           </div>

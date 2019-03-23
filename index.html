@@ -249,6 +249,726 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/软件测试5——自动化测试技术/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/21/软件测试5——自动化测试技术/" itemprop="url">软件测试5——自动化测试技术</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T21:02:37+08:00">
+                2018-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><p>###<br>比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作；<br>现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。</p>
+<p>不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试</p>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>单元测试本身就是自动化的，它根据软件详细设计采用等价类划分和边界值分析方法设计测试用例，在测试代码实现后再以自动化的方式统一执行。<br>但从广义讲，单元测试阶段的“自动化”内涵不仅仅指测试用例执行的自动化，还应该包含以下五个方面：</p>
+<ol>
+<li><p>用例框架代码生成的自动化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有些框架代码应该由自动化工具生成，而不是由开发者手工完成。TestNG 框架代码应该由自动化工具生成</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部分测试输入数据的自动化生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">某个被测函数的原型是 void fun（int* p, short b），那么测试数据自动生成技术就会为输入参数 int* p 自动生成“空”和“非空”的两个指针 p，然后分别执行函数 void fun（int* p, short b），并观察函数的执行情况。</span><br><span class="line">如果函数内部没有对空指针进行特殊处理，那么函数 fun 的调用必定会抛出异常，发现函数的设计缺陷。同样地，对于输入参数 short b 会自动生成超出 short 范围的b，测试函数 fun 的行为。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自动桩代码的生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">自动桩代码的生成是指自动化工具可以对被测试代码进行扫描分析，自动为被测函数内部调用的其他函数生成可编程的桩代码，并提供基于测试用例的桩代码管理机制。</span><br><span class="line">此时，单元测试开发者只需重点关注桩代码内的具体逻辑实现，以及桩代码的返回值。</span><br><span class="line">必要的时候，自动化工具还需要实现 “抽桩”，以适应后续的代码级集成测试的需求。</span><br><span class="line">“抽桩”指 在单元测试阶段，假如函数 A 内部调用的函数 B 是桩代码，那么在代码级集成测试阶段，我们希望函数 A 不再调用假的函数 B，而是调用真实的函数 B，这个用真实函数 B 代替原本桩代码函数 B 的操作，就称为“抽桩”。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>被测代码的自动化静态分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">静态分析主要指代码的静态扫描，识别出违反编码规则或编码风格的代码行。通常这部分工作是结合项目具体的编码规则和编码风格，由自动化工具通过内建规则和用户自定义规则自动化完成的。目前比较常用的代码静态分析工具有 Sonar 和 Coverity 等。</span><br><span class="line">严格意义上讲，静态分析不属于单元测试的范畴，但这部分工作一般是在单元测试阶段通过自动化工具完成的。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试覆盖率的自动统计与分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">单元测试用例执行结束后，自动化工具可以自动统计各种测试覆盖率，包括代码行覆盖率、分支覆盖率、MC/DC 覆盖率等。这些自动统计的指标，可以衡量单元测试用例集合的充分性和完备性，并可以提供适当增补测试用例以提高测试覆盖率的依据。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="代码级集成测试的自动化技术"><a href="#代码级集成测试的自动化技术" class="headerlink" title="代码级集成测试的自动化技术"></a>代码级集成测试的自动化技术</h3><p>代码级集成测试是指将已经开发完成的软件模块放在一起测试。关注点更多的是软件模块之间的接口调用和数据传递。</p>
+<ol>
+<li>代码级集成测试，被测函数内部调用的其他函数必须是真实的，不允许使用桩代码代替，而单元测试中允许使用桩代码来模拟内部调用的其他函数。</li>
+<li>代码级集成测试对测试框架的要求非常高，这个框架除了可以顺利装载自己的软件模块外，还必须能装载其他相互依赖的模块，做到被测软件模块可运行（Runnable）。</li>
+<li>代码级集成测试主要应用在早期非互联网的传统软件企业，那时候的软件以“单体”应用居多，一个软件内部包含大量的功能，每一个软件功能都是通过不同的内部模块来实现的，这些内部模块在做集成的时候，就需要做代码级集成测试。</li>
+</ol>
+<h3 id="Web-Service-测试的自动化技术"><a href="#Web-Service-测试的自动化技术" class="headerlink" title="Web Service 测试的自动化技术"></a>Web Service 测试的自动化技术</h3><p>Web Service 测试，主要是指 SOAP API 和 REST API 这两类 API 测试。</p>
+<ol>
+<li>对于基于代码的 API 测试用例，通常包含三大步骤：</li>
+</ol>
+<ul>
+<li>准备 API 调用时需要的测试数据；</li>
+<li>准备 API 的调用参数并发起 API 的调用；</li>
+<li>验证 API 调用的返回结果。</li>
+</ul>
+<ol>
+<li><p>目前最流行的 API 自动测试框架是 REST Assured，它可以方便地发起 Restful API 调用并验证返回结果。</p>
+</li>
+<li><p>Web Service 测试“自动化”的内涵不仅仅包括 API 测试用例执行的自动化，还包括以下四个方面：</p>
+</li>
+</ol>
+<ul>
+<li><p>测试脚手架代码的自动化生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">测试脚手架代码的自动生成技术，它生成的测试脚手架代码，通常包含了被测试 API 的调用、测试数据与脚本的分离，以及 Response 验证的空实现。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部分测试输入数据的自动生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">API 测试对应的输入数据是 API 的参数以及 API 调用的 Payload。数据生成的原则同样遵循边界值原则。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Response 验证的自动化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于 API 调用返回结果的验证，通常关注的点是返回状态码（status code）、Scheme 结构以及具体的字段值。</span><br><span class="line">Response 验证自动化的核心思想是自动比较两次相同 API 调用的返回结果，并自动识别出有差异的字段值，比较过程可以通过规则配置去掉诸如时间戳、会话 ID（Session ID）等动态值。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基于 SoapUI 或者 Postman 的自动化脚本生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开发一个自动化代码转换生成工具。这个工具的输入是 SoapUI 或者 Postman 的测试用例元数据（即测试用例的 JSON 元文件），输出是符合 API 测试框架规范的基于代码实现的测试用例。</span><br><span class="line">这样一来，原本的测试用例积累可以直接转换成在 CI/CD 上可以直接接入的自动化测试用例。</span><br><span class="line">对于新的测试用例，还可以继续用 SoapUI 或者 Postman 做初步的测试验证，初步验证没有问题后，直接转换成符合 API 测试框架规范的测试用例。对于复杂的测试用例，也可以直接基于代码来实现，而且灵活性会更好。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="GUI-测试的自动化技术"><a href="#GUI-测试的自动化技术" class="headerlink" title="GUI 测试的自动化技术"></a>GUI 测试的自动化技术</h3><ol>
+<li><p>GUI 测试核心思想是，基于页面元素识别技术，对页面元素进行自动化操作，以模拟实际终端用户的行为并验证软件功能的正确性。</p>
+</li>
+<li><p>目前，GUI 自动化测试主要分为两大方向，传统 Web 浏览器和移动端原生应用（Native App）的 GUI 自动化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于传统 Web 浏览器的 GUI 自动化测试，业内主流的开源方案采用 Selenium，商业方案采用 Micro Focus 的 UFT（前身是 HP 的 QTP）；</span><br><span class="line">对于移动端原生应用，通常采用主流的 Appium，它对 iOS 环境集成了 XCUITest，对 Android 环境集成了 UIAutomator 和 Espresso。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/软件测试4——是否需要自动化测试？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/15/软件测试4——是否需要自动化测试？/" itemprop="url">软件测试4——自动化测试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-15T20:47:11+08:00">
+                2018-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><blockquote>
+<p>最常见的 GUI 自动化测试来讲，就是由自动化测试工具模拟之前需要人工在软件界面上的各种操作，并且自动验证其结果是否符合预期。</p>
+</blockquote>
+<h3 id="自动化测试优势："><a href="#自动化测试优势：" class="headerlink" title="自动化测试优势："></a>自动化测试优势：</h3><ul>
+<li>自动化测试可以替代大量的手工机械重复性操作，测试工程师可以把更多的时间花在更全面的用例设计和新功能的测试上；</li>
+<li>自动化测试可以大幅提升回归测试的效率，非常适合敏捷开发过程；</li>
+<li>自动化测试可以更好地利用无人值守时间，去更频繁地执行测试，适合现在非工作时间执行测试，工作时间分析失败用例的工作模式；</li>
+<li>自动化测试可以高效实现某些手工测试无法完成或者代价巨大的测试类型，比如关键业务 7×24 小时持续运行的系统稳定性测试和高并发场景的压力测试等；</li>
+<li>自动化测试还可以保证每次测试执行的操作以及验证的一致性和可重复性，避免人为的遗漏或疏忽。</li>
+</ul>
+<h3 id="自动化测试劣势："><a href="#自动化测试劣势：" class="headerlink" title="自动化测试劣势："></a>自动化测试劣势：</h3><ul>
+<li>自动化测试并不能取代手工测试，它只能替代手工测试中执行频率高、机械化的重复步骤。</li>
+<li>自动测试远比手动测试脆弱，无法应对被测系统的变化。其根本原因在于自动化测试本身不具有任何“智能”，只是按部就班地执行事先定义好的测试步骤并验证测试结果。对于执行过程中出现的明显错误和意外事件，自动化测试没有任何处理能力。</li>
+<li>自动化测试用例的开发工作量远大于单次的手工测试，所以只有当开发完成的测试用例的有效执行次数大于等于 5 次时，才能收回自动化测试的成本。</li>
+<li>手工测试发现的缺陷数量通常比自动化测试要更多，并且自动化测试仅仅能发现回归测试范围的缺陷。</li>
+<li>测试的效率很大程度上依赖自动化测试用例的设计以及实现质量，不稳定的自动化测试用例实现比没有自动化更糟糕。</li>
+</ul>
+<p>业务测试专家和自动化测试专家通常是两批人，前者懂业务不懂自动化技术，后者懂自动化技术但不懂业务，只有二者紧密合作，才能高效开展自动化测试。</p>
+<h3 id="什么样的项目适合自动化测试？"><a href="#什么样的项目适合自动化测试？" class="headerlink" title="什么样的项目适合自动化测试？"></a>什么样的项目适合自动化测试？</h3><ol>
+<li><p>需求稳定，不会频繁变更。<br>过高的需求变更频率会导致自动化测试用例的维护成本直线上升。</p>
+</li>
+<li><p>研发和维护周期长，需要频繁执行回归测试。</p>
+</li>
+</ol>
+<ul>
+<li>软件产品比软件项目更适合做自动化测试。</li>
+<li>而对于一些中长期项目，对比较稳定的软件功能进行自动化测试，对变动较大或者需求暂时不明确的功能进行手工测试，最终目标是用 20%的精力去覆盖 80%的回归测试。</li>
+</ul>
+<ol>
+<li>需要在多种平台上重复运行相同测试的场景。</li>
+</ol>
+<ul>
+<li>对于 GUI 测试，同样的测试用例需要在多种不同的浏览器上执行；</li>
+<li>对于移动端应用测试，同样的测试用例需要在多个不同的 Android 或者 iOS 版本上执行，或者是同样的测试需要在大量不同的移动终端上执行；</li>
+<li>对于一些企业级软件，如果对于不同的客户有不同的定制版本，各个定制版本的主体功能绝大多数是一致的，可能只有个别功能有轻微差别，测试也是需要覆盖每个定制版本的所有测试；</li>
+</ul>
+<ol>
+<li>某些测试项目通过手工测试无法实现，或者手工成本太高。</li>
+</ol>
+<ul>
+<li>某一个项目要求进行一万并发用户的基准性能测试（Benchmark test）</li>
+<li>对于 7×24 小时的稳定性测试</li>
+<li>用机器来模拟大量用户反复操作被测软件的场景。此类测试是不可能通过 GUI 操作来模拟大量用户行为的，必须基于协议的自动化测试技术。</li>
+</ul>
+<ol>
+<li>被测软件的开发较为规范，能够保证系统的可测试性。</li>
+</ol>
+<blockquote>
+<p>如果要实现稳定的自动化测试，被测软件的开发过程就必须规范。比如，GUI 上的控件命名如果没有任何规则可寻，就会造成 GUI 自动化的控件识别与定位不稳定，从而影响自动化测试的效率。<br>另外，某些用例的自动化必须要求开发人员在产品中预留可测试性接口，否则后续的自动化会很难开展。<br>比如，有些用户登录操作，需要图片验证码，如果开发人员没有提供绕开图片验证码的路径，那么自动化测试就必须借助光学字符识别（OCR）技术来对图片验证码进行模式识别，而它的设计初衷是为了防止机器人操作，可想而知 OCR 的识别率会很低，就会直接影响用例的稳定性。</p>
+</blockquote>
+<hr>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/" itemprop="url">软件测试3——做好单元测试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T19:49:36+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><h3 id="什么是单元测试？"><a href="#什么是单元测试？" class="headerlink" title="什么是单元测试？"></a>什么是单元测试？</h3><ul>
+<li>单元测试是指，对软件中的最小可测试单元在与程序其他部分相隔离的情况下进行检查和验证的工作，这里的最小可测试单元通常是指函数或者类。</li>
+<li>单元测试的实施过程还可以帮助开发工程师改善代码的设计与实现，并能在单元测试代码里提供函数的使用示例，因为单元测试的具体表现形式就是对函数以各种不同输入参数组合进行调用，这些调用方法构成了函数的使用说明。</li>
+</ul>
+<h3 id="如何做好单元测试？"><a href="#如何做好单元测试？" class="headerlink" title="如何做好单元测试？"></a>如何做好单元测试？</h3><pre><code>先弄清楚单元测试的对象是代码，以及代码的基本特征和产生错误的原因，掌握什么是驱动代码、桩代码和 Mock 代码等。
+</code></pre><h4 id="代码的基本特征与产生错误的原因"><a href="#代码的基本特征与产生错误的原因" class="headerlink" title="代码的基本特征与产生错误的原因"></a>代码的基本特征与产生错误的原因</h4><p>因为无论是开发语言还是脚本语言，都会有条件分支、循环处理和函数调用等最基本的逻辑控制。<br>仅看代码结构的话，你会发现所有的代码都是在对数据进行分类处理，每一次条件判定都是一次分类处理，嵌套的条件判定或者循环执行，也是在做分类处理。<br>要做到代码功能逻辑正确，必须做到分类正确并且完备无遗漏，同时每个分类的处理逻辑必须正确。</p>
+<ul>
+<li>在具体的工程实践中，开发工程师为了设计并实现逻辑功能正确的代码，通常会有如下的考虑过程：</li>
+<li>如果要实现正确的功能逻辑，会有哪几种正常的输入；是否有需要特殊处理的多种边界输入；各种潜在非法输入的可能性以及如何处理。</li>
+<li>这些开发工程师眼中的代码“功能点”，就是单元测试的“等价类”。</li>
+</ul>
+<h4 id="单元测试用例详解"><a href="#单元测试用例详解" class="headerlink" title="单元测试用例详解"></a>单元测试用例详解</h4><blockquote>
+<p>通常来讲，单元测试的用例是一个“输入数据”和“预计输出”的集合。</p>
+</blockquote>
+<ol>
+<li>被测试函数的输入参数；</li>
+</ol>
+<ul>
+<li>被测试函数内部需要读取的全局静态变量；</li>
+<li>被测试函数内部需要读取的成员变量；</li>
+<li>函数内部调用子函数获得的数据；</li>
+<li>函数内部调用子函数改写的数据；</li>
+<li>嵌入式系统中，在中断调用时改写的数据；</li>
+<li>…</li>
+</ul>
+<ol>
+<li>“预计输出” 绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。</li>
+</ol>
+<ul>
+<li>被测试函数的返回值；</li>
+<li>被测试函数的输出参数；</li>
+<li>被测试函数所改写的成员变量；</li>
+<li>被测试函数所改写的全局变量；</li>
+<li>被测试函数中进行的文件更新；</li>
+<li>被测试函数中进行的数据库更新；</li>
+<li>被测试函数中进行的消息队列更新；</li>
+<li>…</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">另外，对于预计输出值，你必须严格根据代码的功能逻辑来设定，而不能通过阅读代码来推算预期输出。</span><br><span class="line">最后，如果某些等价类或者边界值，开发工程师在开发的时候都没有考虑到，测试的时候就更不会去设计对应的测试用例了，这样也就会造成测试盲区。</span><br></pre></td></tr></table></figure>
+<h4 id="驱动代码，桩代码和-Mock-代码"><a href="#驱动代码，桩代码和-Mock-代码" class="headerlink" title="驱动代码，桩代码和 Mock 代码"></a>驱动代码，桩代码和 Mock 代码</h4><pre><code>驱动代码是用来调用被测函数的，而桩代码和 Mock 代码是用来代替被测函数调用的真实代码的。
+</code></pre><ol>
+<li>驱动代码，桩代码和 Mock 代码三者的逻辑关系:<br><img src="/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/unit1.jpeg" alt="三者关系"></li>
+</ol>
+<ul>
+<li>驱动代码（Driver）指调用被测函数的代码，模拟请求去调用被测试的函数。在单元测试过程中，驱动模块通常包括调用被测函数前的数据准备、调用被测函数以及验证相关结果三个步骤。驱动代码的结构，通常由单元测试的框架决定。</li>
+<li>桩代码（Stub）是用来代替真实代码的临时代码。 比如，某个函数 A 的内部实现中调用了一个尚未实现的函数 B，为了对函数 A 的逻辑进行测试，那么就需要模拟一个函数 B，这个模拟的函数 B 的实现就是所谓的桩代码。</li>
+</ul>
+<blockquote>
+<p>例子：假定函数 A 是被测函数，其内部调用了函数 B：<br>在单元测试阶段，由于函数 B 尚未实现，但是为了不影响对函数 A 自身实现逻辑的测试，你可以用一个假的函数 B 来代替真实的函数 B，那么这个假的函数 B 就是桩函数。<br>为了实现函数 A 的全路径覆盖，你需要控制不同的测试用例中函数 B 的返回值。</p>
+</blockquote>
+<ol>
+<li>桩函数内部实现</li>
+</ol>
+<p>桩代码的应用首先起到了隔离和补齐的作用，使被测代码能够独立编译、链接，并独立运行。同时，桩代码还具有控制被测函数执行路径的作用。</p>
+<p>编写桩代码通常需要遵守以下三个原则：</p>
+<ul>
+<li>桩函数要具有与原函数完全相同的原形，仅仅是内部实现不同，这样测试代码才能正确链接到桩函数；</li>
+<li>用于实现隔离和补齐的桩函数比较简单，只需保持原函数的声明，加一个空的实现，目的是通过编译链接；</li>
+<li>实现控制功能的桩函数是应用最广泛的，要根据测试用例的需要，输出合适的数据作为被测函数的内部输入。</li>
+</ul>
+<ol>
+<li>Mock 代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。</li>
+</ol>
+<blockquote>
+<p>在我看来，Mock 代码和桩代码的本质区别是：测试期待结果的验证（Assert and Expectiation）。<br>对于 Mock 代码来说，关注点是 Mock 方法有没有被调用，以什么样的参数被调用，被调用的次数，以及多个 Mock 函数的先后调用顺序。所以，在使用 Mock 代码的测试中，对于结果的验证，通常出现在 Mock 函数中。<br>对于桩代码来说，关注点是利用 Stub 来控制被测函数的执行路径，不会去关注 Stub 是否被调用以及怎么样被调用。所以，你在使用 Stub 的测试中，对于结果的验证，通常出现在驱动代码中。</p>
+</blockquote>
+<h3 id="实际项目中如何开展单元测试？"><a href="#实际项目中如何开展单元测试？" class="headerlink" title="实际项目中如何开展单元测试？"></a>实际项目中如何开展单元测试？</h3><p>并不是所有的代码都要进行单元测试，通常只有底层模块或者核心模块的测试中才会采用单元测试。</p>
+<ul>
+<li>你需要确定单元测试框架的选型，这和开发语言直接相关。比如，Java 最常用的单元测试框架是 Junit 和 TestNG；C/C++ 最常用的单元测试框架是 CppTest 和 Parasoft C/C++test；框架选型完成后，你还需要对桩代码框架和 Mock 代码框架选型。</li>
+<li>为了能够衡量单元测试的代码覆盖率，通常你还需要引入计算代码覆盖率的工具。不同的语言会有不同的代码覆盖率统计工具，比如 Java 的 JaCoCo，JavaScript 的 Istanbul。</li>
+<li>最后你需要把单元测试执行、代码覆盖率统计和持续集成流水线做集成，以确保每次代码递交，都会自动触发单元测试，并在单元测试执行过程中自动统计代码覆盖率，最后以“单元测试通过率”和“代码覆盖率”为标准来决定本次代码递交是否能够被接受。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">真正在项目中全面推行单元测试时，还有一些困难需要克服：</span><br><span class="line">紧密耦合的代码难以隔离；</span><br><span class="line">隔离后编译链接运行困难；</span><br><span class="line">代码本身的可测试性较差，通常代码的可测试性和代码规模成正比；</span><br><span class="line">无法通过桩代码直接模拟系统底层函数的调用；</span><br><span class="line">代码覆盖率越往后越难提高。</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>代码要做到功能逻辑正确，必须做到分类正确并且完备无遗漏，同时每个分类的处理逻辑必须正确；</li>
+<li>单元测试是对软件中的最小可测试单元在与软件其他部分相隔离的情况下进行的代码级测试；</li>
+<li>桩代码起到了隔离和补齐的作用，使被测代码能够独立编译、链接，并运行。</li>
+</ol>
+<hr>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/08/软件测试2——如何设计一个好的测试用例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/08/软件测试2——如何设计一个好的测试用例/" itemprop="url">软件测试2——设计一个好的测试用例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-08T20:18:32+08:00">
+                2018-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="好的测试用例"><a href="#好的测试用例" class="headerlink" title="好的测试用例"></a>好的测试用例</h2><p>“好的”测试用例一定是一个完备的集合，它能够覆盖所有等价类以及各种边界值，而跟能否发现缺陷无关。</p>
+<h3 id="好的测试用例特征"><a href="#好的测试用例特征" class="headerlink" title="好的测试用例特征"></a>好的测试用例特征</h3><ol>
+<li>整体完备性： “好的”测试用例一定是一个完备的整体，是有效测试用例组成的集合，能够完全覆盖测试需求。</li>
+<li>等价类划分的准确性： 指的是对于每个等价类都能保证只要其中一个输入测试通过，其他输入也一定测试通过。</li>
+<li>等价类集合的完备性： 需要保证所有可能的边界值和边界条件都已经正确识别。</li>
+</ol>
+<h3 id="如何设计好的测试用例"><a href="#如何设计好的测试用例" class="headerlink" title="如何设计好的测试用例"></a>如何设计好的测试用例</h3><ol>
+<li>等价类划分方法</li>
+</ol>
+<blockquote>
+<p>例子：学生信息系统中有一个“考试成绩”的输入项，成绩的取值范围是 0~100 之间的整数，考试成绩及格的分数线是 60。</p>
+<ul>
+<li>有效等价类 1：0~59 之间的任意整数；</li>
+<li>有效等价类 2：59~100 之间的任意整数；</li>
+<li>无效等价类 1：小于 0 的负数；</li>
+<li>无效等价类 2：大于 100 的整数；</li>
+<li>无效等价类 3：0~100 之间的任何浮点数；</li>
+<li>无效等价类 4：其他任意非数字字符。</li>
+</ul>
+</blockquote>
+<ol>
+<li>边界值分析方法</li>
+</ol>
+<ul>
+<li>通常选取正好等于、刚刚大于或刚刚小于边界的值作为测试数据。</li>
+<li>我们继续看学生信息系统中“考试成绩”的例子，选取的边界值数据应该包括：-1，0，1，59，60，61，99，100，101。</li>
+</ul>
+<ol>
+<li>错误推测方法</li>
+</ol>
+<blockquote>
+<p>比如，Web 界面的 GUI 功能测试，需要考虑浏览器在有缓存和没有缓存下的表现；Web Service 的 API 测试，<br>需要考虑被测 API 所依赖的第三方 API 出错下的处理逻辑；<br>对于代码级的单元测试，需要考虑被测函数的输入参数为空情况下的内部处理逻辑等等。</p>
+</blockquote>
+<h3 id="“好的”测试用例？"><a href="#“好的”测试用例？" class="headerlink" title="“好的”测试用例？"></a>“好的”测试用例？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">面向终端用户的 GUI 测试为例</span><br><span class="line">面向终端用户的 GUI 测试，最核心的测试点就是验证软件对需求的满足程度，这就要求测试工程师对被测软件的需求有深入的理解。</span><br><span class="line">在具体的用例设计时，首先需要搞清楚每一个业务需求所对应的多个软件功能需求e点，然后分析出每个软件功能需求点对应的多个测试需求点，最后再针对每个测试需求点设计测试用例。</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/08/软件测试2——如何设计一个好的测试用例/2.jpeg" alt=""></p>
+<p>图中的业务需求——软件功能需求——测试需求——测试用例的映射关系.</p>
+<ol>
+<li>从软件功能需求出发，全面地、无遗漏地识别出测试需求是至关重要的，这将直接关系到用例的测试覆盖率。<blockquote>
+<p>比如，如果你没有识别出用户登录功能的安全性测试需求，那么后续设计的测试用例就完全不会涉及安全性，最终造成重要测试漏洞。</p>
+</blockquote>
+</li>
+<li>对于识别出的每个测试需求点，需要综合运用等价类划分、边界值分析和错误推测方法来全面地设计测试用例。</li>
+</ol>
+<blockquote>
+<p>作为测试工程师，切忌不能把整个被测系统看作一个大黑盒，你必须对内部的架构有清楚的认识，比如数据库连接方式、数据库的读写分离、消息中间件 Kafka 的配置、缓存系统的层级分布、第三方系统的集成等等。<br>如果想设计一个“好的”测试用例，你必须要深入理解被测软件的架构设计，深入软件内部的处理逻辑，需求覆盖率和代码覆盖率这两个指标可以帮你衡量测试执行的完备性。</p>
+</blockquote>
+<hr>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/07/软件测试——用户登录测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -338,6 +1058,8 @@
 <li>其次，优秀的测试工程师必须具有宽广的知识面，才能设计出有针对性、更易于发现问题的测试用例。</li>
 <li>最后，软件测试的用例设计是不可穷尽的，工程实践中难免受制于时间成本和经济成本，所以优秀的测试工程师需要兼顾缺陷风险和研发成本之间的平衡。</li>
 </ul>
+<hr>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
 
           
         
@@ -1034,678 +1756,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/github和travis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/15/github和travis/" itemprop="url">github和travis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-15T11:09:36+08:00">
-                2018-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="github修改别人的项目并提交到项目上"><a href="#github修改别人的项目并提交到项目上" class="headerlink" title="github修改别人的项目并提交到项目上"></a>github修改别人的项目并提交到项目上</h2><h3 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h3><ol>
-<li>先fork下别人的代码，于是你的github上就出现了同名的项目，这个项目就属于你自己了。</li>
-<li>你把这个自己的项目git clone到本地，修修改改，然后push到你自己的项目里。</li>
-<li>在github上你的项目页面有个按钮，叫Pull request，就会把你的修改发到对方的项目里，由原项目主人决定是否接受你的修改。</li>
-</ol>
-<h3 id="自己和原作者同时修改了项目代码"><a href="#自己和原作者同时修改了项目代码" class="headerlink" title="自己和原作者同时修改了项目代码"></a>自己和原作者同时修改了项目代码</h3><ol>
-<li>在本地操作git remote add [sort name] [your url]，意思就是添加第二个远程仓库地址，这个仓库的“昵称”就是你刚指定的[sort name]，</li>
-<li>之后push文件，就通过指定这个［sort name］来push到这个你自己的仓库里</li>
-<li>等你觉得想要把你改的发给原项目同步，就在你的项目上点Pull request按钮.</li>
-<li>如果是，原项目发生了改动，你要想同步到本地，就直接从git fetch origin 从原项目的地址同步代码，然后再merge就好了</li>
-<li>当然，你可以通过新建分支的方式往自己的项目上push，这样同步的时候直接fetch就行了</li>
-</ol>
-<h2 id="travis"><a href="#travis" class="headerlink" title="travis"></a>travis</h2><h3 id="travis简介"><a href="#travis简介" class="headerlink" title="travis简介"></a>travis简介</h3><p>Travis是一个为GitHub服务的CI，支持多数主流语言。</p>
-<p>CI即持续集成系统。对个人而言，就是让你的代码在提交到远程(这里是GitHub)后，立即自动编译，并且在失败后可以自动给你发邮件的东西。当然，除了编译，还能做自动化测试、自动部署等。</p>
-<p>Travis有两个网址：</p>
-<pre><code>https://travis-ci.org/
-https://travis-ci.com/
-</code></pre><p>org的那个是非盈利的，为GitHub上public的repository提供免费服务；<br>com的那个是盈利的，可以对private的提供付费服务。com前100次build是免费的，此后按月收费。</p>
-<p>二者的账户是相互独立的，但都可以用GitHub账户注册、登录。</p>
-<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><ol>
-<li>在travis-ci.org上以GitHub账户注册、登录。</li>
-<li>在主页点加号【Add new repository】，添加需要CI的那个库。</li>
-<li>在那个库的根目录下，添加一个.travis.yml文件。</li>
-</ol>
-<p>流程很简明，但绝大多数复杂度都集中在这个.travis.yml文件。这是一个YAML文件，主要用来做CI的配置。Travis会按照这个文件配置的方式来运行。</p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>可以把Travis看做一个远程服务器。它会监控你添加的GitHub库。如果有新的提交或Pull Request，就会触发一次在线编译。<br>这台服务器每次都从近乎裸机状态，把你的库clone过来，然后执行其中的.travis.yml。</p>
-<p>除了首行的language指定语言类型以外，其它可选的有10个步骤：</p>
-<ol>
-<li>Install apt addons</li>
-<li>before_install</li>
-<li>install</li>
-<li>before_script</li>
-<li>script</li>
-<li>after_success or after_failure</li>
-<li>OPTIONAL before_deploy</li>
-<li>OPTIONAL deploy</li>
-<li>OPTIONAL after_deploy</li>
-<li>after_script</li>
-</ol>
-<p>最重要的步骤就是第5步的script，这步通常是测试、编译、打包。<br>前面的步骤都是为了成功执行第5步而执行的裸机环境配置，后面的步骤都是在执行第5步后而做出的应对。<br>所有这些步骤，在language设置后基本都有默认值。所以，即使只有一行language: LANG，很多项目也可以build。</p>
-<p>另外，如果多次提交同时push，默认只在最新提交执行一次build；在git commit中如果包含[skip ci]或[ci skip]，该提交就不会触发一次build。</p>
-<h3 id="README-md"><a href="#README-md" class="headerlink" title="README.md"></a>README.md</h3><p><img src="/2018/03/15/github和travis/1.jpg" alt="build status"></p>
-<p>在Travis网站上，点击上面那样的Status图标，可以在弹出界面中得到该项目的状态图标链接。<br>选择Markdown版本的连接，放到repository的README.md中，就可以在GitHub页面得到编译状态的展示了。</p>
-<p>这个链接通常是这种形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[![Build Status](https://travis-ci.org/YOUR/PROJECT.svg?branch=master)](https://travis-ci.org/YOUR/PROJECT)</span><br></pre></td></tr></table></figure></p>
-<p>上次编译是成功还是失败，从此一目了然。有了这个“勋章”的开源项目，看上去瞬间高大上了。</p>
-<p>参考资料:<br><a href="http://blog.csdn.net/xiaoyangsavvy/article/details/73775985" target="_blank" rel="noopener">http://blog.csdn.net/xiaoyangsavvy/article/details/73775985</a><br><a href="https://www.jianshu.com/p/c80b37f775a0" target="_blank" rel="noopener">https://www.jianshu.com/p/c80b37f775a0</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/单元测试框架unittest/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/14/单元测试框架unittest/" itemprop="url">单元测试框架unittest</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T10:40:07+08:00">
-                2018-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="unittest核心工作原理"><a href="#unittest核心工作原理" class="headerlink" title="unittest核心工作原理"></a>unittest核心工作原理</h3><p><img src="/2018/03/14/单元测试框架unittest/1.jpg" alt="总览"></p>
-<p>-</p>
-<p>参考资料: <a href="https://huilansame.github.io/huilansame.github.io/category/" target="_blank" rel="noopener">https://huilansame.github.io/huilansame.github.io/category/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/python练级第五天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/12/python练级第五天/" itemprop="url">python练级第五天</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T14:38:03+08:00">
-                2018-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="python练级打卡第五天"><a href="#python练级打卡第五天" class="headerlink" title="python练级打卡第五天"></a>python练级打卡第五天</h2><h4 id="python程序同时兼容Python2-和-python3"><a href="#python程序同时兼容Python2-和-python3" class="headerlink" title="python程序同时兼容Python2 和 python3"></a>python程序同时兼容Python2 和 python3</h4><ul>
-<li>2to3 工具对代码检查（/.pyenv/versions/3.6.2/bin文件下面）<br>2to3.py是python自带的代码转换工具，将python2代码转换为python3代码，但是代码并未对兼容做任何处理。<br>python 2to3.py -w + 要转换的python2代码的路径，会直接覆盖掉原先的python2代码，但同时会给原来的python2代码备份。</li>
-<li>使用python -3执行python程序<br>2to3 可以检查出很多python2＆3的兼容性问题，但也有很多问题是2to3发现不了的。<br>在加上 -3 参数后，程序在运行时会在控制台上将python2和python3不一致，同时2to3无法处理的问题提示出来。<br>比如python3和python2中对除法的处理规则做过改变。使用-3参数执行4/2将提示 DeprecationWarning: classic int division。</li>
-<li>from <strong>future</strong> import<br>from <strong>future</strong> import print_function: 这样在python2中print(1,2)会输出1和2两个数字，而不是(1，2)一个元组<br>from <strong>future</strong> import unicode_literals：这样python2中定义普通字符将自动识别为unicode,不用在字符前加u</li>
-<li><p>import问题</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try:#python2</span><br><span class="line">    from UserDict import UserDict</span><br><span class="line">    #建议按照python3的名字进行import</span><br><span class="line">    from UserDict import DictMixin as MutableMapping</span><br><span class="line">except ImportError:#python3</span><br><span class="line">    from collections import UserDict</span><br><span class="line">    from collections import MutableMapping</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根据不同的python版本执行不同程序</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">if sys.version &gt; &apos;3&apos;:</span><br><span class="line">    from urllib.parse import urlparse, urlunsplit, urljoin, quote</span><br><span class="line">else:</span><br><span class="line">    from urlparse import urlparse, urlunsplit, urljoin</span><br><span class="line">    from urllib import quote</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>python2 和 python3编码问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">python2: 只有str和unicode两种类型.str和Unicode分别存储的是字节数据和Unicode数据.</span><br><span class="line">&gt;&gt;&gt; type(&apos;11&apos;)</span><br><span class="line">&lt;type &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(u&apos;11&apos;)</span><br><span class="line">&lt;type &apos;unicode&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(b&apos;11&apos;)</span><br><span class="line">&lt;type &apos;str&apos;&gt;</span><br><span class="line"></span><br><span class="line">python3: 只有str和bytes两种类型。str类型存unicode数据，bytse类型存bytes数据</span><br><span class="line">&gt;&gt;&gt; type(&apos;11&apos;)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(u&apos;11&apos;)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; type(b&apos;11&apos;)</span><br><span class="line">&lt;class &apos;bytes&apos;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h4><h5 id="python3编码思想"><a href="#python3编码思想" class="headerlink" title="python3编码思想"></a>python3编码思想</h5><p>Python 3清晰地将文本和二进制数据区分开了，不会对bytes字节串进行自动解码。文本总是Unicode，由str类型表示，二进制数据则由bytes类型表示。<br>Python 3不会以任意隐式的方式混用str和bytes，将两者明确地区分开。<br>基于此，Python3中不能拼接字符串和字节包，也不可以在字节包里搜索字符串（反之亦然），也不能向使用字符串参数的函数中传入字节包参数（反之亦然）。</p>
-<h5 id="文件存储读取过程中的编码问题"><a href="#文件存储读取过程中的编码问题" class="headerlink" title="文件存储读取过程中的编码问题"></a>文件存储读取过程中的编码问题</h5><ul>
-<li>对于文本编辑器word等软件，当我们在这些软件上编辑文字的时候，数据是通过unicode数据存在的，<br>为什么要存unicode数据，这是因为无论世界上的任何字符它都有唯一编码对应，兼容性是最好的。</li>
-<li>当我们保存了存到磁盘上的数据是通过某种编码方式编码的bytes字节串。<br>比如utf8-－－一种可变长编码，很好的节省了空间；还可以是gbk等编码方式。</li>
-<li>当我们保存的时候，这些编辑软件已经”默默地”做了编码工作。那当我们再打开这个文件时，软件又默默地给我们做了解码的工作，将数据再解码成unicode,然后就可以呈现明文给用户了。</li>
-<li>unicode是离用户更近的数据，bytes是离计算机更近的数据。</li>
-</ul>
-<h5 id="python2版本，UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误"><a href="#python2版本，UnicodeEncodeError-‘ascii’-codec-can’t-encode异常错误" class="headerlink" title="python2版本，UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误"></a>python2版本，<strong>UnicodeEncodeError: ‘ascii’ codec can’t encode异常错误</strong></h5><p>  是因为Unicode编码与ASCII编码的不兼容，以下三行解决问题。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&apos;utf-8&apos;)</span><br></pre></td></tr></table></figure></p>
-<h5 id="python2-str和unicode转换"><a href="#python2-str和unicode转换" class="headerlink" title="python2:str和unicode转换"></a>python2:str和unicode转换</h5><ul>
-<li><p>str转换为unicode</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = &apos;11&apos;</span><br><span class="line">&gt;&gt;&gt; a.decode()</span><br><span class="line">u&apos;11&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>unicode转换为str</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b = u&apos;11&apos;</span><br><span class="line">&gt;&gt;&gt; b.encode()</span><br><span class="line">&apos;11&apos;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="python3-str和bytes转换"><a href="#python3-str和bytes转换" class="headerlink" title="python3:str和bytes转换"></a>python3:str和bytes转换</h5><ul>
-<li><p>str转换为bytes</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a=&apos;abc&apos;</span><br><span class="line">&gt;&gt;&gt; b = str.encode(a)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">b&apos;abc&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>bytes转换为str</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; b</span><br><span class="line">b&apos;abc&apos;</span><br><span class="line">&gt;&gt;&gt; c = bytes.decode(b)</span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">&apos;abc&apos;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h5><ul>
-<li>base64: 是常见的二进制编码方法，是一种用64个字符来表示任意二进制数据的方法。<br>Base64是一种任意二进制到文本字符串的编码方法，常用于在URL、Cookie、网页中传输少量二进制数据。<br>Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4个子节的bytes数据，补了两个==，代表补了两个字节，一共6个字节。</span><br><span class="line">&gt;&gt;&gt; base64.b64encode(b&apos;abcd&apos;)</span><br><span class="line">b&apos;YWJjZA==&apos;</span><br><span class="line">&gt;&gt;&gt; base64.b64decode(b&apos;YWJjZA==&apos;)</span><br><span class="line">b&apos;abcd&apos;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>由于标准的Base64编码后可能出现字符+和/，在URL中就不能直接作为参数，所以又有一种”url safe”的base64编码，其实就是把字符+和/分别变成-和_：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; base64.b64encode(b&apos;i\xb7\x1d\xfb\xef\xff&apos;)</span><br><span class="line">b&apos;abcd++//&apos;</span><br><span class="line">&gt;&gt;&gt; base64.urlsafe_b64encode(b&apos;i\xb7\x1d\xfb\xef\xff&apos;)</span><br><span class="line">b&apos;abcd--__&apos;</span><br><span class="line">&gt;&gt;&gt; base64.urlsafe_b64decode(&apos;abcd--__&apos;)</span><br><span class="line">b&apos;i\xb7\x1d\xfb\xef\xff&apos;</span><br></pre></td></tr></table></figure></p>
-<h5 id="urllib"><a href="#urllib" class="headerlink" title="urllib"></a>urllib</h5><ul>
-<li>urllib: 就是利用程序去执行各种HTTP请求。如果要模拟浏览器完成特定功能，需要把请求伪装成浏览器。伪装的方法是先监控浏览器发出的请求，再根据浏览器的请求头来伪装，User-Agent头就是用来标识浏览器的。</li>
-<li>urllib的request模块可以非常方便地抓取URL内容，也就是发送一个GET请求到指定的页面，然后返回HTTP的响应.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from urllib import request</span><br><span class="line">&gt;&gt;&gt; f =request.urlopen(&apos;https://api.douban.com/v2/book/2129650&apos;)</span><br><span class="line">&gt;&gt;&gt; f.status</span><br><span class="line">200</span><br><span class="line">&gt;&gt;&gt; f.reason</span><br><span class="line">&apos;OK&apos;</span><br><span class="line">&gt;&gt;&gt; f.getheaders()</span><br><span class="line">[(&apos;Date&apos;, &apos;Mon, 12 Mar 2018 07:44:55 GMT&apos;), (&apos;Content-Type&apos;, &apos;application/json; charset=utf-8&apos;)...]</span><br><span class="line">&gt;&gt;&gt; print(&apos;Data:&apos;, f.read().decode(&apos;utf-8&apos;))</span><br><span class="line">Data: &#123;&quot;rating&quot;:&#123;&quot;max&quot;:10,&quot;numRaters&quot;:16,&quot;average&quot;:&quot;7.4&quot;,&quot;min&quot;:0&#125;,&quot;subtitle&quot;:&quot;&quot;,...&#125;</span><br><span class="line">utf-8解码</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>如果我们要想模拟浏览器发送GET请求，就需要使用Request对象，通过往Request对象添加HTTP头，我们就可以把请求伪装成浏览器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from urllib import request</span><br><span class="line">req = request.Request(&apos;http://www.douban.com/&apos;)</span><br><span class="line">req.add_header(&apos;User-Agent&apos;, &apos;Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25&apos;)</span><br><span class="line">f = request.urlopen(req)</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>post<br>如果要以POST发送一个请求，只需要把参数data以bytes形式传入。</p>
-</li>
-<li><p>Handler: 如果还需要更复杂的控制，比如通过一个Proxy去访问网站，我们需要利用ProxyHandler来处理<br><strong>其实还是不太理解。以后遇到再说吧</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">proxy_handler = urllib.request.ProxyHandler(&#123;&apos;http&apos;: &apos;http://www.example.com:3128/&apos;&#125;)</span><br><span class="line">proxy_auth_handler = urllib.request.ProxyBasicAuthHandler()</span><br><span class="line">proxy_auth_handler.add_password(&apos;realm&apos;, &apos;host&apos;, &apos;username&apos;, &apos;password&apos;)</span><br><span class="line">opener = urllib.request.build_opener(proxy_handler, proxy_auth_handler)</span><br><span class="line">with opener.open(&apos;http://www.example.com/login.html&apos;) as f:</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><ul>
-<li>assert x &gt; 0, “错误:x小于等于0”<br>如果不满足断言里条件，输出后面的报错。<br>assert + 条件表达式 + 不满足条件时输出报错(可以自己写)。</li>
-</ul>
-<h4 id="小知识"><a href="#小知识" class="headerlink" title="小知识"></a>小知识</h4><ul>
-<li><p>parser.parse_args():定义了所有参数之后，你就可以给 parse_args()传递一组参数字符串来解析命令行。<br>parse_args() 的返回值是一个命名空间，包含传递给命令的参数。<br>该对象将参数保存其属性，因此如果你的参数 dest 是 “myoption”，那么你就可以args.myoption 来访问该值。</p>
-</li>
-<li><p>gevent.pool.pool()<br>线程问题</p>
-</li>
-<li><p>enumerate(sequence, [start=0])</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sequence -- 一个序列、迭代器或其他支持迭代对象, start -- 下标起始位置</span><br><span class="line">&gt;&gt;&gt;seasons = [&apos;Spring&apos;, &apos;Summer&apos;, &apos;Fall&apos;, &apos;Winter&apos;]</span><br><span class="line">&gt;&gt;&gt;list(enumerate(seasons))</span><br><span class="line">[(0, &apos;Spring&apos;), (1, &apos;Summer&apos;), (2, &apos;Fall&apos;), (3, &apos;Winter&apos;)]</span><br><span class="line">&gt;&gt;&gt;list(enumerate(seasons, start=1))       # 小标从 1 开始</span><br><span class="line">[(1, &apos;Spring&apos;), (2, &apos;Summer&apos;), (3, &apos;Fall&apos;), (4, &apos;Winter&apos;)]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>zip([iterable, …]),iterabl – 一个或多个迭代器，返回元组列表。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = [1,2,3]</span><br><span class="line">&gt;&gt;&gt; b = [4,5,6]</span><br><span class="line">&gt;&gt;&gt; c = [4,5,6,7,8]</span><br><span class="line">&gt;&gt;&gt; zipped = zip(a,b)     # 打包为元组的列表</span><br><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br><span class="line">&gt;&gt;&gt; zip(a,c)              # 元素个数与最短的列表一致</span><br><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br><span class="line">&gt;&gt;&gt; zip(*zipped)          # 与 zip 相反，可理解为解压，返回二维矩阵式</span><br><span class="line">[(1, 2, 3), (4, 5, 6)]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>isinstance:来判断一个对象是否是一个已知的类型，类似 type()<br>type() 不会认为子类是一种父类类型，不考虑继承关系。<br>isinstance() 会认为子类是一种父类类型，考虑继承关系。如果要判断两个类型是否相同推荐使用 isinstance()。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = 2</span><br><span class="line">&gt;&gt;&gt; isinstance (a,int)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance (a,str)</span><br><span class="line">False</span><br><span class="line">&gt;&gt;&gt; isinstance (a,(str,int,list))    # 是元组中的一个返回 True</span><br><span class="line">True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type() 与 isinstance()区别：</span><br><span class="line">class A:</span><br><span class="line">    pass</span><br><span class="line">class B(A):</span><br><span class="line">    pass</span><br><span class="line">isinstance(A(), A)    # returns True</span><br><span class="line">type(A()) == A        # returns True</span><br><span class="line">isinstance(B(), A)    # returns True</span><br><span class="line">type(B()) == A        # returns False</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ljust:返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str.ljust(width[, fillchar]) width为指定字符串长度，fillchar为填充字符，默认为空格。</span><br><span class="line">str = &quot;this is string example....wow!!!&quot;;</span><br><span class="line">print str.ljust(50, &apos;0&apos;);</span><br><span class="line">this is string example....wow!!!000000000000000000</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>os.path.dirname(path): 返回path的目录。其实就是os.path.split(path)的第一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import os</span><br><span class="line">&gt;&gt;&gt; os.path.dirname(&apos;C://ss/ss&apos;)</span><br><span class="line">&apos;C://ss&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>os.chdir() 方法用于改变当前工作目录到指定的路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import os, sys</span><br><span class="line">path = &quot;/tmp&quot;</span><br><span class="line"></span><br><span class="line"># 查看当前工作目录</span><br><span class="line">retval = os.getcwd()</span><br><span class="line">print &quot;当前工作目录为 %s&quot; % retval</span><br><span class="line"></span><br><span class="line"># 修改当前工作目录</span><br><span class="line">os.chdir( path )</span><br><span class="line"></span><br><span class="line"># 查看修改后的工作目录</span><br><span class="line">retval = os.getcwd()</span><br><span class="line"></span><br><span class="line">print &quot;目录修改成功 %s&quot; % retval</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>sys.exit()和os.exit()<br>os._exit()会直接将python程序终止，之后的所有代码都不会继续执行。<br>sys.exit()会引发一个异常：SystemExit，如果这个异常没有被捕获，那么python解释器将会退出。<br>如果有捕获此异常的代码，那么这些代码还是会执行。捕获这个异常可以做一些额外的清理工作。0为正常退出，其他数值（1-127）为不正常，可抛异常事件供捕获.</p>
-</li>
-</ul>
-<p>一般情况下使用sys.exit()即可，一般在fork出来的子进程中使用os._exit()<br>一般来说os._exit() 用于在线程中退出<br>sys.exit() 用于在主线程中退出。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit(0)：无错误退出</span><br><span class="line">exit(1)：有错误退出</span><br><span class="line">退出代码是告诉解释器的（或操作系统）</span><br></pre></td></tr></table></figure>
-<ul>
-<li>os.path.exists() 用于判断变量、文件等是否存在</li>
-<li>os.path.normpath(path)规范化路径</li>
-<li><p>os.path.join(path1[, path2[, …]]): 将多个路径组合后返回，第一个绝对路径之前的参数将被忽略。</p>
-</li>
-<li><p>urlparse: 该函数将一个url字符串分解为6个元素，以元组的形式返回</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3.6.2</span><br><span class="line">&gt;&gt;&gt; from urllib.parse import urlparse</span><br><span class="line">&gt;&gt;&gt; o = urlparse(&apos;http://www.cwi.nl:80/%7Eguido/Python.html&apos;)</span><br><span class="line">&gt;&gt;&gt; o</span><br><span class="line">ParseResult(scheme=&apos;http&apos;, netloc=&apos;www.cwi.nl:80&apos;, path=&apos;/%7Eguido/Python.html&apos;, params=&apos;&apos;, query=&apos;&apos;, fragment=&apos;&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>quote: 编码：urllib.quote(string[, safe])，除了三个符号“_.-”外，将所有符号编码，(按照当前编码格式下的方式编码),后面的参数safe是不编码的字符，<br>使用的时候如果不设置的话，会将斜杠，冒号，等号，问号都给编码了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from urllib.parse import quote</span><br><span class="line">&gt;&gt;&gt; quote(&quot;http://neeao.com/index.php?id=1&quot;)</span><br><span class="line">&apos;http%3A//neeao.com/index.php%3Fid%3D1&apos;</span><br><span class="line">&gt;&gt;&gt; quote(&quot;http://neeao.com/index.php?id=1&quot;,&quot;:?=/&quot;) #将&apos;?=/&apos;不参与编码</span><br><span class="line">&apos;http://neeao.com/index.php?id=1&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>json.loads、load、dumps、dump</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">json.dumps : dict转成str     json.dump是将python数据保存成json</span><br><span class="line">json.loads:str转成dict          json.load是读取json数据</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>repr() 函数将对象转化为供解释器读取的形式。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/python练级第四天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/06/python练级第四天/" itemprop="url">python练级第四天</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-06T10:30:39+08:00">
-                2018-03-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="python练级打卡第四天"><a href="#python练级打卡第四天" class="headerlink" title="python练级打卡第四天"></a>python练级打卡第四天</h2><h4 id="python的假多线程"><a href="#python的假多线程" class="headerlink" title="python的假多线程"></a>python的假多线程</h4><ol>
-<li>对所有面向I/O的（会调用内建的操作系统C代码的）程序来说，GIL会在这个I/O调用之前被释放，以允许其他线程在这个线程等待I/O的时候运行。<br>如果某线程并未使用很多I/O操作，它会在自己的时间片内一直占用处理器和GIL。所以说，I/O密集型的Python程序比计算密集型的Python程序更能充分利用多线程的好处。</li>
-<li>python线程不能利用多核，进程可以利用多核。java线程和进程都可以利用多核。</li>
-<li>Python多线程相当于单核多线程，多线程有两个好处：CPU并行，I/O并行，单核多线程相当于自断一臂。<br>所以，在Python中，可以使用多线程，但不要指望能有效利用多核。如果一定要通过多线程利用多核，那只能通过C扩展来实现，不过这样就失去了Python简单易用的特点。<br>不过，也不用过于担心，Python虽然不能利用多线程实现多核任务，但可以通过多进程实现多核任务。多个Python进程有各自独立的GIL锁，互不影响。</li>
-</ol>
-<h4 id="map和reduce"><a href="#map和reduce" class="headerlink" title="map和reduce"></a>map和reduce</h4><ol>
-<li><p>map()函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">把这个list所有数字转为字符串</span><br><span class="line">&gt;&gt;&gt; list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))</span><br><span class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>reduce把一个函数作用在一个序列[x1, x2, x3, …]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)</span><br><span class="line"></span><br><span class="line">from functools import reduce</span><br><span class="line"></span><br><span class="line">DIGITS = &#123;&apos;0&apos;: 0, &apos;1&apos;: 1, &apos;2&apos;: 2, &apos;3&apos;: 3, &apos;4&apos;: 4, &apos;5&apos;: 5, &apos;6&apos;: 6, &apos;7&apos;: 7, &apos;8&apos;: 8, &apos;9&apos;: 9&#125;</span><br><span class="line"></span><br><span class="line">def char2num(s):</span><br><span class="line">    return DIGITS[s]</span><br><span class="line"></span><br><span class="line">def str2int(s):</span><br><span class="line">    return reduce(lambda x, y: x * 10 + y, map(char2num, s))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; str2int(&apos;13579&apos;)</span><br><span class="line">13579</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>lambda基础:lambda语句中，冒号前是参数，可以有多个，用逗号隔开，冒号右边是返回值。lambda语句构建的其实是一个函数对象.<br>   lambda就是匿名函数，只有表达式。</p>
-</blockquote>
-</li>
-</ol>
-<ol>
-<li>练习题 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">利用map和reduce编写一个str2float函数，把字符串&apos;123.456&apos;转换成浮点数123.456：</span><br><span class="line"></span><br><span class="line">int_part, dec_part = s.split(&apos;.&apos;)</span><br><span class="line">    return reduce(lambda x, y: 10*x+y, map(int, int_part)) + \</span><br><span class="line">           reduce(lambda x, y: 10*x+y, map(int, dec_part))*10**(-len(dec_part))</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><ol>
-<li><p>和map()类似，filter()也接收一个函数和一个序列。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃该元素。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">筛选素数的函数。注意filter里面的用法。</span><br><span class="line">&gt;&gt;&gt; def _odd_iter():</span><br><span class="line">...     n = 1</span><br><span class="line">...     while True:</span><br><span class="line">...         n = n + 2</span><br><span class="line">...         yield n</span><br><span class="line">...</span><br><span class="line">&gt;&gt;&gt; def _not_divisible(n):</span><br><span class="line">...     return lambda x: x % n &gt; 0</span><br><span class="line">...</span><br><span class="line">&gt;&gt;&gt; def primes():</span><br><span class="line">...     yield 2</span><br><span class="line">...     it = _odd_iter() # 初始序列</span><br><span class="line">...     while True:</span><br><span class="line">...         n = next(it) # 返回序列的第一个数</span><br><span class="line">...         yield n</span><br><span class="line">...         it = filter(_not_divisible(n), it)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>sorted()函数，高阶函数，默认排序从小到大，用sorted()排序的关键在于实现一个映射函数。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21])</span><br><span class="line">[-21, -12, 5, 9, 36]</span><br><span class="line">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)</span><br><span class="line">[5, 9, -12, -21, 36]</span><br><span class="line">要进行反向排序，不必改动key函数，可以传入第三个参数reverse=True：</span><br><span class="line">&gt;&gt;&gt; sorted([&apos;bob&apos;, &apos;about&apos;, &apos;Zoo&apos;, &apos;Credit&apos;], key=str.lower, reverse=True)</span><br><span class="line">[&apos;Zoo&apos;, &apos;Credit&apos;, &apos;bob&apos;, &apos;about&apos;]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>map、reduce和filter都可以用于对大数据的处理。</p>
-</li>
-</ol>
-<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><ol>
-<li><p>下面样例原因: 在于返回的函数引用了变量i，但它并非立刻执行。等到3个函数都返回时，它们所引用的变量i已经变成了3，因此最终结果为9。<br>返回闭包时牢记: 返回函数不用引用任何循环变量，或者后续会发生变化的变量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def count():</span><br><span class="line">    fs = []</span><br><span class="line">    for i in range(1, 4):</span><br><span class="line">        def f():</span><br><span class="line">             return i*i</span><br><span class="line">        fs.append(f)</span><br><span class="line">    return fs</span><br><span class="line"></span><br><span class="line">f1, f2, f3 = count()</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; f1()</span><br><span class="line">9</span><br><span class="line">&gt;&gt;&gt; f2()</span><br><span class="line">9</span><br><span class="line">&gt;&gt;&gt; f3()</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用闭包返回一个计数器函数，每次调用它返回递增整数</p>
-</li>
-</ol>
-<ul>
-<li>内部函数一般无法修改外部函数的参数</li>
-<li>想要修改需要声明 nonlocal</li>
-<li>内部函数可以修改外部list中的元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def createCounter():</span><br><span class="line">    s=0</span><br><span class="line">    def counter():</span><br><span class="line">        s[0]+=1</span><br><span class="line">        return s[0]</span><br><span class="line">    return counter</span><br><span class="line"></span><br><span class="line">counterA = createCounter()</span><br><span class="line">&gt;&gt;&gt; print(counterA(), counterA(), counterA(), counterA())</span><br><span class="line">&gt;&gt;&gt; 1 2 3 4</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1760,7 +1810,7 @@ https://travis-ci.com/
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1815,7 +1865,7 @@ https://travis-ci.com/
 <div class="copyright">
 
 &copy; 
-<span itemprop="copyrightYear">2018</span>
+<span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
