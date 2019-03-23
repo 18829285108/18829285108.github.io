@@ -88,7 +88,7 @@
 <meta property="og:description" content="单元测试什么是单元测试？ 单元测试是指，对软件中的最小可测试单元在与程序其他部分相隔离的情况下进行检查和验证的工作，这里的最小可测试单元通常是指函数或者类。 单元测试的实施过程还可以帮助开发工程师改善代码的设计与实现，并能在单元测试代码里提供函数的使用示例，因为单元测试的具体表现形式就是对函数以各种不同输入参数组合进行调用，这些调用方法构成了函数的使用说明。  如何做好单元测试？先弄清楚单元测试的">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/unit1.jpeg">
-<meta property="og:updated_time" content="2019-03-23T07:52:47.770Z">
+<meta property="og:updated_time" content="2019-03-23T09:48:32.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件测试3——做好单元测试">
 <meta name="twitter:description" content="单元测试什么是单元测试？ 单元测试是指，对软件中的最小可测试单元在与程序其他部分相隔离的情况下进行检查和验证的工作，这里的最小可测试单元通常是指函数或者类。 单元测试的实施过程还可以帮助开发工程师改善代码的设计与实现，并能在单元测试代码里提供函数的使用示例，因为单元测试的具体表现形式就是对函数以各种不同输入参数组合进行调用，这些调用方法构成了函数的使用说明。  如何做好单元测试？先弄清楚单元测试的">
@@ -336,21 +336,14 @@
 <h4 id="单元测试用例详解"><a href="#单元测试用例详解" class="headerlink" title="单元测试用例详解"></a>单元测试用例详解</h4><blockquote>
 <p>通常来讲，单元测试的用例是一个“输入数据”和“预计输出”的集合。</p>
 </blockquote>
-<ol>
-<li>被测试函数的输入参数；</li>
-</ol>
-<ul>
+<h5 id="被测试函数的输入参数；"><a href="#被测试函数的输入参数；" class="headerlink" title="被测试函数的输入参数；"></a>被测试函数的输入参数；</h5><ul>
 <li>被测试函数内部需要读取的全局静态变量；</li>
 <li>被测试函数内部需要读取的成员变量；</li>
 <li>函数内部调用子函数获得的数据；</li>
 <li>函数内部调用子函数改写的数据；</li>
 <li>嵌入式系统中，在中断调用时改写的数据；</li>
-<li>…</li>
 </ul>
-<ol>
-<li>“预计输出” 绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。</li>
-</ol>
-<ul>
+<h5 id="“预计输出”-绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。"><a href="#“预计输出”-绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。" class="headerlink" title="“预计输出” 绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。"></a>“预计输出” 绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。</h5><ul>
 <li>被测试函数的返回值；</li>
 <li>被测试函数的输出参数；</li>
 <li>被测试函数所改写的成员变量；</li>
@@ -358,13 +351,10 @@
 <li>被测试函数中进行的文件更新；</li>
 <li>被测试函数中进行的数据库更新；</li>
 <li>被测试函数中进行的消息队列更新；</li>
-<li>…</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">另外，对于预计输出值，你必须严格根据代码的功能逻辑来设定，而不能通过阅读代码来推算预期输出。</span><br><span class="line">最后，如果某些等价类或者边界值，开发工程师在开发的时候都没有考虑到，测试的时候就更不会去设计对应的测试用例了，这样也就会造成测试盲区。</span><br></pre></td></tr></table></figure>
 <h4 id="驱动代码，桩代码和-Mock-代码"><a href="#驱动代码，桩代码和-Mock-代码" class="headerlink" title="驱动代码，桩代码和 Mock 代码"></a>驱动代码，桩代码和 Mock 代码</h4><pre><code>驱动代码是用来调用被测函数的，而桩代码和 Mock 代码是用来代替被测函数调用的真实代码的。
-</code></pre><ol>
-<li>驱动代码，桩代码和 Mock 代码三者的逻辑关系:<br><img src="/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/unit1.jpeg" alt="三者关系"></li>
-</ol>
+</code></pre><h5 id="驱动代码，桩代码和-Mock-代码三者的逻辑关系"><a href="#驱动代码，桩代码和-Mock-代码三者的逻辑关系" class="headerlink" title="驱动代码，桩代码和 Mock 代码三者的逻辑关系:"></a>驱动代码，桩代码和 Mock 代码三者的逻辑关系:</h5><p>   <img src="/2018/07/14/软件测试3——什么是单元测试？如何做好单元测试？/unit1.jpeg" alt="三者关系"></p>
 <ul>
 <li>驱动代码（Driver）指调用被测函数的代码，模拟请求去调用被测试的函数。在单元测试过程中，驱动模块通常包括调用被测函数前的数据准备、调用被测函数以及验证相关结果三个步骤。驱动代码的结构，通常由单元测试的框架决定。</li>
 <li>桩代码（Stub）是用来代替真实代码的临时代码。 比如，某个函数 A 的内部实现中调用了一个尚未实现的函数 B，为了对函数 A 的逻辑进行测试，那么就需要模拟一个函数 B，这个模拟的函数 B 的实现就是所谓的桩代码。</li>
@@ -372,20 +362,14 @@
 <blockquote>
 <p>例子：假定函数 A 是被测函数，其内部调用了函数 B：<br>在单元测试阶段，由于函数 B 尚未实现，但是为了不影响对函数 A 自身实现逻辑的测试，你可以用一个假的函数 B 来代替真实的函数 B，那么这个假的函数 B 就是桩函数。<br>为了实现函数 A 的全路径覆盖，你需要控制不同的测试用例中函数 B 的返回值。</p>
 </blockquote>
-<ol>
-<li>桩函数内部实现</li>
-</ol>
-<p>桩代码的应用首先起到了隔离和补齐的作用，使被测代码能够独立编译、链接，并独立运行。同时，桩代码还具有控制被测函数执行路径的作用。</p>
+<h5 id="桩函数内部实现"><a href="#桩函数内部实现" class="headerlink" title="桩函数内部实现"></a>桩函数内部实现</h5><p>桩代码的应用首先起到了隔离和补齐的作用，使被测代码能够独立编译、链接，并独立运行。同时，桩代码还具有控制被测函数执行路径的作用。</p>
 <p>编写桩代码通常需要遵守以下三个原则：</p>
 <ul>
 <li>桩函数要具有与原函数完全相同的原形，仅仅是内部实现不同，这样测试代码才能正确链接到桩函数；</li>
 <li>用于实现隔离和补齐的桩函数比较简单，只需保持原函数的声明，加一个空的实现，目的是通过编译链接；</li>
 <li>实现控制功能的桩函数是应用最广泛的，要根据测试用例的需要，输出合适的数据作为被测函数的内部输入。</li>
 </ul>
-<ol>
-<li>Mock 代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。</li>
-</ol>
-<blockquote>
+<h5 id="Mock-代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。"><a href="#Mock-代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。" class="headerlink" title="Mock 代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。"></a>Mock 代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。</h5><blockquote>
 <p>在我看来，Mock 代码和桩代码的本质区别是：测试期待结果的验证（Assert and Expectiation）。<br>对于 Mock 代码来说，关注点是 Mock 方法有没有被调用，以什么样的参数被调用，被调用的次数，以及多个 Mock 函数的先后调用顺序。所以，在使用 Mock 代码的测试中，对于结果的验证，通常出现在 Mock 函数中。<br>对于桩代码来说，关注点是利用 Stub 来控制被测函数的执行路径，不会去关注 Stub 是否被调用以及怎么样被调用。所以，你在使用 Stub 的测试中，对于结果的验证，通常出现在驱动代码中。</p>
 </blockquote>
 <h3 id="实际项目中如何开展单元测试？"><a href="#实际项目中如何开展单元测试？" class="headerlink" title="实际项目中如何开展单元测试？"></a>实际项目中如何开展单元测试？</h3><p>并不是所有的代码都要进行单元测试，通常只有底层模块或者核心模块的测试中才会采用单元测试。</p>
@@ -595,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试"><span class="nav-number">1.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是单元测试？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是单元测试？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何做好单元测试？"><span class="nav-number">1.2.</span> <span class="nav-text">如何做好单元测试？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码的基本特征与产生错误的原因"><span class="nav-number">1.2.1.</span> <span class="nav-text">代码的基本特征与产生错误的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单元测试用例详解"><span class="nav-number">1.2.2.</span> <span class="nav-text">单元测试用例详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#驱动代码，桩代码和-Mock-代码"><span class="nav-number">1.2.3.</span> <span class="nav-text">驱动代码，桩代码和 Mock 代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际项目中如何开展单元测试？"><span class="nav-number">1.3.</span> <span class="nav-text">实际项目中如何开展单元测试？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试"><span class="nav-number">1.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是单元测试？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是单元测试？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何做好单元测试？"><span class="nav-number">1.2.</span> <span class="nav-text">如何做好单元测试？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码的基本特征与产生错误的原因"><span class="nav-number">1.2.1.</span> <span class="nav-text">代码的基本特征与产生错误的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单元测试用例详解"><span class="nav-number">1.2.2.</span> <span class="nav-text">单元测试用例详解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#被测试函数的输入参数；"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">被测试函数的输入参数；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#“预计输出”-绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">“预计输出” 绝对不是只有函数返回值这么简单，还应该包括函数执行完成后所改写的所有数据。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#驱动代码，桩代码和-Mock-代码"><span class="nav-number">1.2.3.</span> <span class="nav-text">驱动代码，桩代码和 Mock 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#驱动代码，桩代码和-Mock-代码三者的逻辑关系"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">驱动代码，桩代码和 Mock 代码三者的逻辑关系:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#桩函数内部实现"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">桩函数内部实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Mock-代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">Mock 代码和桩代码非常类似，都是用来代替真实代码的临时代码，起到隔离和补齐的作用。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际项目中如何开展单元测试？"><span class="nav-number">1.3.</span> <span class="nav-text">实际项目中如何开展单元测试？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>

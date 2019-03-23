@@ -88,7 +88,7 @@
 <meta property="og:description" content="好的测试用例“好的”测试用例一定是一个完备的集合，它能够覆盖所有等价类以及各种边界值，而跟能否发现缺陷无关。 好的测试用例特征 整体完备性： “好的”测试用例一定是一个完备的整体，是有效测试用例组成的集合，能够完全覆盖测试需求。 等价类划分的准确性： 指的是对于每个等价类都能保证只要其中一个输入测试通过，其他输入也一定测试通过。 等价类集合的完备性： 需要保证所有可能的边界值和边界条件都已经正确识">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2018/07/08/软件测试2——如何设计一个好的测试用例/2.jpeg">
-<meta property="og:updated_time" content="2019-03-23T07:30:03.981Z">
+<meta property="og:updated_time" content="2019-03-23T09:46:25.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件测试2——设计一个好的测试用例">
 <meta name="twitter:description" content="好的测试用例“好的”测试用例一定是一个完备的集合，它能够覆盖所有等价类以及各种边界值，而跟能否发现缺陷无关。 好的测试用例特征 整体完备性： “好的”测试用例一定是一个完备的整体，是有效测试用例组成的集合，能够完全覆盖测试需求。 等价类划分的准确性： 指的是对于每个等价类都能保证只要其中一个输入测试通过，其他输入也一定测试通过。 等价类集合的完备性： 需要保证所有可能的边界值和边界条件都已经正确识">
@@ -332,25 +332,14 @@
 <li>等价类划分方法</li>
 </ol>
 <blockquote>
-<p>例子：学生信息系统中有一个“考试成绩”的输入项，成绩的取值范围是 0~100 之间的整数，考试成绩及格的分数线是 60。</p>
-<ul>
-<li>有效等价类 1：0~59 之间的任意整数；</li>
-<li>有效等价类 2：59~100 之间的任意整数；</li>
-<li>无效等价类 1：小于 0 的负数；</li>
-<li>无效等价类 2：大于 100 的整数；</li>
-<li>无效等价类 3：0~100 之间的任何浮点数；</li>
-<li>无效等价类 4：其他任意非数字字符。</li>
-</ul>
+<p>例子：学生信息系统中有一个“考试成绩”的输入项，成绩的取值范围是 0~100 之间的整数，考试成绩及格的分数线是 60。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- 有效等价类 1：0~59 之间的任意整数；</span><br><span class="line">- 有效等价类 2：59~100 之间的任意整数；</span><br><span class="line">- 无效等价类 1：小于 0 的负数；</span><br><span class="line">- 无效等价类 2：大于 100 的整数；</span><br><span class="line">- 无效等价类 3：0~100 之间的任何浮点数；</span><br><span class="line">- 无效等价类 4：其他任意非数字字符。</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <ol>
-<li>边界值分析方法</li>
-</ol>
-<ul>
-<li>通常选取正好等于、刚刚大于或刚刚小于边界的值作为测试数据。</li>
-<li>我们继续看学生信息系统中“考试成绩”的例子，选取的边界值数据应该包括：-1，0，1，59，60，61，99，100，101。</li>
-</ul>
-<ol>
-<li>错误推测方法</li>
+<li><p>边界值分析方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 通常选取正好等于、刚刚大于或刚刚小于边界的值作为测试数据。</span><br><span class="line">- 我们继续看学生信息系统中“考试成绩”的例子，选取的边界值数据应该包括：-1，0，1，59，60，61，99，100，101。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>错误推测方法</p>
+</li>
 </ol>
 <blockquote>
 <p>比如，Web 界面的 GUI 功能测试，需要考虑浏览器在有缓存和没有缓存下的表现；Web Service 的 API 测试，<br>需要考虑被测 API 所依赖的第三方 API 出错下的处理逻辑；<br>对于代码级的单元测试，需要考虑被测函数的输入参数为空情况下的内部处理逻辑等等。</p>
