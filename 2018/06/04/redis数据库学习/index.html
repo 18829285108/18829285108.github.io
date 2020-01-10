@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kingvirre">
 <meta property="og:description" content="redis入门redis简介 Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单 Redis支持数据的备份，即master-slave模式的数据备份 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型 Redis的所有操作都是原子性的，意思就是要么成功执行">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-09T01:48:53.075Z">
+<meta property="og:updated_time" content="2020-01-10T09:48:17.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis数据库学习">
 <meta name="twitter:description" content="redis入门redis简介 Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单 Redis支持数据的备份，即master-slave模式的数据备份 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型 Redis的所有操作都是原子性的，意思就是要么成功执行">
@@ -332,15 +332,14 @@
 </li>
 </ol>
 <h3 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h3><ol>
-<li>redis客户端基本语法redis-cli。执行 PING 命令，该命令用于检测 redis 服务是否启动。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
+<li><p>redis客户端基本语法redis-cli。执行 PING 命令，该命令用于检测 redis 服务是否启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>2.redis的键：下面如果键被删除成功，命令执行后输出 (integer) 1，否则将输出 (integer) 0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET runoobkey redis</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; DEL runoobkey</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure></p>
-<ol>
+<li><p>redis的键：下面如果键被删除成功，命令执行后输出 (integer) 1，否则将输出 (integer) 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET runoobkey redis</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; DEL runoobkey</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>同时设置多个key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSET fruit &quot;apple&quot; drink &quot;beer&quot; food &quot;cookies&quot;   # 设置多个 key</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>redis常用</p>
 </li>
 </ol>
 
@@ -490,7 +489,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -561,7 +560,7 @@
 <div class="copyright">
 
 &copy; 
-<span itemprop="copyrightYear">2019</span>
+<span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

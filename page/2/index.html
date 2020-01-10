@@ -249,6 +249,301 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/07/软件测试——用户登录测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/07/软件测试——用户登录测试/" itemprop="url">软件测试1——用户登录测试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-07T18:39:49+08:00">
+                2018-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="测试学习——用户登录"><a href="#测试学习——用户登录" class="headerlink" title="测试学习——用户登录"></a>测试学习——用户登录</h2><h3 id="测试基础"><a href="#测试基础" class="headerlink" title="测试基础"></a>测试基础</h3><ul>
+<li>保证系统在各种应用场景下的功能是符合设计要求的，所以需要根据“用户登录”功能的需求，结合等价类划分和边界值分析方法来设计测试用例</li>
+<li>首先等价类划分和边界值分析都是黑盒测试</li>
+<li>等价类划分方法，是将所有可能的输入数据划分成若干个子集，在每个子集中，如果任意一个输入数据对于揭露程序中潜在错误都具有同等效果，那么这样的子集就构成了一个等价类。后续只要从每个等价类中任意选取一个值进行测试，就可以用少量具有代表性的测试输入取得较好的测试覆盖结果。</li>
+<li>边界值分析方法，是选取输入、输出的边界值进行测试。通常选取正好等于、刚刚大于或刚刚小于边界的值作为测试数据。从方法论上可以看出来，边界值分析是对等价类划分的补充，所以这两种测试方法经常结合起来使用。</li>
+<li>基于上述的，’用户登录’测试用例设计<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入已注册的用户名和正确的密码，验证是否登录成功；</span><br><span class="line">输入已注册的用户名和不正确的密码，验证是否登录失败，并且提示信息正确；</span><br><span class="line">输入未注册的用户名和任意密码，验证是否登录失败，并且提示信息正确；</span><br><span class="line">用户名和密码两者都为空，验证是否登录失败，并且提示信息正确；</span><br><span class="line">用户名和密码两者之一为空，验证是否登录失败，并且提示信息正确；</span><br><span class="line">如果登录功能启用了验证码功能，在用户名和密码正确的前提下，输入正确的验证码，验证是否登录成功；</span><br><span class="line">如果登录功能启用了验证码功能，在用户名和密码正确的前提下，输入错误的验证码，验证是否登录失败，并且提示信息正确。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="增加功能性测试用例"><a href="#增加功能性测试用例" class="headerlink" title="增加功能性测试用例"></a>增加功能性测试用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">用户名和密码是否大小写敏感；</span><br><span class="line">页面上的密码框是否加密显示；</span><br><span class="line">后台系统创建的用户第一次登录成功时，是否提示修改密码；</span><br><span class="line">忘记用户名和忘记密码的功能是否可用；</span><br><span class="line">前端页面是否根据设计要求限制用户名和密码长度；</span><br><span class="line">如果登录功能需要验证码，点击验证码图片是否可以更换验证码，更换后的验证码是否可用；</span><br><span class="line">刷新页面是否会刷新验证码；</span><br><span class="line">如果验证码具有时效性，需要分别验证时效内和时效外验证码的有效性；</span><br><span class="line">用户登录成功但是会话超时后，继续操作是否会重定向到用户登录界面；</span><br><span class="line">不同级别的用户，比如管理员用户和普通用户，登录系统后的权限是否正确；</span><br><span class="line">页面默认焦点是否定位在用户名的输入框中；</span><br><span class="line">快捷键 Tab 和 Enter 等，是否可以正常使用。</span><br><span class="line">网络延迟或者弱网或者切换网络或者断网时正常登录是否正常</span><br><span class="line">是否支持第三方登录</span><br><span class="line">记住密码是否有有效期，有有效期，过期之后是否会清空密码</span><br></pre></td></tr></table></figure>
+<h3 id="非功能性测试用例包括：安全性、性能以及兼容性三大方面"><a href="#非功能性测试用例包括：安全性、性能以及兼容性三大方面" class="headerlink" title="非功能性测试用例包括：安全性、性能以及兼容性三大方面"></a>非功能性测试用例包括：安全性、性能以及兼容性三大方面</h3><h3 id="安全性测试用例"><a href="#安全性测试用例" class="headerlink" title="安全性测试用例"></a>安全性测试用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用户密码后台存储是否加密；</span><br><span class="line">用户密码在网络传输过程中是否加密；</span><br><span class="line">密码是否具有有效期，密码有效期到期后，是否提示需要修改密码；</span><br><span class="line">不登录的情况下，在浏览器中直接输入登录后的 URL 地址，验证是否会重新定向到用户登录界面；</span><br><span class="line">密码输入框是否不支持复制和粘贴；</span><br><span class="line">密码输入框内输入的密码是否都可以在页面源码模式下被查看；</span><br><span class="line">用户名和密码的输入框中分别输入典型的“SQL 注入攻击”字符串，验证系统的返回页面；</span><br><span class="line">用户名和密码的输入框中分别输入典型的“XSS 跨站脚本攻击”字符串，验证系统行为是否被篡改；</span><br><span class="line">连续多次登录失败情况下，系统是否会阻止后续的尝试以应对暴力破解；</span><br><span class="line">同一用户在同一终端的多种浏览器上登录，验证登录功能的互斥性是否符合设计预期；</span><br><span class="line">同一用户先后在多台终端的浏览器上登录，验证登录是否具有互斥性。</span><br></pre></td></tr></table></figure>
+<h3 id="性能压力测试用例"><a href="#性能压力测试用例" class="headerlink" title="性能压力测试用例"></a>性能压力测试用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">单用户登录的响应时间是否小于 3 秒；</span><br><span class="line">单用户登录时，后台请求数量是否过多；</span><br><span class="line">高并发场景下用户登录的响应时间是否小于 5 秒；</span><br><span class="line">高并发场景下服务端的监控指标是否符合预期；</span><br><span class="line">高集合点并发场景下，是否存在资源死锁和不合理的资源等待；</span><br><span class="line">长时间大量用户连续登录和登出，服务器端是否存在内存泄漏。</span><br></pre></td></tr></table></figure>
+<h3 id="兼容性测试用例"><a href="#兼容性测试用例" class="headerlink" title="兼容性测试用例"></a>兼容性测试用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">不同浏览器下，验证登录页面的显示以及功能正确性；</span><br><span class="line">相同浏览器的不同版本下，验证登录页面的显示以及功能正确性；</span><br><span class="line">不同移动设备终端的不同浏览器下，验证登录页面的显示以及功能正确性；</span><br><span class="line">不同分辨率的界面下，验证登录页面的显示以及功能正确性。</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>“穷尽测试”是指包含了软件输入值和前提条件所有可能组合的测试方法，完成穷尽测试的系统里应该不残留任何未知的软件缺陷。几乎不可能做到</li>
+<li>首先，对于高质量的软件测试，用例设计不仅需要考虑明确的显式功能性需求，还要涉及兼容性、安全性和性能等一系列的非功能性需求，这些非功能性需求对软件系统的质量有着举足轻重的作用。</li>
+<li>其次，优秀的测试工程师必须具有宽广的知识面，才能设计出有针对性、更易于发现问题的测试用例。</li>
+<li>最后，软件测试的用例设计是不可穷尽的，工程实践中难免受制于时间成本和经济成本，所以优秀的测试工程师需要兼顾缺陷风险和研发成本之间的平衡。</li>
+</ul>
+<hr>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/环境和日志验证——python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/04/环境和日志验证——python/" itemprop="url">环境和日志验证——python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T10:32:58+08:00">
+                2018-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="环境和日志验证——python"><a href="#环境和日志验证——python" class="headerlink" title="环境和日志验证——python"></a>环境和日志验证——python</h1><h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><ol>
+<li><p>接收到上游的请求。上游带有要校验的日志，放在body里（json格式）发送给服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body = request.get_data()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>环境验证（调用校验环境的函数），校验环境正常后，再进行日志验证，否则，直接返回(message:环境有问题)。</p>
+</li>
+<li><p>日志验证, 解析body，将body里面日志写入本地文件里，打开文件获取到日志，校验后，返回report: json格式里面有详细日志分析结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">with open(os.path.join(logpath, file_name), &apos;w&apos;) as f:</span><br><span class="line">    f.write(str(request.get_data()))</span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回结果result是json格式包括（code、status、reason、report、message），report里面是日志校验的结果，也是json格式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">转换为json格式</span><br><span class="line">return json.dumps(result, encoding=&quot;UTF-8&quot;, ensure_ascii=False)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="环境验证"><a href="#环境验证" class="headerlink" title="环境验证"></a>环境验证</h2><ol>
+<li>梳理所有服务之间的衔接关系，比如：A–B–C</li>
+<li>校验每个服务是否正常运行，可以通过http请求获取结果，判断是否与预期一致。</li>
+<li>如果服务有问题，可以发送报警短信通知</li>
+<li>依次判断每个服务</li>
+</ol>
+<ul>
+<li>上游服务是 A ，如果 A 结果正常，则环境校验都ok。</li>
+<li>如果 A 服务有问题，则校验 B 服务。如果 B 服务没有问题，则判断为 A 服务挂掉，发送报警短信</li>
+<li>如果 B 服务有问题，则校验 C 服务。如果 C 服务没有问题，则判断为 B 服务挂掉，发送报警短信</li>
+<li>否则，判断为 C 服务挂掉，发送报警短信。</li>
+</ul>
+<h2 id="日志验证"><a href="#日志验证" class="headerlink" title="日志验证"></a>日志验证</h2><ol>
+<li><p>读取文件，进行日志去重（如果日志关键参数重复，则认为日志是重复的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with open(os.path.join(path, file_name)) as logs:</span><br><span class="line">    log_content = json.load(logs)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每条日志有name，标记日志是否收到。必填字段校验是否通过，如果未通过，report里面详细标明信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">提取每条日志的key值</span><br><span class="line">for key in data.keys():</span><br><span class="line">    data_key.append(key)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提取出 必填字段函数和 非必填字段函数。字段较多的时候直接调用函数进行验证。</p>
+</li>
+<li>最后返回report（json数据），服务器整合report和code等。</li>
+<li>服务器返回给上游。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/redis数据库学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -332,15 +627,14 @@
 </li>
 </ol>
 <h3 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h3><ol>
-<li>redis客户端基本语法redis-cli。执行 PING 命令，该命令用于检测 redis 服务是否启动。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
+<li><p>redis客户端基本语法redis-cli。执行 PING 命令，该命令用于检测 redis 服务是否启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>2.redis的键：下面如果键被删除成功，命令执行后输出 (integer) 1，否则将输出 (integer) 0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET runoobkey redis</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; DEL runoobkey</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure></p>
-<ol>
+<li><p>redis的键：下面如果键被删除成功，命令执行后输出 (integer) 1，否则将输出 (integer) 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET runoobkey redis</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; DEL runoobkey</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>同时设置多个key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSET fruit &quot;apple&quot; drink &quot;beer&quot; food &quot;cookies&quot;   # 设置多个 key</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>redis常用</p>
 </li>
 </ol>
 
@@ -464,6 +758,7 @@
           
             <pre><code>其实不知道想写啥，就是觉得自己一定要学习，一定要进步。
 无论是基础的测试用例，还是到代码，到网络，到计算机的所有知识，只有一直学习，才对得起曾经过去的昨天。
+立个flag，每天进步一点点，如果这周工作很忙，那每周一定要学一个知识点充实自己。
 </code></pre>
           
         
@@ -1449,330 +1744,6 @@ https://travis-ci.com/
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/02/python练级第三天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/02/python练级第三天/" itemprop="url">python练级第三天</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-02T20:03:38+08:00">
-                2018-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="python练级打卡第三天"><a href="#python练级打卡第三天" class="headerlink" title="python练级打卡第三天"></a>python练级打卡第三天</h2><p>把平时用到的地方再简单整理下</p>
-<h4 id="把字符串类型的字典，转换为字典类型"><a href="#把字符串类型的字典，转换为字典类型" class="headerlink" title="把字符串类型的字典，转换为字典类型"></a>把字符串类型的字典，转换为字典类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = &apos;&#123;&quot;hostname&quot;: &quot;172.16.83.200&quot;, &quot;cert_id&quot;: null, &quot;policy&quot;: null, &quot;listener_id&quot;: 5&#125;&apos;</span><br><span class="line">&gt;&gt;&gt; type(a)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; import json</span><br><span class="line">&gt;&gt;&gt; b = json.loads(a)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">&#123;&apos;hostname&apos;: &apos;172.16.83.200&apos;, &apos;cert_id&apos;: None, &apos;policy&apos;: None, &apos;listener_id&apos;: 5&#125;</span><br><span class="line">&gt;&gt;&gt; type(b)</span><br><span class="line">&lt;class &apos;dict&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; c = eval(a)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">NameError: name &apos;null&apos; is not defined</span><br></pre></td></tr></table></figure>
-<p>null有报错，需要把null改写成python可接受的字符</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = &apos;&#123;&quot;hostname&quot;: &quot;172.16.83.200&quot;, &quot;cert_id&quot;: &quot;2&quot;, &quot;policy&quot;: &quot;2&quot;, &quot;listener_id&quot;: 5&#125;&apos;</span><br><span class="line">&gt;&gt;&gt; c = eval(a)</span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">&#123;&apos;hostname&apos;: &apos;172.16.83.200&apos;, &apos;cert_id&apos;: &apos;2&apos;, &apos;policy&apos;: &apos;2&apos;, &apos;listener_id&apos;: 5&#125;</span><br><span class="line">&gt;&gt;&gt; type(c)</span><br><span class="line">&lt;class &apos;dict&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; import ast</span><br><span class="line">&gt;&gt;&gt; d = ast.literal_eval(a)</span><br><span class="line">&gt;&gt;&gt; d</span><br><span class="line">&#123;&apos;hostname&apos;: &apos;172.16.83.200&apos;, &apos;cert_id&apos;: &apos;2&apos;, &apos;policy&apos;: &apos;2&apos;, &apos;listener_id&apos;: 5&#125;</span><br><span class="line">&gt;&gt;&gt; type(d)</span><br><span class="line">&lt;class &apos;dict&apos;&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="时间转换"><a href="#时间转换" class="headerlink" title="时间转换"></a>时间转换</h4><ol>
-<li><p>datetime</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from datetime import datetime</span><br><span class="line">&gt;&gt;&gt; a = datetime.now()</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">datetime.datetime(2018, 3, 2, 12, 1, 42, 699013)</span><br><span class="line">&gt;&gt;&gt; type(a)</span><br><span class="line">&lt;class &apos;datetime.datetime&apos;&gt;</span><br></pre></td></tr></table></figure>
-<p> 对时间进行加减。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from datetime import datetime, timedelta</span><br><span class="line">&gt;&gt;&gt; datetime.now() + timedelta(days = 1)</span><br><span class="line">datetime.datetime(2018, 3, 3, 12, 4, 17, 475267)</span><br><span class="line">&gt;&gt;&gt; datetime.now() + timedelta(hours = 1)</span><br><span class="line">datetime.datetime(2018, 3, 2, 13, 4, 26, 785818)</span><br><span class="line">&gt;&gt;&gt; datetime.now() + timedelta(days = 1,hours = 1)</span><br><span class="line">datetime.datetime(2018, 3, 3, 13, 4, 41, 755995)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>时间戳（float）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import time</span><br><span class="line">&gt;&gt;&gt; t = time.time()</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">1519962961.725776</span><br><span class="line">&gt;&gt;&gt; type(t)</span><br><span class="line">&lt;class &apos;float&apos;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字符串（eg: 2018-01-01）</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = time.localtime()</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">time.struct_time(tm_year=2018, tm_mon=3, tm_mday=2, tm_hour=14, tm_min=50, tm_sec=55, tm_wday=4, tm_yday=61, tm_isdst=0)</span><br><span class="line">&gt;&gt;&gt; type(a)</span><br><span class="line">&lt;class &apos;time.struct_time&apos;&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>可以将struct_time转变为str类型，strftime可以将时间转换为我们需要的格式</p>
-</blockquote>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; time.strftime(&apos;%Y-%m-%d&apos;,a)</span><br><span class="line">&apos;2018-03-02&apos;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>将str类型转变为struct_time。strptime函数根据指定的格式把一个时间字符串解析为时间元组。</p>
-</blockquote>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = time.strptime(&apos;2018-01-01&apos;, &apos;%Y-%m-%d&apos;)</span><br><span class="line">&gt;&gt;&gt; type(b)</span><br><span class="line">&lt;class &apos;time.struct_time&apos;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>各种时间之间的转换</p>
-</li>
-</ol>
-<ul>
-<li><p>datetime 转 str（eg: 2018-01-01）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; q=datetime.now().strftime(&apos;%Y-%m-%d&apos;)</span><br><span class="line">&gt;&gt;&gt; q</span><br><span class="line">&apos;2018-03-02&apos;</span><br><span class="line">&gt;&gt;&gt; type(q)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>str转datetime, 转换后的datetime没有时区</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; c = datetime.strptime(&apos;2018-3-2 12:33:59&apos;, &apos;%Y-%m-%d %H:%M:%S&apos;)</span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">datetime.datetime(2018, 3, 2, 12, 33, 59)</span><br><span class="line">&gt;&gt;&gt; type(c)</span><br><span class="line">&lt;class &apos;datetime.datetime&apos;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>datetime转时间戳</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; d = datetime.now().timestamp()</span><br><span class="line">&gt;&gt;&gt; d</span><br><span class="line">1519965586.116359</span><br><span class="line">&gt;&gt;&gt; type(d)</span><br><span class="line">&lt;class &apos;float&apos;&gt;</span><br><span class="line"></span><br><span class="line">第二种方法如下：比较麻烦</span><br><span class="line">&gt;&gt;&gt; e = time.mktime(datetime.now().timetuple())</span><br><span class="line">&gt;&gt;&gt; e</span><br><span class="line">1519974113.0</span><br><span class="line">&gt;&gt;&gt; type(e)</span><br><span class="line">&lt;class &apos;float&apos;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>时间戳转datetime,e为本地时间，f为UTC时间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; d = 1519965586.116359</span><br><span class="line">&gt;&gt;&gt; e = datetime.fromtimestamp(d)</span><br><span class="line">&gt;&gt;&gt; e</span><br><span class="line">datetime.datetime(2018, 3, 2, 12, 39, 46, 116359)</span><br><span class="line">&gt;&gt;&gt; type(e)</span><br><span class="line">&lt;class &apos;datetime.datetime&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; f = datetime.utcfromtimestamp(d)</span><br><span class="line">&gt;&gt;&gt; f</span><br><span class="line">datetime.datetime(2018, 3, 2, 4, 39, 46, 116359)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/django入门学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/28/django入门学习/" itemprop="url">django入门学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-28T11:34:31+08:00">
-                2018-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="demo项目"><a href="#demo项目" class="headerlink" title="demo项目"></a>demo项目</h2><h4 id="guest-urls-py-url请求映射表，除了项目的根目录下有urls-py外，项目的每个应用下都会有一个urls-py文件。"><a href="#guest-urls-py-url请求映射表，除了项目的根目录下有urls-py外，项目的每个应用下都会有一个urls-py文件。" class="headerlink" title="guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。"></a>guest/urls.py: url请求映射表，除了项目的根目录下有urls.py外，项目的每个应用下都会有一个urls.py文件。</h4><ul>
-<li>浏览器发送请求url</li>
-<li>服务端根据请求的url，在项目的所有应用（包括根目录）的urls.py配置文件中进行查找，如果能匹配到该url，就会将该url交给其对应的视图函数进行处理。</li>
-<li><p>负责处理该url的视图函数，会搜集一些业务数据，然后把这些数据，通过return render(request, ‘模板文件’, 数据); 渲染到前端页面展示给用户。</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = patterns(&apos;视图前缀&apos;,</span><br><span class="line">    url(r&apos;^正则表达式1/$&apos;, &apos;视图函数1&apos;, name=&quot;url标识1&quot;),</span><br><span class="line">    url(r&apos;^正则表达式2/$&apos;, &apos;视图函数2&apos;, name=&quot;url标识2&quot;),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意</strong>：<br>  1.patterns函数的第一个参数表示视图前缀，视图前缀可以为空，之后跟上若干个url函数，每个url函数表示一个请求映射关系。<br>  2.url函数的第二个参数，表示视图函数，它的名字不是随便取的，必须要在views.py中真实存在，项目的每个应用下都会有一个views.py文件。<br>  3.views.py文件中的视图函数，其第一个参数必须是HttpRequest对象。<br>  4.name的作用主要体现在一个视图函数对应多个url请求的场景中，name可以用来唯一标识一个url，所以它必须全局唯一。</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="url中include使用"><a href="#url中include使用" class="headerlink" title="url中include使用"></a>url中include使用</h4><p>假如一个project中有多个app, 我们可以用include的方法来配置url，首先我们在自己的app中建立一个urls.py，即myproject/myapp/目录下建立urls.py.<br>然后在项目的根目录下urls中包含刚刚app中添加的url配置，我们要做的是在myproject/myproject/urls.py输入如下内容:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from django.conf.urls import url, include #导入了include函数</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(r&apos;^admin/&apos;, admin.site.urls),</span><br><span class="line">    url(r&apos;^myapp/&apos;, include(&quot;myapp.urls&quot;))#包含myapp中的urls</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<h4 id="module数据库的迁移。"><a href="#module数据库的迁移。" class="headerlink" title="module数据库的迁移。"></a>module数据库的迁移。</h4><ul>
-<li><p>修改models.py后，需要执行以下两步进行数据库迁移.<br>第一个是makemigrations，第二个是migrate，生成migrations代码的makemigrations指令是用models里面的model和当前的migrations代码里面的model做对比，如果有新的修改，就生成新的migrations代码，<br>migrate指令是用migrations目录中代码文件和django数据库djaong_migrations表中的代码文件做对比，如果表中没有，那就对这些没有的文件按顺序及依赖关系做migrate apply，然后再把代码文件名加进migrations表中。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 在该app下建立 migrations目录，并记录下你所有的关于models.py的改动，比如0001_initial.py， 但是这个改动还没有作用到数据库文件</span><br><span class="line">python manage.py makemigrations + app名称</span><br><span class="line"># 将改动作用到数据库</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>settings.py ,DATABASES设置数据库</p>
-</li>
-<li>删除数据库db.sqlite3后, 需要创建登录后台的管理员账号  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="连接两个表之间的外键。"><a href="#连接两个表之间的外键。" class="headerlink" title="连接两个表之间的外键。"></a>连接两个表之间的外键。</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Reporter(models.Model):</span><br><span class="line">    full_name = models.CharField(max_length=70)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.full_name</span><br><span class="line"></span><br><span class="line">class Article(models.Model):</span><br><span class="line">    pub_date = models.DateField()</span><br><span class="line">    headline = models.CharField(max_length=200)</span><br><span class="line">    reporter = models.ForeignKey(Reporter)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.headline</span><br><span class="line"></span><br><span class="line"> &gt;&gt;&gt; r = Reporter(full_name=&apos;John Smith&apos;)</span><br><span class="line"> &gt;&gt;&gt; r.article_set.all()</span><br><span class="line">&lt;QuerySet [&lt;Article: Django is cool&gt;]&gt;</span><br><span class="line">reporter是article的外键，所以reporter的article_set.all可以显示此reporter的所有文章</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="django的模板继承"><a href="#django的模板继承" class="headerlink" title="django的模板继承"></a>django的模板继承</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &quot;base.html&quot; %&#125;</span><br><span class="line">&#123;% block title %&#125;Articles for &#123;&#123; year &#125;&#125;&#123;% endblock %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">&lt;h1&gt;Articles for &#123;&#123; year &#125;&#125;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&#123;% for article in article_list %&#125;</span><br><span class="line">    &lt;p&gt;&#123;&#123; article.headline &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;By &#123;&#123; article.reporter.full_name &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Published &#123;&#123; article.pub_date|date:&quot;F j, Y&quot; &#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
-
-&gt; 这就是 % extends &quot;base.html&quot; % 所做的事。它表示“首先载入‘base’ 模板，该模板中定义了一系列block，然后使用接下来的（存在于继承模板）blocks填充这些blocks”。
-  简而言之，模板继承让你大大减少模板间的冗余内容：每个模板只需要定义它独特的部分。
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load staticfiles %&#125;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&#123;% block title %&#125;&#123;% endblock %&#125;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;img src=&quot;&#123;% static &quot;images/sitelogo.png&quot; %&#125;&quot; alt=&quot;Logo&quot; /&gt;</span><br><span class="line">    &#123;% block content %&#125;&#123;% endblock %&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-&gt; 它定义网站的外观（使用网站的logo ），并提供“空洞”让子模板填充。这使站点的重构变得非常容易，只需改变一个文件 —— base模板。
-  它还可以让你利用不同的基础模板并重用子模板创建一个网站的多个版本(中英文版本等)。
-</code></pre><h4 id="admin-py后台管理"><a href="#admin-py后台管理" class="headerlink" title="admin.py后台管理"></a>admin.py后台管理</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list_display = (&quot;name&quot;, &quot;client_id&quot;, &quot;create_time&quot;, &quot;comment&quot;) # 列表中显示哪些字段</span><br><span class="line">search_fields = [&quot;name&quot;]  # 搜索栏</span><br><span class="line">ordering = (&quot;-create_time&quot;,) # 默认排序字段，负号表示降序排序</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="serializers"><a href="#serializers" class="headerlink" title="serializers"></a>serializers</h4><p>用djangorestframework和js做web api, serializers序列化返回json或者jsonp数据。主要是为了自动地将模型的实例对象序列化，搞成json数据更方便前端使用</p>
-<h4 id="django版本问题，"><a href="#django版本问题，" class="headerlink" title="django版本问题，"></a>django版本问题，</h4><p>  提示错误(‘WSGIRequest’ object has no attribute ‘user’) , 需要在settings里面修改MIDDLEWARE或者MIDDLEWARE_CLASSES</p>
-<ul>
-<li>django1.9之前，中间件的key为MIDDLEWARE_CLASSES</li>
-<li>django1.9之后，中间件的key为MIDDLEWARE</li>
-</ul>
-<h4 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h4><ul>
-<li>异步分布式地异步处理任务。参考资料：<a href="http://yshblog.com/blog/163" target="_blank" rel="noopener">http://yshblog.com/blog/163</a></li>
-<li>定时执行任务。参考资料：<a href="http://yshblog.com/blog/164" target="_blank" rel="noopener">http://yshblog.com/blog/164</a></li>
-</ul>
-<h4 id="中间件middleware"><a href="#中间件middleware" class="headerlink" title="中间件middleware"></a>中间件middleware</h4><ul>
-<li>参考资料：<a href="http://blog.csdn.net/orangleliu/article/details/48316919" target="_blank" rel="noopener">http://blog.csdn.net/orangleliu/article/details/48316919</a></li>
-<li>process response<br>不像 process_request()和process_view()方法，即使同一个中间件类中的process_request()和process_view()方法会因为前面的一个中间件返回HttpResponse而被跳过，process_response()方法总是会被调用。<br>在响应阶段中，中间件以相反的顺序被应用，自底向上。意思是定义在MIDDLEWARE_CLASSES最底下的类会最先被运行。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1827,7 +1798,7 @@ https://travis-ci.com/
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1882,7 +1853,7 @@ https://travis-ci.com/
 <div class="copyright">
 
 &copy; 
-<span itemprop="copyrightYear">2019</span>
+<span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
