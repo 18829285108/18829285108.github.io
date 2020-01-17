@@ -249,6 +249,447 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/22/uirecorder前端自动化测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/22/uirecorder前端自动化测试/" itemprop="url">uirecorder前端自动化测试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T10:49:44+08:00">
+                2018-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="UIRecorder安装与使用-mac下"><a href="#UIRecorder安装与使用-mac下" class="headerlink" title="UIRecorder安装与使用(mac下)"></a>UIRecorder安装与使用(mac下)</h2><h3 id="安装UIRecorder与录制"><a href="#安装UIRecorder与录制" class="headerlink" title="安装UIRecorder与录制"></a>安装UIRecorder与录制</h3><ol>
+<li>将项目clone到本地，首先安装好NodeJs、npm、Chrome浏览器</li>
+</ol>
+<ul>
+<li>主目录下安装uirecorder 和 mocha<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install uirecorder mocha -g</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>PC录制</li>
+</ol>
+<ul>
+<li>主目录下新建文件夹，存放录制的东西</li>
+<li><p>初始化uirecorder配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uirecorder init</span><br></pre></td></tr></table></figure>
+<p>  一路回车，可以选择测试的浏览器列表等</p>
+</li>
+<li><p>录制文件，可以修改保存样例文档的名字，会有两个浏览器界面，一个操作，一个展示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uirecorder sample/test.spec.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Start WebDriver Server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install selenium-standalone -g 安装</span><br><span class="line">selenium-standalone install</span><br><span class="line">selenium-standalone start</span><br><span class="line">npm run server 运行服务器，服务器需要一直跑在前端</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行测试用例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source run.sh 运行所有测试用例或者指定文件夹 source run.sh sample/test.spec.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取回放</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mocha sample/test.spec.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取运行报告(reports &amp; screenshots)。在新建文件的report文件夹下面</p>
+</li>
+</ul>
+<h3 id="详细操作步骤"><a href="#详细操作步骤" class="headerlink" title="详细操作步骤"></a>详细操作步骤</h3><ol>
+<li>有时间再填写，参考资料里也有别人写的比较不错的。</li>
+</ol>
+<p>参考资料：<br><a href="https://github.com/alibaba/uirecorder" target="_blank" rel="noopener">https://github.com/alibaba/uirecorder</a> 官网<br><a href="https://www.jianshu.com/p/e133118c6ea3" target="_blank" rel="noopener">https://www.jianshu.com/p/e133118c6ea3</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/github和travis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/15/github和travis/" itemprop="url">github和travis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-15T11:09:36+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="github修改别人的项目并提交到项目上"><a href="#github修改别人的项目并提交到项目上" class="headerlink" title="github修改别人的项目并提交到项目上"></a>github修改别人的项目并提交到项目上</h2><h3 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h3><ol>
+<li>先fork下别人的代码，于是你的github上就出现了同名的项目，这个项目就属于你自己了。</li>
+<li>你把这个自己的项目git clone到本地，修修改改，然后push到你自己的项目里。</li>
+<li>在github上你的项目页面有个按钮，叫Pull request，就会把你的修改发到对方的项目里，由原项目主人决定是否接受你的修改。</li>
+</ol>
+<h3 id="自己和原作者同时修改了项目代码"><a href="#自己和原作者同时修改了项目代码" class="headerlink" title="自己和原作者同时修改了项目代码"></a>自己和原作者同时修改了项目代码</h3><ol>
+<li>在本地操作git remote add [sort name] [your url]，意思就是添加第二个远程仓库地址，这个仓库的“昵称”就是你刚指定的[sort name]，</li>
+<li>之后push文件，就通过指定这个［sort name］来push到这个你自己的仓库里</li>
+<li>等你觉得想要把你改的发给原项目同步，就在你的项目上点Pull request按钮.</li>
+<li>如果是，原项目发生了改动，你要想同步到本地，就直接从git fetch origin 从原项目的地址同步代码，然后再merge就好了</li>
+<li>当然，你可以通过新建分支的方式往自己的项目上push，这样同步的时候直接fetch就行了</li>
+</ol>
+<h2 id="travis"><a href="#travis" class="headerlink" title="travis"></a>travis</h2><h3 id="travis简介"><a href="#travis简介" class="headerlink" title="travis简介"></a>travis简介</h3><p>Travis是一个为GitHub服务的CI，支持多数主流语言。</p>
+<p>CI即持续集成系统。对个人而言，就是让你的代码在提交到远程(这里是GitHub)后，立即自动编译，并且在失败后可以自动给你发邮件的东西。当然，除了编译，还能做自动化测试、自动部署等。</p>
+<p>Travis有两个网址：</p>
+<pre><code>https://travis-ci.org/
+https://travis-ci.com/
+</code></pre><p>org的那个是非盈利的，为GitHub上public的repository提供免费服务；<br>com的那个是盈利的，可以对private的提供付费服务。com前100次build是免费的，此后按月收费。</p>
+<p>二者的账户是相互独立的，但都可以用GitHub账户注册、登录。</p>
+<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><ol>
+<li>在travis-ci.org上以GitHub账户注册、登录。</li>
+<li>在主页点加号【Add new repository】，添加需要CI的那个库。</li>
+<li>在那个库的根目录下，添加一个.travis.yml文件。</li>
+</ol>
+<p>流程很简明，但绝大多数复杂度都集中在这个.travis.yml文件。这是一个YAML文件，主要用来做CI的配置。Travis会按照这个文件配置的方式来运行。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>可以把Travis看做一个远程服务器。它会监控你添加的GitHub库。如果有新的提交或Pull Request，就会触发一次在线编译。<br>这台服务器每次都从近乎裸机状态，把你的库clone过来，然后执行其中的.travis.yml。</p>
+<p>除了首行的language指定语言类型以外，其它可选的有10个步骤：</p>
+<ol>
+<li>Install apt addons</li>
+<li>before_install</li>
+<li>install</li>
+<li>before_script</li>
+<li>script</li>
+<li>after_success or after_failure</li>
+<li>OPTIONAL before_deploy</li>
+<li>OPTIONAL deploy</li>
+<li>OPTIONAL after_deploy</li>
+<li>after_script</li>
+</ol>
+<p>最重要的步骤就是第5步的script，这步通常是测试、编译、打包。<br>前面的步骤都是为了成功执行第5步而执行的裸机环境配置，后面的步骤都是在执行第5步后而做出的应对。<br>所有这些步骤，在language设置后基本都有默认值。所以，即使只有一行language: LANG，很多项目也可以build。</p>
+<p>另外，如果多次提交同时push，默认只在最新提交执行一次build；在git commit中如果包含[skip ci]或[ci skip]，该提交就不会触发一次build。</p>
+<h3 id="README-md"><a href="#README-md" class="headerlink" title="README.md"></a>README.md</h3><p><img src="/2018/03/15/github和travis/1.jpg" alt="build status"></p>
+<p>在Travis网站上，点击上面那样的Status图标，可以在弹出界面中得到该项目的状态图标链接。<br>选择Markdown版本的连接，放到repository的README.md中，就可以在GitHub页面得到编译状态的展示了。</p>
+<p>这个链接通常是这种形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[![Build Status](https://travis-ci.org/YOUR/PROJECT.svg?branch=master)](https://travis-ci.org/YOUR/PROJECT)</span><br></pre></td></tr></table></figure></p>
+<p>上次编译是成功还是失败，从此一目了然。有了这个“勋章”的开源项目，看上去瞬间高大上了。</p>
+<p>参考资料:<br><a href="http://blog.csdn.net/xiaoyangsavvy/article/details/73775985" target="_blank" rel="noopener">http://blog.csdn.net/xiaoyangsavvy/article/details/73775985</a><br><a href="https://www.jianshu.com/p/c80b37f775a0" target="_blank" rel="noopener">https://www.jianshu.com/p/c80b37f775a0</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/单元测试框架unittest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/14/单元测试框架unittest/" itemprop="url">单元测试框架unittest</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T10:40:07+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="unittest核心工作原理"><a href="#unittest核心工作原理" class="headerlink" title="unittest核心工作原理"></a>unittest核心工作原理</h3><p><img src="/2018/03/14/单元测试框架unittest/1.jpg" alt="总览"></p>
+<p>-</p>
+<p>参考资料: <a href="https://huilansame.github.io/huilansame.github.io/category/" target="_blank" rel="noopener">https://huilansame.github.io/huilansame.github.io/category/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/python练级第五天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1625,131 +2066,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/hello/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/26/hello/" itemprop="url">hello</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-26T11:52:33+08:00">
-                2018-01-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>第一篇test</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1799,7 +2120,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
