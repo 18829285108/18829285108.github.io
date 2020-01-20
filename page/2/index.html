@@ -249,492 +249,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/04/java是怎么运行起来的/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/04/java是怎么运行起来的/" itemprop="url">java是怎么运行起来的</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-04T14:46:25+08:00">
-                2018-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="java初学习"><a href="#java初学习" class="headerlink" title="java初学习"></a>java初学习</h2><h2 id="jvm-是什么"><a href="#jvm-是什么" class="headerlink" title="jvm 是什么"></a>jvm 是什么</h2><h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><ol>
-<li>Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。<br>一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。<br>而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。<br>Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使得Java语言编译程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。<br><font color="#dd0000">Java虚拟机在执行字节码时，把字节码解释成具体平台上的机器指令执行。这就是Java的能够“一次编译，到处运行”的原因。</font><br></li>
-<li>Java虚拟机由于字节码定义的限制似乎只能运行于32位地址空间的机器上。但是可以创建一个Java虚拟机，它自动地把字节码转换成64位的形式。<br>从Java虚拟机支持的数据类型可以看出，Java对数据类型的内部格式进行了严格规定，这样使得各种Java虚拟机的实现对数据的解释是相同的，从而保证了Java的与平台无关性和可移植性。</li>
-<li>JVM定义了控制Java代码解释执行和具体实现的五种规格，它们是：JVM指令系统、JVM寄存器、JVM 栈结构、JVM 碎片回收堆、JVM 存储区</li>
-<li>JVM是java的核心和基础，在java编译器和os平台之间的虚拟处理器。它是一种基于下层的操作系统和硬件平台并利用软件方法来实现的抽象的计算机，可以在上面执行java的字节码程序。</li>
-</ol>
-<h3 id="JVM运行原理"><a href="#JVM运行原理" class="headerlink" title="JVM运行原理"></a>JVM运行原理</h3><ol>
-<li><p>JVM运行原理<br>java编译器只需面向JVM，生成JVM能理解的代码或字节码文件。Java源文件经编译器，编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行。<br>JVM执行程序的过程 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I.加载.class文件</span><br><span class="line">II.管理并分配内存</span><br><span class="line">III.执行垃圾收集</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JRE（java运行时环境）包含JVM的java程序的运行环境<br>JVM是Java程序运行的容器,但是他同时也是操作系统的一个进程,因此他也有他自己的运行的生命周期,也有自己的代码和数据空间。<br>JVM在整个jdk中处于最底层,负责与操作系统的交互,用来屏蔽操作系统环境,提供一个完整的Java运行环境,因此也叫虚拟计算机.<br>操作系统装入JVM是通过jdk中Java.exe来完成,通过下面4步来完成JVM环境。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a.创建JVM装载环境和配置</span><br><span class="line">b.装载JVM.dll</span><br><span class="line">c.初始化JVM.dll并挂接到JNIENV(JNI调用接口)实例</span><br><span class="line">d.调用JNIEnv实例装载并处理class类。</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h2><ol>
-<li><p>JDK（Java Development Kit）是整个Java的核心，包括了Java运行环境JRE、Java工具和Java基础类库。<br>Java Runtime Environment（JRE）是运行JAVA程序所必须的环境的集合，包含JVM标准实现及Java核心类库。<br>JVM是Java Virtual Machine（Java虚拟机）的缩写，是整个java实现跨平台的最核心的部分，能够运行以Java语言写作的软件程序。</p>
-</li>
-<li><p>JDK=JRE+JVM+其它，运行Java程序一般都要求用户的电脑安装JRE环境；没有jre，java程序无法运行；而没有java程序，jre就没有用武之地。</p>
-</li>
-<li>JDK中包含JRE，在JDK的安装目录下有一个名为jre的目录，里面有两个文件夹bin和lib，在这里可以认为bin里的就是jvm，lib中则是jvm工作所需要的类库，<br>而jvm和lib和起来就称为jre。</li>
-</ol>
-<h2 id="java程序是怎么运行起来的"><a href="#java程序是怎么运行起来的" class="headerlink" title="java程序是怎么运行起来的"></a>java程序是怎么运行起来的</h2><ol>
-<li>jvm先将java文件编译成class文件<br>class文件结构包括：1.魔数 2.Java版本 3.常量池  4.本类 5.父类 6.接口  7.字段 8 方法 9属性 10识别标志</li>
-<li><p>Java命令执行程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  2.1 java.c 创建执行环境, 先寻找jre路径, java.dll负责</span><br><span class="line">  2.2 加载jvm，执行jvm.dll（windows）, 创建jvm环境</span><br><span class="line">  2.3 设置初始化Java运行参数</span><br><span class="line">  2.4 创建线程初始化jvm并执行Java程序, 我们写的main方法</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JVM如何执行Java程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> a. 加载class文件</span><br><span class="line">b. 验证</span><br><span class="line">c. 为静态变量常量等分配内存初始化值</span><br><span class="line">d. 解析文件</span><br><span class="line">e. 初始化。执行类构造器静态类。代码块的执行</span><br><span class="line">f. 找到main方法执行指令，执行Java程序。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>java程序执行的过程：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Step1:将字节码加入内存；</span><br><span class="line">Step2:对字节码进行合法性检查；</span><br><span class="line">Step3:jvm会为每个字节码文件都生成一个对象(class)；</span><br><span class="line">Step4:执行静态代码块，初始化静态成员等；</span><br><span class="line">Step5:执行入口函数main方法；</span><br><span class="line">注意：实例块和静态块，可以对java对象进行初始化操作，和构造器非常类似</span><br><span class="line">静态块先于main方法执行，实例块先于构造方法执行</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/软件测试6——测试覆盖率/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/软件测试6——测试覆盖率/" itemprop="url">软件测试6——测试覆盖率</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T18:00:55+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="测试覆盖率"><a href="#测试覆盖率" class="headerlink" title="测试覆盖率"></a>测试覆盖率</h1><p>测试覆盖率通常被用来衡量测试的充分性和完整性，从广义的角度来讲，测试覆盖率主要分为两大类，一类是面向项目的需求覆盖率，另一类是更偏向技术的代码覆盖率。</p>
-<h2 id="需求覆盖率"><a href="#需求覆盖率" class="headerlink" title="需求覆盖率"></a>需求覆盖率</h2><ol>
-<li>需求覆盖率是指测试对需求的覆盖程度，通常的做法是将每一条分解后的软件需求和对应的测试建立一对多的映射关系，最终目标是保证测试可以覆盖每个需求，以保证软件产品的质量。</li>
-<li>通常采用 ALM，Doors 和 TestLink 等需求管理工具来建立需求和测试的对应关系，并以此计算测试覆盖率。</li>
-<li>互联网测试项目中很少直接基于需求来衡量测试覆盖率，而是将软件需求转换成测试需求，然后基于测试需求再来设计测试点。</li>
-<li>现在人们口中的测试覆盖率，通常默认指代码覆盖率，而不是需求覆盖率。</li>
-</ol>
-<h2 id="代码覆盖率"><a href="#代码覆盖率" class="headerlink" title="代码覆盖率"></a>代码覆盖率</h2><p>代码覆盖率是指，至少被执行了一次的条目数占整个条目数的百分比。<br>如果“条目数”是语句，对应的就是代码行覆盖率；如果“条目数”是函数，对应的就是函数覆盖率；如果“条目数”是路径，那么对应的就是路径覆盖率。</p>
-<ul>
-<li>行覆盖率又称为语句覆盖率，指已经被执行到的语句占总可执行语句（不包含类似 C++ 的头文件声明、代码注释、空行等等）的百分比。这是最常用也是要求最低的覆盖率指标。</li>
-<li>判定覆盖又称分支覆盖，用以度量程序中每一个判定的分支是否都被测试到了，即代码中每个判断的取真分支和取假分支是否各被覆盖至少各一次。比如，对于 if(a&gt;0 &amp;&amp; b&gt;0)，就要求覆盖“a&gt;0 &amp;&amp; b&gt;0”为 TURE 和 FALSE 各一次。</li>
-<li>条件覆盖是指，判定中的每个条件的可能取值至少满足一次，度量判定中的每个条件的结果 TRUE 和 FALSE 是否都被测试到了。比如，对于 if(a&gt;0 &amp;&amp; b&gt;0)，就要求“a&gt;0”取 TRUE 和 FALSE 各一次，同时要求“b&gt;0”取 TRUE 和 FALSE 各一次。<br>代码覆盖率的价值</li>
-</ul>
-<p>统计代码覆盖率的根本目的是找出潜在的遗漏测试用例，并有针对性的进行补充，同时还可以识别出代码中那些由于需求变更等原因造成的不可达的废弃代码。<br>随着代码覆盖率的提高，付出的代价越来越大， 因为在后期，需要大量的桩代码、Mock 代码和全局变量的配合来控制执行路径。<br>一般，只有单元测试阶段对代码覆盖率有较高的要求。因为从技术实现上讲，单元测试可以最大化地利用打桩技术来提高覆盖率。</p>
-<h3 id="代码覆盖率的局限性"><a href="#代码覆盖率的局限性" class="headerlink" title="代码覆盖率的局限性"></a>代码覆盖率的局限性</h3><ol>
-<li><p>即使设计的测试用例已经达到 100% 的代码覆盖率，软件产品的质量也做不到万无一失。根本原因是代码覆盖率的计算是基于现有代码，并不能发现那些“未考虑某些输入”以及“未处理某些情况”形成的缺陷。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">举个极端的例子，如果一个被测函数里面只有一行代码，只要这个函数被调用过了，那么衡量这一行代码质量的所有覆盖率指标都会是 100%，但是这个函数是否真正实现了应该需要实现的功能呢？</span><br><span class="line">代码覆盖率反映的仅仅是已有代码的哪些逻辑被执行过了，哪些逻辑还没有被执行过。以此为依据补充测试用例，可以去测试那些还没有覆盖到的执行路径。但也是仅此而已，对于那些压根还没有代码实现的部分，基于代码覆盖率的统计指标就无能为力了。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>高的代码覆盖率不一定能保证软件的质量，但是低的代码覆盖率一定不能能保证软件的质量。</p>
-</li>
-</ol>
-<h3 id="JAVA-代码覆盖率工具"><a href="#JAVA-代码覆盖率工具" class="headerlink" title="JAVA 代码覆盖率工具"></a>JAVA 代码覆盖率工具</h3><p>JaCoCo 是一款 Java 代码的主流开源覆盖率工具，可以很方便地嵌入到 Ant、Maven 中，并且和很多主流的持续集成工具以及代码静态检查工具，比如 Jekins 和 Sonar 等，都有很好的集成。</p>
-<p><img src="/2018/07/28/软件测试6——测试覆盖率/jacoco.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如上图为JaCoCo 的整体代码覆盖率统计报告，包括了每个 Java 代码文件的行覆盖率以及分支覆盖率统计，并给出了每个 Java 代码文件的行数、方法数和类数等具体信息。</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2018/07/28/软件测试6——测试覆盖率/jacoco2.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如上图为每个 Java 文件内部详细的代码覆盖率情况，绿色的行表示已经被覆盖，红色的行表示尚未被覆盖，黄色的行表示部分覆盖；左侧绿色菱形块表示该分支已经被完全覆盖、黄色菱形块表示该分支仅被部分覆盖。</span><br></pre></td></tr></table></figure></p>
-<h3 id="代码覆盖率工具的实现原理"><a href="#代码覆盖率工具的实现原理" class="headerlink" title="代码覆盖率工具的实现原理"></a>代码覆盖率工具的实现原理</h3><ol>
-<li>实现代码覆盖率的统计，最基本的方法就是注入（Instrumentation）。注入就是在被测代码中自动插入用于覆盖率统计的探针（Probe）代码，并保证插入的探针代码不会给原代码带来任何影响。</li>
-<li>对于 Java 代码来讲，根据注入目标的不同，可以分为源代码（Source Code）注入和字节码（Byte Code）注入两大类。<br>基于 JVM 本身特性以及执行效率的原因，目前主流的工具基本都是使用字节码注入，注入的具体实现采用 ASM 技术。<br>ASM 是一个 Java 字节码操纵框架，能被用来动态生成类或者增强既有类的功能，可以直接产生 class 文件，也可以在类被加载入 JVM 之前动态改变类行为。</li>
-<li>根据注入发生的时间点，字节码注入又可以分为两大模式：On-The-Fly 注入模式和 Offline 注入模式。</li>
-</ol>
-<ul>
-<li><p>On-The-Fly 注入模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">On-The-Fly 模式的特点在于无需修改源代码，也无需提前进行字节码插桩。它适用于支持 Java Agent 的运行环境。</span><br><span class="line">优点是，可以在系统不停机的情况下，实时收集代码覆盖率信息。缺点是运行环境必须允许使用 Java Agent。</span><br><span class="line"></span><br><span class="line">实现 On-The-Fly 模式，主要有两种技术方案：</span><br><span class="line">开发自定义的类装载器（Class Loader）实现类装载策略，每次类加载前，需要在 class 文件中插入探针，早期的 Emma 就是使用这种方案实现的探针插入；</span><br><span class="line">借助 Java Agent，利用执行在 main() 方法之前的拦截器方法 premain() 来插入探针，实际使用过程中需要在 JVM 的启动参数中添加“-javaagent”并指定用于实时字节码注入的代理程序，</span><br><span class="line">这样代理程序在装载每个 class 文件前，先判断是否已经插入了探针，如果没有则需要将探针插入 class 文件中，目前主流的 JaCoCo 就是使用了这个方式。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Offline 注入模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Offline 模式也无需修改源代码，但是需要在测试开始之前先对文件进行插桩，并事先生成插过桩的 class 文件。它适用于不支持 Java Agent 的运行环境，以及无法使用自定义类装载器的场景。</span><br><span class="line">优点是，JVM 启动时不再需要使用 Java Agent 额外开启代理，缺点是无法实时获取代码覆盖率信息，只能在系统停机时下获取。</span><br><span class="line">Offline 模式根据 是生成新的 class 文件还是直接修改原 class 文件，又可以分为 Replace 和 Inject 两种不同模式。</span><br><span class="line"></span><br><span class="line">和 On-The-Fly 注入模式不同，Replace 和 Inject 的实现是，在测试运行前就已经通过 ASM 将探针插入了 class 文件，而在测试的运行过程中不需要任何额外的处理。Cobertura 就是使用 Offline 模式的典型代表。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>测试覆盖率通常被用来衡量测试的充分性和完整性，包括面向项目的需求覆盖率和更偏向技术的代码覆盖率。<br>但是，高的代码覆盖率不一定能保证软件的质量，因为代码覆盖率是基于现有代码，无法发现那些“未考虑某些输入”以及“未处理某些情况”形成的缺陷。</p>
-<p>在实际工作中，是否还接触过 C/C++，JavaScript 等语言的代码覆盖率工具，比如 GCC Coverage、JSCoverage 和 Istanbul 等？</p>
-<hr>
-<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10759" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10759</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/软件测试5——自动化测试技术/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/21/软件测试5——自动化测试技术/" itemprop="url">软件测试5——自动化测试技术</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T21:02:37+08:00">
-                2018-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><p>比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作；<br>现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。</p>
-<p>不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试</p>
-<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>单元测试本身就是自动化的，它根据软件详细设计采用等价类划分和边界值分析方法设计测试用例，在测试代码实现后再以自动化的方式统一执行。<br>但从广义讲，单元测试阶段的“自动化”内涵不仅仅指测试用例执行的自动化，还应该包含以下五个方面：</p>
-<ol>
-<li><p>用例框架代码生成的自动化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有些框架代码应该由自动化工具生成，而不是由开发者手工完成。</span><br><span class="line">TestNG 框架代码应该由自动化工具生成</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部分测试输入数据的自动化生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">某个被测函数的原型是 void fun（int* p, short b），那么测试数据自动生成技术就会为输入参数 int* p 自动生成“空”和“非空”的两个指针 p，</span><br><span class="line">然后分别执行函数 void fun（int* p, short b），并观察函数的执行情况。</span><br><span class="line">如果函数内部没有对空指针进行特殊处理，那么函数 fun 的调用必定会抛出异常，发现函数的设计缺陷。</span><br><span class="line">同样地，对于输入参数 short b 会自动生成超出 short 范围的b，测试函数 fun 的行为。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自动桩代码的生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">自动桩代码的生成是指自动化工具可以对被测试代码进行扫描分析，自动为被测函数内部调用的其他函数生成可编程的桩代码，并提供基于测试用例的桩代码管理机制。</span><br><span class="line">此时，单元测试开发者只需重点关注桩代码内的具体逻辑实现，以及桩代码的返回值。</span><br><span class="line">必要的时候，自动化工具还需要实现 “抽桩”，以适应后续的代码级集成测试的需求。</span><br><span class="line">“抽桩”指 在单元测试阶段，假如函数 A 内部调用的函数 B 是桩代码，那么在代码级集成测试阶段，我们希望函数 A 不再调用假的函数 B，而是调用真实的函数 B，这个用真实函数 B 代替原本桩代码函数 B 的操作，就称为“抽桩”。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>被测代码的自动化静态分析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">静态分析主要指代码的静态扫描，识别出违反编码规则或编码风格的代码行。</span><br><span class="line">通常这部分工作是结合项目具体的编码规则和编码风格，由自动化工具通过内建规则和用户自定义规则自动化完成的。</span><br><span class="line">目前比较常用的代码静态分析工具有 Sonar 和 Coverity 等。</span><br><span class="line">严格意义上讲，静态分析不属于单元测试的范畴，但这部分工作一般是在单元测试阶段通过自动化工具完成的。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试覆盖率的自动统计与分析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单元测试用例执行结束后，自动化工具可以自动统计各种测试覆盖率，包括代码行覆盖率、分支覆盖率、MC/DC 覆盖率等。</span><br><span class="line">这些自动统计的指标，可以衡量单元测试用例集合的充分性和完备性，并可以提供适当增补测试用例以提高测试覆盖率的依据。</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="代码级集成测试的自动化技术"><a href="#代码级集成测试的自动化技术" class="headerlink" title="代码级集成测试的自动化技术"></a>代码级集成测试的自动化技术</h3><p>代码级集成测试是指将已经开发完成的软件模块放在一起测试。关注点更多的是软件模块之间的接口调用和数据传递。</p>
-<ol>
-<li>代码级集成测试，被测函数内部调用的其他函数必须是真实的，不允许使用桩代码代替，而单元测试中允许使用桩代码来模拟内部调用的其他函数。</li>
-<li>代码级集成测试对测试框架的要求非常高，这个框架除了可以顺利装载自己的软件模块外，还必须能装载其他相互依赖的模块，做到被测软件模块可运行（Runnable）。</li>
-<li>代码级集成测试主要应用在早期非互联网的传统软件企业，那时候的软件以“单体”应用居多，一个软件内部包含大量的功能，每一个软件功能都是通过不同的内部模块来实现的，这些内部模块在做集成的时候，就需要做代码级集成测试。</li>
-</ol>
-<h3 id="Web-Service-测试的自动化技术"><a href="#Web-Service-测试的自动化技术" class="headerlink" title="Web Service 测试的自动化技术"></a>Web Service 测试的自动化技术</h3><p>Web Service 测试，主要是指 SOAP API 和 REST API 这两类 API 测试。</p>
-<h4 id="对于基于代码的-API-测试用例，通常包含三大步骤："><a href="#对于基于代码的-API-测试用例，通常包含三大步骤：" class="headerlink" title="对于基于代码的 API 测试用例，通常包含三大步骤："></a>对于基于代码的 API 测试用例，通常包含三大步骤：</h4><ul>
-<li>准备 API 调用时需要的测试数据；</li>
-<li>准备 API 的调用参数并发起 API 的调用；</li>
-<li>验证 API 调用的返回结果。</li>
-</ul>
-<h4 id="流行的API-自动测试框架是-REST-Assured"><a href="#流行的API-自动测试框架是-REST-Assured" class="headerlink" title="流行的API 自动测试框架是 REST Assured"></a>流行的API 自动测试框架是 REST Assured</h4><p>  它可以方便地发起 Restful API 调用并验证返回结果。</p>
-<h4 id="Web-Service-测试“自动化”的内涵不仅仅包括-API-测试用例执行的自动化，还包括以下四个方面："><a href="#Web-Service-测试“自动化”的内涵不仅仅包括-API-测试用例执行的自动化，还包括以下四个方面：" class="headerlink" title="Web Service 测试“自动化”的内涵不仅仅包括 API 测试用例执行的自动化，还包括以下四个方面："></a>Web Service 测试“自动化”的内涵不仅仅包括 API 测试用例执行的自动化，还包括以下四个方面：</h4><ul>
-<li><p>测试脚手架代码的自动化生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">测试脚手架代码的自动生成技术，它生成的测试脚手架代码，通常包含了被测试 API 的调用、测试数据与脚本的分离，以及 Response 验证的空实现。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部分测试输入数据的自动生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">API 测试对应的输入数据是 API 的参数以及 API 调用的 Payload。数据生成的原则同样遵循边界值原则。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Response 验证的自动化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于 API 调用返回结果的验证，通常关注的点是返回状态码（status code）、Scheme 结构以及具体的字段值。</span><br><span class="line">Response 验证自动化的核心思想是自动比较两次相同 API 调用的返回结果，并自动识别出有差异的字段值，比较过程可以通过规则配置去掉诸如时间戳、会话 ID（Session ID）等动态值。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>基于 SoapUI 或者 Postman 的自动化脚本生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开发一个自动化代码转换生成工具。这个工具的输入是 SoapUI 或者 Postman 的测试用例元数据（即测试用例的 JSON 元文件），输出是符合 API 测试框架规范的基于代码实现的测试用例。</span><br><span class="line">这样一来，原本的测试用例积累可以直接转换成在 CI/CD 上可以直接接入的自动化测试用例。</span><br><span class="line">对于新的测试用例，还可以继续用 SoapUI 或者 Postman 做初步的测试验证，初步验证没有问题后，直接转换成符合 API 测试框架规范的测试用例。对于复杂的测试用例，也可以直接基于代码来实现，而且灵活性会更好。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="GUI-测试的自动化技术"><a href="#GUI-测试的自动化技术" class="headerlink" title="GUI 测试的自动化技术"></a>GUI 测试的自动化技术</h3><ol>
-<li><p>GUI 测试核心思想是，基于页面元素识别技术，对页面元素进行自动化操作，以模拟实际终端用户的行为并验证软件功能的正确性。</p>
-</li>
-<li><p>目前，GUI 自动化测试主要分为两大方向，传统 Web 浏览器和移动端原生应用（Native App）的 GUI 自动化。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于传统 Web 浏览器的 GUI 自动化测试，业内主流的开源方案采用 Selenium，商业方案采用 Micro Focus 的 UFT（前身是 HP 的 QTP）；</span><br><span class="line">对于移动端原生应用，通常采用主流的 Appium，它对 iOS 环境集成了 XCUITest，对 Android 环境集成了 UIAutomator 和 Espresso。</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/10275" target="_blank" rel="noopener">https://time.geekbang.org/column/article/10275</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/软件测试4——是否需要自动化测试？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1776,11 +1290,454 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/python练级第六天-python常犯的错误/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/27/python练级第六天-python常犯的错误/" itemprop="url">python练级第六天-python常犯的错误</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T10:14:13+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="open文件"><a href="#open文件" class="headerlink" title="open文件"></a>open文件</h3><p> <img src="/2018/03/27/python练级第六天-python常犯的错误/1.png" alt="读写文件"></p>
+<p>参考资料: <a href="http://codingpy.com/article/top-10-mistakes-that-python-programmers-make/" target="_blank" rel="noopener">http://codingpy.com/article/top-10-mistakes-that-python-programmers-make/</a></p>
+<h3 id="glob-glob和-glob-iglob-的区别"><a href="#glob-glob和-glob-iglob-的区别" class="headerlink" title="glob.glob和 glob.iglob 的区别"></a>glob.glob和 glob.iglob 的区别</h3><p>前者返回路径下符合条件的文件。后者返回generator对象，可以遍历取到符合条件的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = glob.glob(&quot;*.pdf&quot;)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[&apos;full-speed-python.pdf&apos;, &apos;计算机介绍与Linux常用命令.pdf&apos;]</span><br><span class="line">&gt;&gt;&gt; b = glob.iglob(&quot;*.pdf&quot;)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">&lt;generator object _iglob at 0x10ea216d0&gt;</span><br><span class="line">&gt;&gt;&gt; for c in b:</span><br><span class="line">...     print(c)</span><br><span class="line">...</span><br><span class="line">full-speed-python.pdf</span><br><span class="line">计算机介绍与Linux常用命令.pdf</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/22/uirecorder前端自动化测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/22/uirecorder前端自动化测试/" itemprop="url">uirecorder前端自动化测试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T10:49:44+08:00">
+                2018-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="UIRecorder安装与使用-mac下"><a href="#UIRecorder安装与使用-mac下" class="headerlink" title="UIRecorder安装与使用(mac下)"></a>UIRecorder安装与使用(mac下)</h2><h3 id="安装UIRecorder与录制"><a href="#安装UIRecorder与录制" class="headerlink" title="安装UIRecorder与录制"></a>安装UIRecorder与录制</h3><ol>
+<li>将项目clone到本地，首先安装好NodeJs、npm、Chrome浏览器</li>
+</ol>
+<ul>
+<li>主目录下安装uirecorder 和 mocha<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install uirecorder mocha -g</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>PC录制</li>
+</ol>
+<ul>
+<li>主目录下新建文件夹，存放录制的东西</li>
+<li><p>初始化uirecorder配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uirecorder init</span><br></pre></td></tr></table></figure>
+<p>  一路回车，可以选择测试的浏览器列表等</p>
+</li>
+<li><p>录制文件，可以修改保存样例文档的名字，会有两个浏览器界面，一个操作，一个展示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uirecorder sample/test.spec.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Start WebDriver Server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install selenium-standalone -g 安装</span><br><span class="line">selenium-standalone install</span><br><span class="line">selenium-standalone start</span><br><span class="line">npm run server 运行服务器，服务器需要一直跑在前端</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行测试用例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source run.sh 运行所有测试用例或者指定文件夹 source run.sh sample/test.spec.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取回放</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mocha sample/test.spec.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取运行报告(reports &amp; screenshots)。在新建文件的report文件夹下面</p>
+</li>
+</ul>
+<h3 id="详细操作步骤"><a href="#详细操作步骤" class="headerlink" title="详细操作步骤"></a>详细操作步骤</h3><ol>
+<li>有时间再填写，参考资料里也有别人写的比较不错的。</li>
+</ol>
+<p>参考资料：<br><a href="https://github.com/alibaba/uirecorder" target="_blank" rel="noopener">https://github.com/alibaba/uirecorder</a> 官网<br><a href="https://www.jianshu.com/p/e133118c6ea3" target="_blank" rel="noopener">https://www.jianshu.com/p/e133118c6ea3</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/github和travis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/15/github和travis/" itemprop="url">github和travis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-15T11:09:36+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="github修改别人的项目并提交到项目上"><a href="#github修改别人的项目并提交到项目上" class="headerlink" title="github修改别人的项目并提交到项目上"></a>github修改别人的项目并提交到项目上</h2><h3 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h3><ol>
+<li>先fork下别人的代码，于是你的github上就出现了同名的项目，这个项目就属于你自己了。</li>
+<li>你把这个自己的项目git clone到本地，修修改改，然后push到你自己的项目里。</li>
+<li>在github上你的项目页面有个按钮，叫Pull request，就会把你的修改发到对方的项目里，由原项目主人决定是否接受你的修改。</li>
+</ol>
+<h3 id="自己和原作者同时修改了项目代码"><a href="#自己和原作者同时修改了项目代码" class="headerlink" title="自己和原作者同时修改了项目代码"></a>自己和原作者同时修改了项目代码</h3><ol>
+<li>在本地操作git remote add [sort name] [your url]，意思就是添加第二个远程仓库地址，这个仓库的“昵称”就是你刚指定的[sort name]，</li>
+<li>之后push文件，就通过指定这个［sort name］来push到这个你自己的仓库里</li>
+<li>等你觉得想要把你改的发给原项目同步，就在你的项目上点Pull request按钮.</li>
+<li>如果是，原项目发生了改动，你要想同步到本地，就直接从git fetch origin 从原项目的地址同步代码，然后再merge就好了</li>
+<li>当然，你可以通过新建分支的方式往自己的项目上push，这样同步的时候直接fetch就行了</li>
+</ol>
+<h2 id="travis"><a href="#travis" class="headerlink" title="travis"></a>travis</h2><h3 id="travis简介"><a href="#travis简介" class="headerlink" title="travis简介"></a>travis简介</h3><p>Travis是一个为GitHub服务的CI，支持多数主流语言。</p>
+<p>CI即持续集成系统。对个人而言，就是让你的代码在提交到远程(这里是GitHub)后，立即自动编译，并且在失败后可以自动给你发邮件的东西。当然，除了编译，还能做自动化测试、自动部署等。</p>
+<p>Travis有两个网址：</p>
+<pre><code>https://travis-ci.org/
+https://travis-ci.com/
+</code></pre><p>org的那个是非盈利的，为GitHub上public的repository提供免费服务；<br>com的那个是盈利的，可以对private的提供付费服务。com前100次build是免费的，此后按月收费。</p>
+<p>二者的账户是相互独立的，但都可以用GitHub账户注册、登录。</p>
+<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><ol>
+<li>在travis-ci.org上以GitHub账户注册、登录。</li>
+<li>在主页点加号【Add new repository】，添加需要CI的那个库。</li>
+<li>在那个库的根目录下，添加一个.travis.yml文件。</li>
+</ol>
+<p>流程很简明，但绝大多数复杂度都集中在这个.travis.yml文件。这是一个YAML文件，主要用来做CI的配置。Travis会按照这个文件配置的方式来运行。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>可以把Travis看做一个远程服务器。它会监控你添加的GitHub库。如果有新的提交或Pull Request，就会触发一次在线编译。<br>这台服务器每次都从近乎裸机状态，把你的库clone过来，然后执行其中的.travis.yml。</p>
+<p>除了首行的language指定语言类型以外，其它可选的有10个步骤：</p>
+<ol>
+<li>Install apt addons</li>
+<li>before_install</li>
+<li>install</li>
+<li>before_script</li>
+<li>script</li>
+<li>after_success or after_failure</li>
+<li>OPTIONAL before_deploy</li>
+<li>OPTIONAL deploy</li>
+<li>OPTIONAL after_deploy</li>
+<li>after_script</li>
+</ol>
+<p>最重要的步骤就是第5步的script，这步通常是测试、编译、打包。<br>前面的步骤都是为了成功执行第5步而执行的裸机环境配置，后面的步骤都是在执行第5步后而做出的应对。<br>所有这些步骤，在language设置后基本都有默认值。所以，即使只有一行language: LANG，很多项目也可以build。</p>
+<p>另外，如果多次提交同时push，默认只在最新提交执行一次build；在git commit中如果包含[skip ci]或[ci skip]，该提交就不会触发一次build。</p>
+<h3 id="README-md"><a href="#README-md" class="headerlink" title="README.md"></a>README.md</h3><p><img src="/2018/03/15/github和travis/1.jpg" alt="build status"></p>
+<p>在Travis网站上，点击上面那样的Status图标，可以在弹出界面中得到该项目的状态图标链接。<br>选择Markdown版本的连接，放到repository的README.md中，就可以在GitHub页面得到编译状态的展示了。</p>
+<p>这个链接通常是这种形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[![Build Status](https://travis-ci.org/YOUR/PROJECT.svg?branch=master)](https://travis-ci.org/YOUR/PROJECT)</span><br></pre></td></tr></table></figure></p>
+<p>上次编译是成功还是失败，从此一目了然。有了这个“勋章”的开源项目，看上去瞬间高大上了。</p>
+<p>参考资料:<br><a href="http://blog.csdn.net/xiaoyangsavvy/article/details/73775985" target="_blank" rel="noopener">http://blog.csdn.net/xiaoyangsavvy/article/details/73775985</a><br><a href="https://www.jianshu.com/p/c80b37f775a0" target="_blank" rel="noopener">https://www.jianshu.com/p/c80b37f775a0</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1830,7 +1787,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
