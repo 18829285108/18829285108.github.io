@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kingvirre">
 <meta property="og:description" content="开发环境搭建 下载安装 jdk，地址: https://res001.geekbang.org/tools/jdk-11.0.2_osx-x64_bin.dmg 检测 jdk 是否安装成功，javac -version, 或者 java -version 编写程序。在文本文档编写好后保存为HelloWorld.java，执行javac HelloWorld.java对java文件进行编译后，会生成">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-19T14:41:05.180Z">
+<meta property="og:updated_time" content="2020-02-02T11:49:15.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java-HelloWorld">
 <meta name="twitter:description" content="开发环境搭建 下载安装 jdk，地址: https://res001.geekbang.org/tools/jdk-11.0.2_osx-x64_bin.dmg 检测 jdk 是否安装成功，javac -version, 或者 java -version 编写程序。在文本文档编写好后保存为HelloWorld.java，执行javac HelloWorld.java对java文件进行编译后，会生成">
@@ -348,6 +348,23 @@
 <li>布尔类型——boolean，占用1个byte，true和false</li>
 <li>char类型，占用2个byte，可以存储汉字。c语言char占用一个byte。值域是所有字符</li>
 </ol>
+<h2 id="random类和math-random-方法区别"><a href="#random类和math-random-方法区别" class="headerlink" title="random类和math.random()方法区别"></a>random类和math.random()方法区别</h2><ol>
+<li><p>Math.random()方法<br>Math.random()默认产生大于等于0.0且小于1.0之间的随机double型随机数<br>即：0.0&lt;=Math.random()&lt;1.0<br>但是稍加处理就可以产生任意随机数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class MathRandom &#123;</span><br><span class="line"></span><br><span class="line">    public static int getRandomInt(int num1,int num2)</span><br><span class="line">    &#123;</span><br><span class="line">        int n=num1+(int)(Math.random()*(num2-num1));</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static char getRandomChar(char ch1,char ch2)</span><br><span class="line">    &#123;</span><br><span class="line">        char ch=(char) (ch1+ Math.random()*(ch2-ch1+1));</span><br><span class="line">        return ch;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String args[])</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(MathRandom.getRandomInt(1,7)); //产生的随机数包括1，不包括7</span><br><span class="line">        System.out.println(MathRandom.getRandomChar(&apos;a&apos;,&apos;b&apos;));//a和b都包括</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">运行结果：</span><br><span class="line">5</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Random类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Random;</span><br><span class="line"></span><br><span class="line">public class randomTest &#123;</span><br><span class="line">    public static void main(String args[])</span><br><span class="line">    &#123;</span><br><span class="line">        Random random=new Random();//以系统当前时间作为随机数生成的种子</span><br><span class="line">        System.out.println(random.nextInt(10));//返回一个大于0且小于10的整数</span><br><span class="line">        System.out.println(random.nextFloat()); //返回一个随机浮点型</span><br><span class="line">        System.out.println(random.nextBoolean());  //返回一个随机布尔型值</span><br><span class="line">        System.out.println(random.nextDouble());  //返回一个随机双精度型</span><br><span class="line">        System.out.println(random.nextLong());  //返回一个随机长整形</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="输入流"><a href="#输入流" class="headerlink" title="输入流"></a>输入流</h2><ol>
+<li>标准输入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Scanner in = new Scanner(System.in);</span><br><span class="line">in.nextLine(); 可以从命令行读取一行字符串</span><br><span class="line">in.nextInt();可以从命令行读取一个正整数</span><br><span class="line"></span><br><span class="line">readInt()从键盘读入数据</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ol>
+<li>数组特点<br>相同类型的变量集合、数据包含的元素个数最多是int的最大值、元素都有固定的顺序、每个元素都有固定的编号(索引index)<br>可以像操作变量一样读写数组中的任何一个元素</li>
+<li>数组是一块地址连续的内存，数组的名，就是这个块连续内存的第一个内存的地址。<br>数组变量的地址是数组第一个元素的地址，索引数组索引是从0开始的</li>
+<li>对于非基本类型的变量，都要通过两级跳的方式来访问。基本类型变量，一级跳就可以</li>
+</ol>
 
       
     </div>
@@ -411,6 +428,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/03/java-类和对象/" rel="prev" title="java-类和对象">
+                java-类和对象 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -491,7 +512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -537,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境搭建"><span class="nav-number">1.</span> <span class="nav-text">开发环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装intelliJ-IDEA"><span class="nav-number">2.</span> <span class="nav-text">安装intelliJ IDEA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">3.</span> <span class="nav-text">基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java基本数据类型"><span class="nav-number">4.</span> <span class="nav-text">java基本数据类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境搭建"><span class="nav-number">1.</span> <span class="nav-text">开发环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装intelliJ-IDEA"><span class="nav-number">2.</span> <span class="nav-text">安装intelliJ IDEA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">3.</span> <span class="nav-text">基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java基本数据类型"><span class="nav-number">4.</span> <span class="nav-text">java基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#random类和math-random-方法区别"><span class="nav-number">5.</span> <span class="nav-text">random类和math.random()方法区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入流"><span class="nav-number">6.</span> <span class="nav-text">输入流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">7.</span> <span class="nav-text">数组</span></a></li></ol></div>
             
 
           </div>
