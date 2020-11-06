@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="自动化测试比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作；现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。 不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试 单元">
+<meta name="description" content="自动化测试比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作； 现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。 不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试 单">
 <meta name="keywords" content="软件测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件测试5——自动化测试技术">
 <meta property="og:url" content="http://yoursite.com/2018/07/21/软件测试5——自动化测试技术/index.html">
 <meta property="og:site_name" content="Kingvirre">
-<meta property="og:description" content="自动化测试比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作；现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。 不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试 单元">
+<meta property="og:description" content="自动化测试比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作； 现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。 不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试 单">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-03-23T09:56:55.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件测试5——自动化测试技术">
-<meta name="twitter:description" content="自动化测试比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作；现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。 不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试 单元">
+<meta name="twitter:description" content="自动化测试比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作； 现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。 不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试 单">
 
 
 
@@ -320,9 +320,11 @@
       
 
       
-        <h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><p>比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作；<br>现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。</p>
+        <h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><p>比如：GUI 自动化测试：早年的 C/S 架构，通常就是用自动化测试脚本打开被测应用，然后在界面上以自动化的方式执行一系列的操作；
+现今的 Web 站点测试，也是用自动化测试脚本打开浏览器，然后输入要访问的网址，之后用自动化脚本识别定位页面元素，并进行相应的操作。</p>
 <p>不同的软件开发阶段涉及的自动化测试技术为主线，包括单元测试、代码级集成测试、Web Service 测试和 GUI 测试</p>
-<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>单元测试本身就是自动化的，它根据软件详细设计采用等价类划分和边界值分析方法设计测试用例，在测试代码实现后再以自动化的方式统一执行。<br>但从广义讲，单元测试阶段的“自动化”内涵不仅仅指测试用例执行的自动化，还应该包含以下五个方面：</p>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>单元测试本身就是自动化的，它根据软件详细设计采用等价类划分和边界值分析方法设计测试用例，在测试代码实现后再以自动化的方式统一执行。
+但从广义讲，单元测试阶段的“自动化”内涵不仅仅指测试用例执行的自动化，还应该包含以下五个方面：</p>
 <ol>
 <li><p>用例框架代码生成的自动化</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有些框架代码应该由自动化工具生成，而不是由开发者手工完成。</span><br><span class="line">TestNG 框架代码应该由自动化工具生成</span><br></pre></td></tr></table></figure>

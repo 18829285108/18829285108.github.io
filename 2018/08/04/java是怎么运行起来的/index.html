@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="java初学习jvm 是什么JVM Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使得Ja">
+<meta name="description" content="java初学习jvm 是什么JVM Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。 一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。 而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。 Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java是怎么运行起来的">
 <meta property="og:url" content="http://yoursite.com/2018/08/04/java是怎么运行起来的/index.html">
 <meta property="og:site_name" content="Kingvirre">
-<meta property="og:description" content="java初学习jvm 是什么JVM Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使得Ja">
+<meta property="og:description" content="java初学习jvm 是什么JVM Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。 一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。 而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。 Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-04-24T09:08:17.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java是怎么运行起来的">
-<meta name="twitter:description" content="java初学习jvm 是什么JVM Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使得Ja">
+<meta name="twitter:description" content="java初学习jvm 是什么JVM Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。 一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。 而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。 Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使">
 
 
 
@@ -321,28 +321,42 @@
 
       
         <h2 id="java初学习"><a href="#java初学习" class="headerlink" title="java初学习"></a>java初学习</h2><h2 id="jvm-是什么"><a href="#jvm-是什么" class="headerlink" title="jvm 是什么"></a>jvm 是什么</h2><h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><ol>
-<li>Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。<br>一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。<br>而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。<br>Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使得Java语言编译程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。<br><font color="#dd0000">Java虚拟机在执行字节码时，把字节码解释成具体平台上的机器指令执行。这就是Java的能够“一次编译，到处运行”的原因。</font><br></li>
-<li>Java虚拟机由于字节码定义的限制似乎只能运行于32位地址空间的机器上。但是可以创建一个Java虚拟机，它自动地把字节码转换成64位的形式。<br>从Java虚拟机支持的数据类型可以看出，Java对数据类型的内部格式进行了严格规定，这样使得各种Java虚拟机的实现对数据的解释是相同的，从而保证了Java的与平台无关性和可移植性。</li>
+<li>Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。
+一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。
+而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。
+Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使得Java语言编译程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。
+<font color="#dd0000">Java虚拟机在执行字节码时，把字节码解释成具体平台上的机器指令执行。这就是Java的能够“一次编译，到处运行”的原因。</font><br></li>
+<li>Java虚拟机由于字节码定义的限制似乎只能运行于32位地址空间的机器上。但是可以创建一个Java虚拟机，它自动地把字节码转换成64位的形式。
+从Java虚拟机支持的数据类型可以看出，Java对数据类型的内部格式进行了严格规定，这样使得各种Java虚拟机的实现对数据的解释是相同的，从而保证了Java的与平台无关性和可移植性。</li>
 <li>JVM定义了控制Java代码解释执行和具体实现的五种规格，它们是：JVM指令系统、JVM寄存器、JVM 栈结构、JVM 碎片回收堆、JVM 存储区</li>
 <li>JVM是java的核心和基础，在java编译器和os平台之间的虚拟处理器。它是一种基于下层的操作系统和硬件平台并利用软件方法来实现的抽象的计算机，可以在上面执行java的字节码程序。</li>
 </ol>
 <h3 id="JVM运行原理"><a href="#JVM运行原理" class="headerlink" title="JVM运行原理"></a>JVM运行原理</h3><ol>
-<li><p>JVM运行原理<br>java编译器只需面向JVM，生成JVM能理解的代码或字节码文件。Java源文件经编译器，编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行。<br>JVM执行程序的过程 ：</p>
+<li><p>JVM运行原理
+java编译器只需面向JVM，生成JVM能理解的代码或字节码文件。Java源文件经编译器，编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行。
+JVM执行程序的过程 ：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I.加载.class文件</span><br><span class="line">II.管理并分配内存</span><br><span class="line">III.执行垃圾收集</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>JRE（java运行时环境）包含JVM的java程序的运行环境<br>JVM是Java程序运行的容器,但是他同时也是操作系统的一个进程,因此他也有他自己的运行的生命周期,也有自己的代码和数据空间。<br>JVM在整个jdk中处于最底层,负责与操作系统的交互,用来屏蔽操作系统环境,提供一个完整的Java运行环境,因此也叫虚拟计算机.<br>操作系统装入JVM是通过jdk中Java.exe来完成,通过下面4步来完成JVM环境。</p>
+<li><p>JRE（java运行时环境）包含JVM的java程序的运行环境
+JVM是Java程序运行的容器,但是他同时也是操作系统的一个进程,因此他也有他自己的运行的生命周期,也有自己的代码和数据空间。
+JVM在整个jdk中处于最底层,负责与操作系统的交互,用来屏蔽操作系统环境,提供一个完整的Java运行环境,因此也叫虚拟计算机.
+操作系统装入JVM是通过jdk中Java.exe来完成,通过下面4步来完成JVM环境。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a.创建JVM装载环境和配置</span><br><span class="line">b.装载JVM.dll</span><br><span class="line">c.初始化JVM.dll并挂接到JNIENV(JNI调用接口)实例</span><br><span class="line">d.调用JNIEnv实例装载并处理class类。</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h2><ol>
-<li><p>JDK（Java Development Kit）是整个Java的核心，包括了Java运行环境JRE、Java工具和Java基础类库。<br>Java Runtime Environment（JRE）是运行JAVA程序所必须的环境的集合，包含JVM标准实现及Java核心类库。<br>JVM是Java Virtual Machine（Java虚拟机）的缩写，是整个java实现跨平台的最核心的部分，能够运行以Java语言写作的软件程序。</p>
+<li><p>JDK（Java Development Kit）是整个Java的核心，包括了Java运行环境JRE、Java工具和Java基础类库。
+Java Runtime Environment（JRE）是运行JAVA程序所必须的环境的集合，包含JVM标准实现及Java核心类库。
+JVM是Java Virtual Machine（Java虚拟机）的缩写，是整个java实现跨平台的最核心的部分，能够运行以Java语言写作的软件程序。</p>
 </li>
 <li><p>JDK=JRE+JVM+其它，运行Java程序一般都要求用户的电脑安装JRE环境；没有jre，java程序无法运行；而没有java程序，jre就没有用武之地。</p>
 </li>
-<li>JDK中包含JRE，在JDK的安装目录下有一个名为jre的目录，里面有两个文件夹bin和lib，在这里可以认为bin里的就是jvm，lib中则是jvm工作所需要的类库，<br>而jvm和lib和起来就称为jre。</li>
+<li>JDK中包含JRE，在JDK的安装目录下有一个名为jre的目录，里面有两个文件夹bin和lib，在这里可以认为bin里的就是jvm，lib中则是jvm工作所需要的类库，
+而jvm和lib和起来就称为jre。</li>
 </ol>
 <h2 id="java程序是怎么运行起来的"><a href="#java程序是怎么运行起来的" class="headerlink" title="java程序是怎么运行起来的"></a>java程序是怎么运行起来的</h2><ol>
-<li>jvm先将java文件编译成class文件<br>class文件结构包括：1.魔数 2.Java版本 3.常量池  4.本类 5.父类 6.接口  7.字段 8 方法 9属性 10识别标志</li>
+<li>jvm先将java文件编译成class文件
+class文件结构包括：1.魔数 2.Java版本 3.常量池  4.本类 5.父类 6.接口  7.字段 8 方法 9属性 10识别标志</li>
 <li><p>Java命令执行程序</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  2.1 java.c 创建执行环境, 先寻找jre路径, java.dll负责</span><br><span class="line">  2.2 加载jvm，执行jvm.dll（windows）, 创建jvm环境</span><br><span class="line">  2.3 设置初始化Java运行参数</span><br><span class="line">  2.4 创建线程初始化jvm并执行Java程序, 我们写的main方法</span><br></pre></td></tr></table></figure>
 </li>

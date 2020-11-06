@@ -370,7 +370,7 @@
 <h4 id="ssh免密钥登录：公钥认证"><a href="#ssh免密钥登录：公钥认证" class="headerlink" title="ssh免密钥登录：公钥认证"></a>ssh免密钥登录：公钥认证</h4><p>其实登录的过程就是被登录端对登录用户进行“身份验证”的过程，我们想在主机A上以root用户以SSH免密钥的方式登录主机B，登录验证过程是这样的：</p>
 <ul>
 <li>主机A与主机B协商产生会话密钥；</li>
-<li>主机A会向主机B发送一个登录请求（如：root@192.168.1.2），发送的信息包括用户名root和root的公钥指纹，且所有信息都是通过会话密钥加密过的。</li>
+<li>主机A会向主机B发送一个登录请求（如：<a href="mailto:root@192.168.1.2" target="_blank" rel="noopener">root@192.168.1.2</a>），发送的信息包括用户名root和root的公钥指纹，且所有信息都是通过会话密钥加密过的。</li>
 <li>主机B通过会话密钥解密主机A发送的数据得到请求登录的用户名root和root的公钥指纹，然后读取root用户目录下的所有公钥数据（/root/.ssh/autorized_keys文件中），并分别通过单向加密算法获取各公钥的数据指纹与主机A发送过来的数据指纹做对比，从而找到主机A上的root用户的公钥；</li>
 </ul>
 </li>
@@ -396,7 +396,8 @@
 <li>网站服务器B接收到密文格式的密钥后，通过自己的私钥进行解密得到密钥的明文内容。</li>
 <li>浏览器A和网站服务器B开始了交流。</li>
 </ul>
-<p>参考资料：<br><a href="https://www.cnblogs.com/yyds/p/6992125.html" target="_blank" rel="noopener">https://www.cnblogs.com/yyds/p/6992125.html</a></p>
+<p>参考资料：
+<a href="https://www.cnblogs.com/yyds/p/6992125.html" target="_blank" rel="noopener">https://www.cnblogs.com/yyds/p/6992125.html</a></p>
 
       
     </div>
