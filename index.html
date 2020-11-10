@@ -249,6 +249,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/09/MyBatis-解除sql与业务代码的耦合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/11/09/MyBatis-解除sql与业务代码的耦合/" itemprop="url">MyBatis 解除sql与业务代码的耦合</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-09T15:13:18+08:00">
+                2020-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>&emsp; &#8195; MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC(Java Database Connectivity)
+代码以及设置参数和获取结果集的工作。
+MyBatis 可以对配置和原生Map使用简单的 XML 或注解，将接口和 Java 的 POJOs(Plain Old Java Objects,普通的 Java对象)映射成数据库中的记录。
+&emsp; &#8195; mybatis属于半orm(Object Relational Mapping)，因为sql语句需要自己写。与其他比较标准的 ORM 框架（比如 Hibernate ）不同， mybatis 并没有将 java 对象与数据库关联起来，而是将 java 方法与 sql 语句关联起来。</p>
+<ul>
+<li>优点：</li>
+</ul>
+<ol>
+<li>解除sql与程序代码的耦合：通过提供DAL层，将业务逻辑和数据访问逻辑分离，使系统的设计更清晰，更易维护，更易单元测试。sql和代码的分离，提高了可维护性。</li>
+<li>提供映射标签，支持对象与数据库的orm字段关系映射</li>
+<li>提供对象关系映射标签，支持对象关系组建维护</li>
+</ol>
+<ul>
+<li>缺点</li>
+</ul>
+<ol>
+<li>编写SQL语句时工作量很大，尤其是字段多、关联表多时</li>
+<li>二级缓存机制不佳(mybatis的一级缓存是基于sqlsession为生命周期的, mybatis的二级缓存是基于application为生命周期的，所以避免使用二级缓存)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">缓存是以namespace为单位的，不同namespace下的操作互不影响。</span><br><span class="line">insert,update,delete操作会清空所在namespace下的全部缓存。</span><br><span class="line">通常使用MyBatis Generator生成的代码中，都是各个表独立的，每个表都有自己的namespace</span><br><span class="line">例如在UserMapper.xml中有大多数针对user表的操作。但是在一个XXXMapper.xml中，还有针对user单表的操作。</span><br><span class="line">这会导致user在两个命名空间下的数据不一致。如果在UserMapper.xml中做了刷新缓存的操作，在XXXMapper.xml中缓存仍然有效，如果有针对user的单表查询，使用缓存的结果可能会不正确。</span><br><span class="line">更危险的情况是在XXXMapper.xml做了insert,update,delete操作时，会导致UserMapper.xml中的各种操作充满未知和风险。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="安装操作"><a href="#安装操作" class="headerlink" title="安装操作"></a>安装操作</h2><p>&emsp; &#8195; MyBatis有两种方式构建SqlSessionFactory，一种是从 XML 中构建 SqlSessionFactory，一种是通过java代码构建 SqlSessionFactory。
+下面主要是关于通过java代码构建 SqlSessionFactory的。</p>
+<ol>
+<li><p>pom.xml中添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.2.8&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>java代码构建SqlSessionFactory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static SqlSessionFactory getSession() &#123;</span><br><span class="line">        if (null == sessionFactory) &#123;</span><br><span class="line">            final String user = System.getProperty(&quot;&quot;);</span><br><span class="line">            final String password = System.getProperty(&quot;&quot;);</span><br><span class="line">            final String databasenameURL = &quot;jdbc:mysql://&quot; + System.getProperty(&quot;sqlHost&quot;) + &quot;/&quot; +System.getProperty(&quot;sqlDb&quot;)+ &quot;?useUnicode=true&amp;characterEncoding=UTF-8&amp;useTimezone=true&amp;serverTimezone=GMT&amp;allowMultiQueries=true&quot;;</span><br><span class="line">            final String dbDriver = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line"></span><br><span class="line">            DataSource dataSource = new org.apache.ibatis.datasource.pooled.PooledDataSource(</span><br><span class="line">                    dbDriver, databasenameURL, user, password);</span><br><span class="line">            TransactionFactory transactionFactory = new JdbcTransactionFactory();</span><br><span class="line">            Environment environment = new Environment(&quot;development&quot;, transactionFactory, dataSource);</span><br><span class="line">            Configuration configuration = new Configuration(environment);</span><br><span class="line">            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder()</span><br><span class="line">                    .build(configuration);</span><br><span class="line"></span><br><span class="line">            sessionFactory = sqlSessionFactory;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return sessionFactory;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>configuration 添加映射器类（mapper class）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void init() &#123;</span><br><span class="line">        getSession().getConfiguration().addMapper(XXXMapper.class);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>整体流程是 业务(test case)—-mapper–data
+映射器类是 Java 类，它们包含 SQL 映射注解从而避免依赖 XML 文件。
+添加XXXmapper.class映射器类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public interface XXXMapper  &#123;</span><br><span class="line">    /**</span><br><span class="line">     * @param id</span><br><span class="line">     * @return plan</span><br><span class="line">     */</span><br><span class="line">    @Select(&quot;SELECT * FROM plan WHERE id = #&#123;id&#125;&quot;)</span><br><span class="line">    Plan select(int id);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param plan</span><br><span class="line">     * update plan</span><br><span class="line">     */</span><br><span class="line">    @Update(&quot;UPDATE `plan` SET `xxx_id` = #&#123;xxx_id&#125; WHERE `id` = #&#123;id&#125;&quot;)</span><br><span class="line">    void update(Plan plan);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>XXX.class实体类
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">public class Plan &#123;</span><br><span class="line">    private int plan_id;</span><br><span class="line">    private int product_id;</span><br><span class="line">    private int plan_status;</span><br><span class="line">    private String vivo_deal_id;</span><br><span class="line"></span><br><span class="line">    public int getid() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setid(int id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getPlan_status() &#123;</span><br><span class="line">        return plan_status;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPlan_status(int plan_status) &#123;</span><br><span class="line">        this.plan_status = plan_status;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Plan select(int id) &#123;</span><br><span class="line">        try (SqlSession session = AdSqlSessionFactory.getSession().openSession()) &#123;</span><br><span class="line">            PlanMapper mapper = session.getMapper(PlanMapper.class);</span><br><span class="line">            Plan plan = mapper.select(id);</span><br><span class="line">            return plan;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void update() &#123;</span><br><span class="line">        try (SqlSession session = AdSqlSessionFactory.getSession().openSession()) &#123;</span><br><span class="line">            PlanMapper mapper = session.getMapper(PlanMapper.class);</span><br><span class="line">            mapper.update(this);</span><br><span class="line">            session.commit();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        ObjectMapper mapper = new ObjectMapper();</span><br><span class="line">        try &#123;</span><br><span class="line">            String json = mapper.writeValueAsString(this);</span><br><span class="line">            return json;</span><br><span class="line">            //System.out.println(json);</span><br><span class="line">        &#125; catch (JsonProcessingException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;&#123;&#125;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/31/记录我的yun生活/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1547,171 +1706,6 @@ LoadRunner 对海量并发的测试支持并不太好；
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/04/java是怎么运行起来的/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/04/java是怎么运行起来的/" itemprop="url">java是怎么运行起来的</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-04T14:46:25+08:00">
-                2018-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="java初学习"><a href="#java初学习" class="headerlink" title="java初学习"></a>java初学习</h2><h2 id="jvm-是什么"><a href="#jvm-是什么" class="headerlink" title="jvm 是什么"></a>jvm 是什么</h2><h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><ol>
-<li>Java Virtual Machine（Java虚拟机）。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。
-一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。
-而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。
-Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使得Java语言编译程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。
-<font color="#dd0000">Java虚拟机在执行字节码时，把字节码解释成具体平台上的机器指令执行。这就是Java的能够“一次编译，到处运行”的原因。</font><br></li>
-<li>Java虚拟机由于字节码定义的限制似乎只能运行于32位地址空间的机器上。但是可以创建一个Java虚拟机，它自动地把字节码转换成64位的形式。
-从Java虚拟机支持的数据类型可以看出，Java对数据类型的内部格式进行了严格规定，这样使得各种Java虚拟机的实现对数据的解释是相同的，从而保证了Java的与平台无关性和可移植性。</li>
-<li>JVM定义了控制Java代码解释执行和具体实现的五种规格，它们是：JVM指令系统、JVM寄存器、JVM 栈结构、JVM 碎片回收堆、JVM 存储区</li>
-<li>JVM是java的核心和基础，在java编译器和os平台之间的虚拟处理器。它是一种基于下层的操作系统和硬件平台并利用软件方法来实现的抽象的计算机，可以在上面执行java的字节码程序。</li>
-</ol>
-<h3 id="JVM运行原理"><a href="#JVM运行原理" class="headerlink" title="JVM运行原理"></a>JVM运行原理</h3><ol>
-<li><p>JVM运行原理
-java编译器只需面向JVM，生成JVM能理解的代码或字节码文件。Java源文件经编译器，编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行。
-JVM执行程序的过程 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I.加载.class文件</span><br><span class="line">II.管理并分配内存</span><br><span class="line">III.执行垃圾收集</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JRE（java运行时环境）包含JVM的java程序的运行环境
-JVM是Java程序运行的容器,但是他同时也是操作系统的一个进程,因此他也有他自己的运行的生命周期,也有自己的代码和数据空间。
-JVM在整个jdk中处于最底层,负责与操作系统的交互,用来屏蔽操作系统环境,提供一个完整的Java运行环境,因此也叫虚拟计算机.
-操作系统装入JVM是通过jdk中Java.exe来完成,通过下面4步来完成JVM环境。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a.创建JVM装载环境和配置</span><br><span class="line">b.装载JVM.dll</span><br><span class="line">c.初始化JVM.dll并挂接到JNIENV(JNI调用接口)实例</span><br><span class="line">d.调用JNIEnv实例装载并处理class类。</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h2><ol>
-<li><p>JDK（Java Development Kit）是整个Java的核心，包括了Java运行环境JRE、Java工具和Java基础类库。
-Java Runtime Environment（JRE）是运行JAVA程序所必须的环境的集合，包含JVM标准实现及Java核心类库。
-JVM是Java Virtual Machine（Java虚拟机）的缩写，是整个java实现跨平台的最核心的部分，能够运行以Java语言写作的软件程序。</p>
-</li>
-<li><p>JDK=JRE+JVM+其它，运行Java程序一般都要求用户的电脑安装JRE环境；没有jre，java程序无法运行；而没有java程序，jre就没有用武之地。</p>
-</li>
-<li>JDK中包含JRE，在JDK的安装目录下有一个名为jre的目录，里面有两个文件夹bin和lib，在这里可以认为bin里的就是jvm，lib中则是jvm工作所需要的类库，
-而jvm和lib和起来就称为jre。</li>
-</ol>
-<h2 id="java程序是怎么运行起来的"><a href="#java程序是怎么运行起来的" class="headerlink" title="java程序是怎么运行起来的"></a>java程序是怎么运行起来的</h2><ol>
-<li>jvm先将java文件编译成class文件
-class文件结构包括：1.魔数 2.Java版本 3.常量池  4.本类 5.父类 6.接口  7.字段 8 方法 9属性 10识别标志</li>
-<li><p>Java命令执行程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  2.1 java.c 创建执行环境, 先寻找jre路径, java.dll负责</span><br><span class="line">  2.2 加载jvm，执行jvm.dll（windows）, 创建jvm环境</span><br><span class="line">  2.3 设置初始化Java运行参数</span><br><span class="line">  2.4 创建线程初始化jvm并执行Java程序, 我们写的main方法</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JVM如何执行Java程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> a. 加载class文件</span><br><span class="line">b. 验证</span><br><span class="line">c. 为静态变量常量等分配内存初始化值</span><br><span class="line">d. 解析文件</span><br><span class="line">e. 初始化。执行类构造器静态类。代码块的执行</span><br><span class="line">f. 找到main方法执行指令，执行Java程序。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>java程序执行的过程：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Step1:将字节码加入内存；</span><br><span class="line">Step2:对字节码进行合法性检查；</span><br><span class="line">Step3:jvm会为每个字节码文件都生成一个对象(class)；</span><br><span class="line">Step4:执行静态代码块，初始化静态成员等；</span><br><span class="line">Step5:执行入口函数main方法；</span><br><span class="line">注意：实例块和静态块，可以对java对象进行初始化操作，和构造器非常类似</span><br><span class="line">静态块先于main方法执行，实例块先于构造方法执行</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1766,7 +1760,7 @@ class文件结构包括：1.魔数 2.Java版本 3.常量池  4.本类 5.父类 6
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
