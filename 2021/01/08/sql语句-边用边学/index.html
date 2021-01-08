@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数据库," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="case when case when语法：以CASE开头，以END结尾 分支中WHEN 后跟条件，THEN为显示结果 ELSE 为除此之外的默认情况，类似于高级语言程序中switch case的default，可以不加 END 后跟别名，可不加12case when a&amp;gt;b then a else b endcase when status = &amp;apos;1&amp;apos; then sta">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql语句--边用边学">
+<meta property="og:url" content="http://yoursite.com/2021/01/08/sql语句-边用边学/index.html">
 <meta property="og:site_name" content="Kingvirre">
+<meta property="og:description" content="case when case when语法：以CASE开头，以END结尾 分支中WHEN 后跟条件，THEN为显示结果 ELSE 为除此之外的默认情况，类似于高级语言程序中switch case的default，可以不加 END 后跟别名，可不加12case when a&amp;gt;b then a else b endcase when status = &amp;apos;1&amp;apos; then sta">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-25T03:24:40.000Z">
+<meta property="og:updated_time" content="2021-01-08T03:36:20.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="sql语句--边用边学">
+<meta name="twitter:description" content="case when case when语法：以CASE开头，以END结尾 分支中WHEN 后跟条件，THEN为显示结果 ELSE 为除此之外的默认情况，类似于高级语言程序中switch case的default，可以不加 END 后跟别名，可不加12case when a&amp;gt;b then a else b endcase when status = &amp;apos;1&amp;apos; then sta">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2021/01/08/sql语句-边用边学/"/>
 
 
 
 
 
-  <title>tags | Kingvirre</title>
+  <title>sql语句--边用边学 | Kingvirre</title>
   
 
 
@@ -237,40 +241,179 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/08/sql语句-边用边学/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                10 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/django/" style="font-size: 12px; color: #ccc">django</a> <a href="/tags/git/" style="font-size: 12px; color: #ccc">git</a> <a href="/tags/java/" style="font-size: 21px; color: #6f6f6f">java</a> <a href="/tags/python/" style="font-size: 30px; color: #111">python</a> <a href="/tags/安全/" style="font-size: 12px; color: #ccc">安全</a> <a href="/tags/数据库/" style="font-size: 21px; color: #6f6f6f">数据库</a> <a href="/tags/测试/" style="font-size: 16.5px; color: #9d9d9d">测试</a> <a href="/tags/测试工具/" style="font-size: 12px; color: #ccc">测试工具</a> <a href="/tags/生活/" style="font-size: 21px; color: #6f6f6f">生活</a> <a href="/tags/软件测试/" style="font-size: 25.5px; color: #404040">软件测试</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">sql语句--边用边学</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-08T11:15:06+08:00">
+                2021-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="case-when"><a href="#case-when" class="headerlink" title="case when"></a>case when</h3><ol>
+<li>case when语法：以CASE开头，以END结尾</li>
+<li>分支中WHEN 后跟条件，THEN为显示结果</li>
+<li>ELSE 为除此之外的默认情况，类似于高级语言程序中switch case的default，可以不加</li>
+<li>END 后跟别名，可不加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">case when a&gt;b then a else b end</span><br><span class="line">case when status = &apos;1&apos; then status else 0 end</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="round"><a href="#round" class="headerlink" title="round"></a>round</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">round(x,d)，x指要处理的数，d是指保留几位小数，四舍五入保留</span><br><span class="line">round(x)  ,其实就是round(x,0),也就是默认d为0</span><br></pre></td></tr></table></figure>
+<h3 id="ifnull"><a href="#ifnull" class="headerlink" title="ifnull"></a>ifnull</h3><ol>
+<li>IFNULL() 函数用于判断第一个表达式是否为 NULL，如果为 NULL 则返回第二个参数的值，如果不为 NULL 则返回第一个参数的值。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IFNULL(&quot;Hello&quot;, &quot;RUNOOB&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>嘻嘻嘻，给口饭吃</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Wechatpay.jpg" alt="Kingvirre WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/30/docker-启动storm实时流/" rel="next" title="docker 启动storm实时流">
+                <i class="fa fa-chevron-left"></i> docker 启动storm实时流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -303,8 +446,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -359,6 +511,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#case-when"><span class="nav-number">1.</span> <span class="nav-text">case when</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#round"><span class="nav-number">2.</span> <span class="nav-text">round</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ifnull"><span class="nav-number">3.</span> <span class="nav-text">ifnull</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

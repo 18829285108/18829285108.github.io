@@ -249,6 +249,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/web前端展示mysql和mongo库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kingvirre">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kingvirre">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/10/web前端展示mysql和mongo库/" itemprop="url">web前端展示mysql和mongo库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-10T18:34:21+08:00">
+                2019-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>将mysql数据库或者mongo数据库，放到网页上面，随时可以添加不同数据库ip，页面操作更简单</p>
+<h2 id="phpmyadmin–mysql数据库"><a href="#phpmyadmin–mysql数据库" class="headerlink" title="phpmyadmin–mysql数据库"></a>phpmyadmin–mysql数据库</h2><p>如果没有phpmyadmin镜像，需要下载一个。docker pull phpmyadmin/phpmyadmin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cat start_phpmyadmin.sh，脚本内容如下</span><br><span class="line">name=phpMyAdmin</span><br><span class="line">docker rm -f $name || echo &quot;no such name&quot;</span><br><span class="line">docker run -d \</span><br><span class="line">    -p 7777:80 \</span><br><span class="line">    --name $name \</span><br><span class="line">    -v /home/worker/phpMyAdmin/config.inc.php:/etc/phpmyadmin/config.inc.php \</span><br><span class="line">    docker.io/phpmyadmin/phpmyadmin</span><br><span class="line"></span><br><span class="line">需要去替换images的位置。下面命令是查看位置的命令</span><br><span class="line">docker images | grep phpmyadmin</span><br><span class="line">docker.io/phpmyadmin/phpmyadmin（真实位置）  latest        4d3326bed88c        2 years ago         103.2 MB</span><br></pre></td></tr></table></figure>
+<p>新建phpMyAdmin文件夹。编辑config.inc.php文件
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/* vim: set expandtab sw=4 ts=4 sts=4: */</span><br><span class="line">/**</span><br><span class="line"> * phpMyAdmin sample configuration, you can use it as base for</span><br><span class="line"> * manual configuration. For easier setup you can use setup/</span><br><span class="line"> *</span><br><span class="line"> * All directives are explained in documentation in the doc/ folder</span><br><span class="line"> * or at &lt;http://docs.phpmyadmin.net/&gt;.</span><br><span class="line"> *</span><br><span class="line"> * @package PhpMyAdmin</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * This is needed for cookie based authentication to encrypt password in</span><br><span class="line"> * cookie</span><br><span class="line"> */</span><br><span class="line">$cfg[&apos;blowfish_secret&apos;] = &apos;&apos;; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */</span><br><span class="line">/**</span><br><span class="line"> * Servers configuration</span><br><span class="line"> */</span><br><span class="line">$i = 0;</span><br><span class="line">/**</span><br><span class="line"> * First server</span><br><span class="line"> */</span><br><span class="line">$i++;</span><br><span class="line">/* Authentication type */</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;auth_type&apos;] = &apos;cookie&apos;;</span><br><span class="line">/* Server parameters */</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;verbose&apos;] = &apos;OFFLINE&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;host&apos;] = &apos;localhost&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;connect_type&apos;] = &apos;tcp&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;compress&apos;] = false;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;AllowNoPassword&apos;] = false;</span><br><span class="line">/**</span><br><span class="line"> * phpMyAdmin configuration storage settings.</span><br><span class="line"> */</span><br><span class="line">/* User used to manipulate with storage */</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;controlhost&apos;] = &apos;&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;controlport&apos;] = &apos;&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;controluser&apos;] = &apos;pma&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;controlpass&apos;] = &apos;pmapass&apos;;</span><br><span class="line">/* Storage database and tables */</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;pmadb&apos;] = &apos;phpmyadmin&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;bookmarktable&apos;] = &apos;pma__bookmark&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;relation&apos;] = &apos;pma__relation&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;table_info&apos;] = &apos;pma__table_info&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;table_coords&apos;] = &apos;pma__table_coords&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;pdf_pages&apos;] = &apos;pma__pdf_pages&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;column_info&apos;] = &apos;pma__column_info&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;history&apos;] = &apos;pma__history&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;table_uiprefs&apos;] = &apos;pma__table_uiprefs&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;tracking&apos;] = &apos;pma__tracking&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;userconfig&apos;] = &apos;pma__userconfig&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;recent&apos;] = &apos;pma__recent&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;favorite&apos;] = &apos;pma__favorite&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;users&apos;] = &apos;pma__users&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;usergroups&apos;] = &apos;pma__usergroups&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;navigationhiding&apos;] = &apos;pma__navigationhiding&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;savedsearches&apos;] = &apos;pma__savedsearches&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;central_columns&apos;] = &apos;pma__central_columns&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;designer_settings&apos;] = &apos;pma__designer_settings&apos;;</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;export_templates&apos;] = &apos;pma__export_templates&apos;;</span><br><span class="line">/* Contrib / Swekey authentication */</span><br><span class="line">// $cfg[&apos;Servers&apos;][$i][&apos;auth_swekey_config&apos;] = &apos;/etc/swekey-pma.conf&apos;;</span><br><span class="line"></span><br><span class="line">$i++;</span><br><span class="line">/* Authentication type */</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;auth_type&apos;] = &apos;cookie&apos;;</span><br><span class="line">/* Server parameters */</span><br><span class="line">//$cfg[&apos;Servers&apos;][$i][&apos;verbose&apos;] = &apos;ONLINE&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;host&apos;] = &apos;**.**.**.**:3306&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;connect_type&apos;] = &apos;tcp&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;compress&apos;] = false;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;AllowNoPassword&apos;] = false;</span><br><span class="line">$i++;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;auth_type&apos;] = &apos;cookie&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;host&apos;] = &apos;**.**.**.**:3309&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;connect_type&apos;] = &apos;tcp&apos;;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;compress&apos;] = false;</span><br><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;AllowNoPassword&apos;] = false;</span><br><span class="line">/**</span><br><span class="line"> * End of servers configuration</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * Directories for saving/loading files from server</span><br><span class="line"> */</span><br><span class="line">$cfg[&apos;UploadDir&apos;] = &apos;&apos;;</span><br><span class="line">$cfg[&apos;SaveDir&apos;] = &apos;&apos;;</span><br><span class="line">/**</span><br><span class="line"> * Whether to display icons or text or both icons and text in table row</span><br><span class="line"> * action segment. Value can be either of &apos;icons&apos;, &apos;text&apos; or &apos;both&apos;.</span><br><span class="line"> * default = &apos;both&apos;</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;RowActionType&apos;] = &apos;icons&apos;;</span><br><span class="line">/**</span><br><span class="line"> * Defines whether a user should be displayed a &quot;show all (records)&quot;</span><br><span class="line"> * button in browse mode or not.</span><br><span class="line"> * default = false</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;ShowAll&apos;] = true;</span><br><span class="line">/**</span><br><span class="line"> * Number of rows displayed when browsing a result set. If the result</span><br><span class="line"> * set contains more rows, &quot;Previous&quot; and &quot;Next&quot;.</span><br><span class="line"> * Possible values: 25, 50, 100, 250, 500</span><br><span class="line"> * default = 25</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;MaxRows&apos;] = 50;</span><br><span class="line">/**</span><br><span class="line"> * Disallow editing of binary fields</span><br><span class="line"> * valid values are:</span><br><span class="line"> *   false    allow editing</span><br><span class="line"> *   &apos;blob&apos;   allow editing except for BLOB fields</span><br><span class="line"> *   &apos;noblob&apos; disallow editing except for BLOB fields</span><br><span class="line"> *   &apos;all&apos;    disallow editing</span><br><span class="line"> * default = &apos;blob&apos;</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;ProtectBinary&apos;] = false;</span><br><span class="line">/**</span><br><span class="line"> * Default language to use, if not browser-defined or user-defined</span><br><span class="line"> * (you find all languages in the locale folder)</span><br><span class="line"> * uncomment the desired line:</span><br><span class="line"> * default = &apos;en&apos;</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;DefaultLang&apos;] = &apos;en&apos;;</span><br><span class="line">//$cfg[&apos;DefaultLang&apos;] = &apos;de&apos;;</span><br><span class="line">/**</span><br><span class="line"> * How many columns should be used for table display of a database?</span><br><span class="line"> * (a value larger than 1 results in some information being hidden)</span><br><span class="line"> * default = 1</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;PropertiesNumColumns&apos;] = 2;</span><br><span class="line">/**</span><br><span class="line"> * Set to true if you want DB-based query history.If false, this utilizes</span><br><span class="line"> * JS-routines to display query history (lost by window close)</span><br><span class="line"> *</span><br><span class="line"> * This requires configuration storage enabled, see above.</span><br><span class="line"> * default = false</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;QueryHistoryDB&apos;] = true;</span><br><span class="line">/**</span><br><span class="line"> * When using DB-based query history, how many entries should be kept?</span><br><span class="line"> * default = 25</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;QueryHistoryMax&apos;] = 100;</span><br><span class="line">/**</span><br><span class="line"> * Whether or not to query the user before sending the error report to</span><br><span class="line"> * the phpMyAdmin team when a JavaScript error occurs</span><br><span class="line"> *</span><br><span class="line"> * Available options</span><br><span class="line"> * (&apos;ask&apos; | &apos;always&apos; | &apos;never&apos;)</span><br><span class="line"> * default = &apos;ask&apos;</span><br><span class="line"> */</span><br><span class="line">//$cfg[&apos;SendErrorReports&apos;] = &apos;always&apos;;</span><br><span class="line">/**</span><br><span class="line"> * You can find more configuration options in the documentation</span><br><span class="line"> * in the doc/ folder or at &lt;http://docs.phpmyadmin.net/&gt;.</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<h2 id="rockmongo–mongo数据库"><a href="#rockmongo–mongo数据库" class="headerlink" title="rockmongo–mongo数据库"></a>rockmongo–mongo数据库</h2><p>参考链接：<a href="https://blog.csdn.net/boling_cavalry/article/details/78234762" target="_blank" rel="noopener">https://blog.csdn.net/boling_cavalry/article/details/78234762</a>
+如果没有rockmongo镜像，需要下载一个。docker pull javierjeronimo/rockmongo:latest
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cat start_rockmongo.sh，脚本内容如下</span><br><span class="line">name=rockmongo</span><br><span class="line">docker rm -f $name || echo &quot;no such name&quot;</span><br><span class="line">docker run -d \</span><br><span class="line">    -p 7778:80 \</span><br><span class="line">    --name $name \</span><br><span class="line">    -v /home/worker/rockmongo/config.php:/var/www/html/config.php \</span><br><span class="line">   docker.io/javierjeronimo/rockmongo</span><br><span class="line"></span><br><span class="line">需要去替换images的位置。下面命令是查看位置的命令</span><br><span class="line">docker images | grep rockmongo</span><br><span class="line">docker.io/javierjeronimo/rockmongo（真实位置）  latest        8a3b148758f5        4 years ago         293.3 MB</span><br></pre></td></tr></table></figure></p>
+<p>新建rockmongo文件夹，编辑config.php文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line">?php</span><br><span class="line">/**</span><br><span class="line"> * RockMongo configuration</span><br><span class="line"> *</span><br><span class="line"> * Defining default options and server configuration</span><br><span class="line"> * @package rockmongo</span><br><span class="line"> */</span><br><span class="line">            $MONGO = array();</span><br><span class="line">    $MONGO[&quot;features&quot;][&quot;log_query&quot;] = &quot;on&quot;;//log queries</span><br><span class="line">    $MONGO[&quot;features&quot;][&quot;theme&quot;] = &quot;default&quot;;//theme</span><br><span class="line">    $MONGO[&quot;features&quot;][&quot;plugins&quot;] = &quot;on&quot;;//plugins</span><br><span class="line">    $i = 0;</span><br><span class="line">/**</span><br><span class="line"> * Configuration of MongoDB servers</span><br><span class="line"> *</span><br><span class="line"> * @see more details at http://rockmongo.com/wiki/configuration?lang=en_us</span><br><span class="line"> */</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;Localhost&quot;;//mongo server name</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_sock&quot;] = &quot;/var/run/mongo.sock&quot;;//mongo socket path (instead of host and port)</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;127.0.0.1&quot;;//mongo host</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = &quot;27017&quot;;//mongo port</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_timeout&quot;] = 0;//mongo connection timeout</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_db&quot;] = &quot;MONGO_DATABASE&quot;;//default mongo db to connect, works only if mongo_auth=false</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_user&quot;] = &quot;MONGO_USERNAME&quot;;//mongo authentication user name, works only if mongo_auth=false</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_pass&quot;] = &quot;MONGO_PASSWORD&quot;;//mongo authentication password, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_auth&quot;] = false;//enable mongo authentication?</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_auth&quot;] = true;//enable control users, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;admin&quot;] = &quot;admin&quot;;//one of control users [&quot;USERNAME&quot;]=PASSWORD, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_only_dbs&quot;] = &quot;&quot;;//databases to display</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_dbs&quot;] = &quot;&quot;;//databases to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_collections&quot;] = &quot;&quot;;//collections to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_system_collections&quot;] = false;//whether hide the system collections</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;docs_nature_order&quot;] = false;//whether show documents by nature order, default is by _id field</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;docs_render&quot;] = &quot;default&quot;;//document highlight render, can be &quot;default&quot; or &quot;plain&quot;</span><br><span class="line">    $i ++;</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;**.**.**.**&quot;;//mongo server name</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_sock&quot;] = &quot;/var/run/mongo.sock&quot;;//mongo socket path (instead of host and port)</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;**.**.**.**&quot;;//mongo host</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = &quot;27017&quot;;//mongo port</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_timeout&quot;] = 0;//mongo connection timeout</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_db&quot;] = &quot;ad&quot;;//default mongo db to connect, works only if mongo_auth=false</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_user&quot;] = &quot;MONGO_USERNAME&quot;;//mongo authentication user name, works only if mongo_auth=false</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_pass&quot;] = &quot;MONGO_PASSWORD&quot;;//mongo authentication password, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_auth&quot;] = false;//enable mongo authentication?</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_auth&quot;] = true;//enable control users, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;admin&quot;] = &quot;admin&quot;;//one of control users [&quot;USERNAME&quot;]=PASSWORD, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_only_dbs&quot;] = &quot;&quot;;//databases to display</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_dbs&quot;] = &quot;&quot;;//databases to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_collections&quot;] = &quot;&quot;;//collections to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_system_collections&quot;] = false;//whether hide the system collections</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;docs_nature_order&quot;] = false;//whether show documents by nature order, default is by _id field</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;docs_render&quot;] = &quot;default&quot;;//document highlight render, can be &quot;default&quot; or &quot;plain&quot;</span><br><span class="line">    $i ++;</span><br><span class="line"></span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;ONLINE&quot;;//mongo server name</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_sock&quot;] = &quot;/var/run/mongo.sock&quot;;//mongo socket path (instead of host and port)</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;mongodb://**.**.**.**&quot;;//mongo host</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = false;//mongo port</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_options&quot;] = array(&apos;replicaSet&apos; =&gt; &apos;AD&apos;);</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_timeout&quot;] = 0;//mongo connection timeout</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_db&quot;] = &quot;AD&quot;;//default mongo db to connect, works only if mongo_auth=false</span><br><span class="line">#$MONGO[&quot;servers&quot;][$i][&quot;mongo_user&quot;] = &quot;lingxi&quot;;//mongo authentication user name, works only if mongo_auth=false</span><br><span class="line">#$MONGO[&quot;servers&quot;][$i][&quot;mongo_pass&quot;] = &quot;564c5066e19b673007b96dc5&quot;;//mongo authentication password, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_auth&quot;] = false;//enable mongo authentication?</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_auth&quot;] = true;//enable control users, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;lingxi&quot;] = &quot;564c5066e19b673007b96dc5&quot;;//one of control users [&quot;USERNAME&quot;]=PASSWORD, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_only_dbs&quot;] = &quot;&quot;;//databases to display</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_dbs&quot;] = &quot;&quot;;//databases to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_collections&quot;] = &quot;&quot;;//collections to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_system_collections&quot;] = false;//whether hide the system collections</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;docs_nature_order&quot;] = false;//whether show documents by nature order, default is by _id field</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;docs_render&quot;] = &quot;default&quot;;//document highlight render, can be &quot;default&quot; or &quot;plain&quot;</span><br><span class="line">    $i ++;</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;ONLINE_READ&quot;;//mongo server name</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_sock&quot;] = &quot;/var/run/mongo.sock&quot;;//mongo socket path (instead of host and port)</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;mongodb://**.**.**.**&quot;;//mongo host</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = false;//mongo port</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_options&quot;] = array(&apos;replicaSet&apos; =&gt; &apos;AD&apos;);</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_timeout&quot;] = 0;//mongo connection timeout</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_db&quot;] = &quot;AD&quot;;//default mongo db to connect, works only if mongo_auth=false</span><br><span class="line">#$MONGO[&quot;servers&quot;][$i][&quot;mongo_user&quot;] = &quot;lingxi&quot;;//mongo authentication user name, works only if mongo_auth=false</span><br><span class="line">#$MONGO[&quot;servers&quot;][$i][&quot;mongo_pass&quot;] = &quot;564c5066e19b673007b96dc5&quot;;//mongo authentication password, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_auth&quot;] = false;//enable mongo authentication?</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_auth&quot;] = true;//enable control users, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;lingxi_read&quot;] = &quot;e2014ee7640a9bd&quot;;//one of control users [&quot;USERNAME&quot;]=PASSWORD, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_only_dbs&quot;] = &quot;&quot;;//databases to display</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_dbs&quot;] = &quot;&quot;;//databases to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_collections&quot;] = &quot;&quot;;//collections to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_system_collections&quot;] = false;//whether hide the system collections</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;docs_nature_order&quot;] = false;//whether show documents by nature order, default is by _id field</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;docs_render&quot;] = &quot;default&quot;;//document highlight render, can be &quot;default&quot; or &quot;plain&quot;</span><br><span class="line">    $i ++;</span><br><span class="line"></span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;**.**.**.**:27017&quot;;//mongo server name</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_sock&quot;] = &quot;/var/run/mongo.sock&quot;;//mongo socket path (instead of host and port)</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;mongodb://**.**.**.**&quot;;//mongo host</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = &quot;27017&quot;;//mongo port</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_options&quot;] = array(&apos;replicaSet&apos; =&gt; &apos;ad_for_adserver&apos;);</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_timeout&quot;] = 0;//mongo connection timeout</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_db&quot;] = &quot;AD&quot;;//default mongo db to connect, works only if mongo_auth=false</span><br><span class="line">#$MONGO[&quot;servers&quot;][$i][&quot;mongo_user&quot;] = &quot;lingxi&quot;;//mongo authentication user name, works only if mongo_auth=false</span><br><span class="line">#$MONGO[&quot;servers&quot;][$i][&quot;mongo_pass&quot;] = &quot;564c5066e19b673007b96dc5&quot;;//mongo authentication password, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_auth&quot;] = false;//enable mongo authentication?</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_auth&quot;] = true;//enable control users, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;lingxi&quot;] = &quot;lingxitest&quot;;//one of control users [&quot;USERNAME&quot;]=PASSWORD, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_only_dbs&quot;] = &quot;&quot;;//databases to display</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_dbs&quot;] = &quot;&quot;;//databases to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_collections&quot;] = &quot;&quot;;//collections to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_system_collections&quot;] = false;//whether hide the system collections</span><br><span class="line"></span><br><span class="line">    $i ++;</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;**.**.**.**:27017&quot;;//mongo server name</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_sock&quot;] = &quot;/var/run/mongo.sock&quot;;//mongo socket path (instead of host and port)</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;mongodb://**.**.**.**&quot;;//mongo host</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = &quot;27017&quot;;//mongo port</span><br><span class="line">//$MONGO[&quot;servers&quot;][$i][&quot;mongo_options&quot;] = array(&apos;replicaSet&apos; =&gt; &apos;ad_for_adserver&apos;);</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_timeout&quot;] = 0;//mongo connection timeout</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_db&quot;] = &quot;AD&quot;;//default mongo db to connect, works only if mongo_auth=false</span><br><span class="line">#$MONGO[&quot;servers&quot;][$i][&quot;mongo_user&quot;] = &quot;lingxi&quot;;//mongo authentication user name, works only if mongo_auth=false</span><br><span class="line">#$MONGO[&quot;servers&quot;][$i][&quot;mongo_pass&quot;] = &quot;564c5066e19b673007b96dc5&quot;;//mongo authentication password, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_auth&quot;] = false;//enable mongo authentication?</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_auth&quot;] = true;//enable control users, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;lingxi&quot;] = &quot;lingxitest&quot;;//one of control users [&quot;USERNAME&quot;]=PASSWORD, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_only_dbs&quot;] = &quot;&quot;;//databases to display</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_dbs&quot;] = &quot;&quot;;//databases to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_collections&quot;] = &quot;&quot;;//collections to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_system_collections&quot;] = false;//whether hide the system collections</span><br><span class="line"></span><br><span class="line">    $i ++;</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;**.**.**.**:adserver-func-qa&quot;;//mongo server name</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;mongodb://**.**.**.**&quot;;//mongo host</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = &quot;27017&quot;;//mongo port</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_timeout&quot;] = 0;//mongo connection timeout</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_db&quot;] = &quot;AD&quot;;//default mongo db to connect, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;mongo_auth&quot;] = false;//enable mongo authentication?</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_auth&quot;] = true;//enable control users, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;lingxi&quot;] = &quot;lingxitest&quot;;//one of control users [&quot;USERNAME&quot;]=PASSWORD, works only if mongo_auth=false</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_only_dbs&quot;] = &quot;&quot;;//databases to display</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_dbs&quot;] = &quot;&quot;;//databases to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_collections&quot;] = &quot;&quot;;//collections to hide</span><br><span class="line">    $MONGO[&quot;servers&quot;][$i][&quot;ui_hide_system_collections&quot;] = false;//whether hide the system collections</span><br><span class="line">    $i ++;</span><br><span class="line">//Added by liuran -------- end</span><br><span class="line">/**</span><br><span class="line"> * mini configuration for another mongo server</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;Localhost2&quot;;</span><br><span class="line"> $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;127.0.0.1&quot;;</span><br><span class="line"> $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = &quot;27017&quot;;</span><br><span class="line"> $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;admin&quot;] = &quot;password&quot;;</span><br><span class="line"> /**</span><br><span class="line"> * mini configuration for another mongo server</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> $MONGO[&quot;servers&quot;][$i][&quot;mongo_name&quot;] = &quot;Localhost2&quot;;</span><br><span class="line"> $MONGO[&quot;servers&quot;][$i][&quot;mongo_host&quot;] = &quot;127.0.0.1&quot;;</span><br><span class="line"> $MONGO[&quot;servers&quot;][$i][&quot;mongo_port&quot;] = &quot;27017&quot;;</span><br><span class="line"> $MONGO[&quot;servers&quot;][$i][&quot;control_users&quot;][&quot;admin&quot;] = &quot;password&quot;;</span><br><span class="line"> $i ++;</span><br><span class="line"> **/</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/java基础概念一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1700,147 +1828,6 @@ ASM 是一个 Java 字节码操纵框架，能被用来动态生成类或者增�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/redis数据库学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kingvirre">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kingvirre">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/04/redis数据库学习/" itemprop="url">redis数据库学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T18:27:34+08:00">
-                2018-06-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="redis入门"><a href="#redis入门" class="headerlink" title="redis入门"></a>redis入门</h2><h3 id="redis简介"><a href="#redis简介" class="headerlink" title="redis简介"></a>redis简介</h3><ol>
-<li>Redis支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次进行加载使用。–读写速度快，操作简单</li>
-<li>Redis支持数据的备份，即master-slave模式的数据备份</li>
-<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。–丰富的数据类型</li>
-<li>Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</li>
-</ol>
-<h3 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h3><ol>
-<li>string</li>
-<li>hash<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HMSET myhash field1 &quot;Hello&quot; field2 &quot;World&quot;</span><br><span class="line">&quot;OK&quot;</span><br><span class="line">redis&gt; HGET myhash field1</span><br><span class="line">&quot;Hello&quot;</span><br><span class="line">redis&gt; HGET myhash field2</span><br><span class="line">&quot;World&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h3><ol>
-<li><p>redis客户端基本语法redis-cli。执行 PING 命令，该命令用于检测 redis 服务是否启动。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>redis的键：下面如果键被删除成功，命令执行后输出 (integer) 1，否则将输出 (integer) 0</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET runoobkey redis</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; DEL runoobkey</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>同时设置多个key</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSET fruit &quot;apple&quot; drink &quot;beer&quot; food &quot;cookies&quot;   # 设置多个 key</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1895,7 +1882,7 @@ ASM 是一个 Java 字节码操纵框架，能被用来动态生成类或者增�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1950,7 +1937,7 @@ ASM 是一个 Java 字节码操纵框架，能被用来动态生成类或者增�
 <div class="copyright">
 
 &copy; 
-<span itemprop="copyrightYear">2020</span>
+<span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
