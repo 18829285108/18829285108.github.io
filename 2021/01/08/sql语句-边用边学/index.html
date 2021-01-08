@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kingvirre">
 <meta property="og:description" content="case when case when语法：以CASE开头，以END结尾 分支中WHEN 后跟条件，THEN为显示结果 ELSE 为除此之外的默认情况，类似于高级语言程序中switch case的default，可以不加 END 后跟别名，可不加12case when a&amp;gt;b then a else b endcase when status = &amp;apos;1&amp;apos; then sta">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-01-08T03:36:20.887Z">
+<meta property="og:updated_time" content="2021-01-08T03:42:54.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sql语句--边用边学">
 <meta name="twitter:description" content="case when case when语法：以CASE开头，以END结尾 分支中WHEN 后跟条件，THEN为显示结果 ELSE 为除此之外的默认情况，类似于高级语言程序中switch case的default，可以不加 END 后跟别名，可不加12case when a&amp;gt;b then a else b endcase when status = &amp;apos;1&amp;apos; then sta">
@@ -327,7 +327,10 @@
 <li>END 后跟别名，可不加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">case when a&gt;b then a else b end</span><br><span class="line">case when status = &apos;1&apos; then status else 0 end</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="round"><a href="#round" class="headerlink" title="round"></a>round</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">round(x,d)，x指要处理的数，d是指保留几位小数，四舍五入保留</span><br><span class="line">round(x)  ,其实就是round(x,0),也就是默认d为0</span><br></pre></td></tr></table></figure>
+<h3 id="round"><a href="#round" class="headerlink" title="round"></a>round</h3><ol>
+<li>round四舍五入保留<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">round(x,d)，x指要处理的数，d是指保留几位小数</span><br><span class="line">round(x)  ,其实就是round(x,0),也就是默认d为0</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <h3 id="ifnull"><a href="#ifnull" class="headerlink" title="ifnull"></a>ifnull</h3><ol>
 <li>IFNULL() 函数用于判断第一个表达式是否为 NULL，如果为 NULL 则返回第二个参数的值，如果不为 NULL 则返回第一个参数的值。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IFNULL(&quot;Hello&quot;, &quot;RUNOOB&quot;)</span><br></pre></td></tr></table></figure>
 </li>
